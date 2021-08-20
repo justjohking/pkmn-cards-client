@@ -13,6 +13,12 @@ function errorHandler(error) {
   throw error;
 }
 
+
+
+
+
+
+
 const apiHandler = {
   service,
 
@@ -44,12 +50,48 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  getItems() {
-    return axios
-      .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
-      .then((res) => res.data.data)
-      .catch(errorHandler);
-  },
+  // getItems(pageNo) {
+  //   
+  // },
 };
 
 export default apiHandler;
+
+
+
+// const apiUrl="https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac";
+
+
+// const getUsers = async function(pageNo = 1) {
+
+// let actualUrl=apiUrl + `&page=${pageNo}`;
+// console.log(actualUrl)
+// var apiResults=await fetch(actualUrl)
+// .then(resp=>{
+//   return resp.json();
+// });
+
+// return apiResults;
+
+// }
+
+// const getEntireUserList = async function(pageNo = 1) {
+  
+//   const results = await getUsers(pageNo);
+  
+//   console.log("Retreiving data from API for page : " + pageNo);
+//   if (results.data.length>0) {
+//     console.log("here 1")
+//     return results.concat(await getEntireUserList(pageNo+1));
+//   } else {
+//     console.log('here 2')
+//     return results;
+//   }
+// };
+
+
+// (async ()=>{
+//     const entireList=await getEntireUserList();
+//     console.log(entireList);
+
+// })();
