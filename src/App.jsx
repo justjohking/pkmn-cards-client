@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import AllCards from "./pages/AllCards";
+import OneCardPage from "./pages/OneCardPage"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/cards" component={AllCards} />
+        <Route exact path="/cards/:id" component ={OneCardPage} />
         <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>
     </div>

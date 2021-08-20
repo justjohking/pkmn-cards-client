@@ -7,11 +7,6 @@ export class CardInfo extends Component {
     render() {
         return (
             <div className="OneCard">
-
-                <div className="img-container">
-                    <img src={this.props.pokemon.images.large}></img>
-                </div>
-
                 <div className="info-container">
 
                     <div>
@@ -23,11 +18,13 @@ export class CardInfo extends Component {
                         </div>
                     </div>
 
+                {this.props.abilities && 
                     <div className="abilities">
-                        <h3>{this.props.pokemon.abilities.type}</h3>
-                        <p>{this.props.pokemon.abilities.name}</p>
-                        <p>{this.props.pokemon.abilities.text}</p>
-                    </div>
+                    <h3>{this.props.pokemon.abilities.type}</h3>
+                    <p>{this.props.pokemon.abilities.name}</p>
+                    <p>{this.props.pokemon.abilities.text}</p>
+                    </div>}
+                    
 
                     <div className="attacks">
                         <p>{this.props.pokemon.attacks.name} <span>{this.props.pokemon.attacks.damage}</span></p>

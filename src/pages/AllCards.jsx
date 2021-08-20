@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import apiHandler from '../api/apiHandler'
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
+import apiHandler from '../api/apiHandler';
+import OneCardMini from '../components/OneCardMini';
 
-export class AllCards extends Component {
+export class AllCardsFromApi extends Component {
     state = {
         cards: [],
     }
+    // We need to show only the pokemons whose cards are present in our DB
+
 
     async componentDidMount(){
         
@@ -18,14 +21,17 @@ export class AllCards extends Component {
     }
 
     render() {
-        return (
+
+        if(this.state.cards.length === 0) return (<div>Loading...</div>)
+        else return (
             <div>
-               {this.state.cards.map(element => {
-                   return <div>{element.name}</div>
+                {this.state.cards.map(element => {
+                   return <OneCardMini card={element}/>
                })}
+                
             </div>
         )
     }
 }
 
-export default AllCards
+export default AllCardsFromApi

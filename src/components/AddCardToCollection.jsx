@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FormField from './FormField';
+import FormField from './Forms/FormField';
 
 export class AddCardToCollection extends Component {
     state = {
@@ -24,14 +24,6 @@ export class AddCardToCollection extends Component {
     render() {
         return (
             <form onSubmit={this.state.handleSubmit}>
-
-                <FormField label="Add to :" htmlFor="collection">
-                    <select name="collection" onChange={this.state.handleChange}>
-                        <option value="Owned">my collection</option>
-                        <option value="Sell">to sell</option>
-                        <option value="Buy">to buy</option>
-                    </select>
-                </FormField>
 
                 <FormField label="In what state is your card ?" htmlFor="cardState">
                     <select name="cardState" onChange={this.state.handleChange}>
