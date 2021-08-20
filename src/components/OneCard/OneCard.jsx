@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CardInfo from './CardInfo';
 
 
-export class CardContainer extends Component {
+export class OneCard extends Component {
     render() {
         return (
             <div className="CardContainer">
@@ -23,4 +23,4 @@ export class CardContainer extends Component {
     }
 }
 
-export default CardContainer
+export default OneCard
