@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 
 export class OneCardActions extends Component {
 
-    handleClick = () => {
-        console.log(this.props.children)
-    }
     render() {
+        console.log(this.props.children)
         return (
             <div>
                 <div>
-                    <button onClick={this.handleClick}>Add to my collection</button>
+                    <button onClick={this.props.addCard}>Add to my collection</button>
                     <button>Sell</button>
                     <button>Buy</button>
                 </div>

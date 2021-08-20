@@ -27,6 +27,27 @@ export class OneCardPage extends Component {
         this.setState({ user: null, isLoggedIn: false});
       });
     }
+
+    addCard = () => {
+        try {
+            const cardToAdd = {
+            pokemonTCGId: this.state.pokemon.id,
+        }
+        //CREATE A CARD
+            const newUserCard = apiHandler.addCard(cardToAdd);
+            console.log("card added")
+
+        // GET THE OWNED COLLECTION
+            // apiHandler.addCardToCollection("Owned", {cards: });
+            
+
+
+        } 
+        
+        catch (error) {console.error(error)}
+    }
+
+    
     render() {
         if(this.state.pokemon === null) return (<div>Loading...</div>)
         else {
@@ -36,7 +57,7 @@ export class OneCardPage extends Component {
 
                         <img src={this.state.pokemon.images.large} alt="card"/>
 
-                            <OneCardActions>{this.state}</OneCardActions>
+                            <OneCardActions addCard={this.addCard}>{this.state}</OneCardActions>
 
                     </div>
     

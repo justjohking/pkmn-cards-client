@@ -14,7 +14,7 @@ export class AllCardsFromApi extends Component {
         
         try {
             const pokemonCards = await apiHandler.getItems()
-            this.setState({cards: pokemonCards}, () => console.log(this.state.cards))
+            this.setState({cards: pokemonCards}/*, () => console.log(this.state.cards)*/)
         } catch (err) {
             console.log(err)
         }

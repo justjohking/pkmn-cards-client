@@ -1,3 +1,6 @@
 .OneCard {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-width: 200px;
 }

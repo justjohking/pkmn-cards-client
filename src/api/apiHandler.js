@@ -77,6 +77,19 @@ const apiHandler = {
     .get("/api/cards")
     .then(res => res.data)
     .catch(errorHandler)
+  },
+
+  addCard(card) {
+    return service
+    .post("/api/me/cards/add/", card)
+    .catch(errorHandler)
+  },
+
+  addCardToCollection(type, cardId) {
+    return service
+    .patch(`/collection/${type}/${cardId}`)
+    .then(res => res.data)
+    .catch(errorHandler)
   }
 };
 
