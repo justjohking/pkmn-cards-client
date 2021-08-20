@@ -57,6 +57,12 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler)
   }
+  getItems() {
+    return axios
+      .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
+      .then((res) => res.data.data)
+      .catch(errorHandler);
+  },
 };
 
 export default apiHandler;
