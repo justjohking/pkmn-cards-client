@@ -32,7 +32,7 @@ const apiHandler = {
 
   isLoggedIn() {
     return service
-      .get("/api/users/me")
+      .get("/api/users/profile")
       .then((res) => res.data)
       .catch(errorHandler);
   },
@@ -44,12 +44,12 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  // getItems() {
-  //   return service
-  //     .get("/api/items")
-  //     .then((res) => res.data)
-  //     .catch(errorHandler);
-  // },
+  getItems() {
+    return axios
+      .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
+      .then((res) => res.data.data)
+      .catch(errorHandler);
+  },
 };
 
 export default apiHandler;
