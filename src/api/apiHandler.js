@@ -50,9 +50,40 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  // getItems(pageNo) {
-  //   
+  // getItems() {
+  //   return service
+  //     .get("/api/items")
+  //     .then((res) => res.data)
+  //     .catch(errorHandler);
   // },
+
+  getOneCard(id) {
+    return service 
+      .get("/api/cards/" + id)
+      .then((res) => res.data)
+      .catch(errorHandler)
+  },
+
+  getItems() {
+    return axios
+      .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
+      .then((res) => res.data.data)
+      .catch(errorHandler);
+  },
+
+  getOneCardFromApi(id) {
+    return axios 
+    .get(`https://api.pokemontcg.io/v2/cards/${id}?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac`)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  getAllCards() {
+    return service 
+    .get("/api/cards")
+    .then(res => res.data)
+    .catch(errorHandler)
+  }
 };
 
 export default apiHandler;

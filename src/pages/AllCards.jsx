@@ -4,13 +4,15 @@ import axios from 'axios'
 import '../pages/AllCards.css'
 import { Link } from 'react-router-dom'
 
-export class AllCards extends Component {
+export class AllCardsFromApi extends Component {
     state = {
         cards: [],
         loading: false,
         page: 1,
         prevY: 0
     }
+    // We need to show only the pokemons whose cards are present in our DB
+
 
     
     
