@@ -50,6 +50,13 @@ const apiHandler = {
   //     .then((res) => res.data)
   //     .catch(errorHandler);
   // },
+
+  getOneCard(id) {
+    return service 
+      .get("/api/cards/" + id)
+      .then((res) => res.data)
+      .catch(errorHandler)
+  }
 };
 
 export default apiHandler;
