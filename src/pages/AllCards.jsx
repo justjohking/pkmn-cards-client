@@ -4,7 +4,7 @@ import axios from 'axios'
 import '../pages/AllCards.css'
 import { Link } from 'react-router-dom'
 
-export class AllCardsFromApi extends Component {
+export class AllCards extends Component {
     state = {
         cards: [],
         loading: false,
