@@ -38,14 +38,14 @@ export class OneCardPage extends Component {
         catch (error) {console.error(error)}
     }
 
-    async componentDidUpdate (prevProps, prevState) {
-        if (this.state !== prevState) {
-            const pokemonInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id)
-            this.setState({
-            pokemon: pokemonInfo.data
-        })
-        }
-    }
+    // async componentDidUpdate (prevProps, prevState) {
+    //     if (this.state !== prevState) {
+    //         const pokemonInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id)
+    //         this.setState({
+    //         pokemon: pokemonInfo.data
+    //     })
+    //     }
+    // }
 
     addCard = async (collection) => {
         try {
