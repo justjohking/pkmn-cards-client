@@ -98,6 +98,13 @@ const apiHandler = {
     .patch(`/api/me/collection/${type}`, updatedCardList)
     .then(res => res.data)
     .catch(errorHandler)
+  },
+
+  getOneUserCard(apiId) {
+    return service
+    .get("/api/me/cards/all/" + apiId)
+    .then(res => res.data)
+    .catch(errorHandler)
   }
 };
 
