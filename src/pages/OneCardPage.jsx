@@ -38,6 +38,7 @@ export class OneCardPage extends Component {
         catch (error) {console.error(error)}
     }
 
+
     addCard = async (collection) => {
         try {
             const cardToAdd = {

@@ -100,6 +100,8 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
+
+
   createBid(){
     return service
     .post('/bids/create')
@@ -117,6 +119,13 @@ const apiHandler = {
   getUserInfoAboutCard(apiId) {
     return service
     .get("/api/me/cards/all/" + apiId)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  getCardOnSell(id){
+    return service
+    .get("/api/cards/bids/" + id)
     .then(res => res.data)
     .catch(errorHandler)
   }
