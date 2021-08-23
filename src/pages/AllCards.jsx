@@ -73,9 +73,9 @@ export class AllCards extends Component {
         
         return (
            <div className="container">
-            <div style={{ minHeight: "800px", display: "flex", "flex-wrap": "wrap" }}>
+            <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
             {this.state.cards.map(card => (
-                <div className="cardDiv" >
+                <div className="cardDiv" key={card.id}>
                     <img src={card.images.small} alt="" height="400px" width="350px"/>
                     <div>{card.name}</div>
                     <Link to={"/cards/" + card.id}>Details</Link>

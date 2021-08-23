@@ -18,34 +18,41 @@ export class OneCardPage extends Component {
             pokemon: pokemonInfo.data
         })
 
-        await apiHandler
-      .isLoggedIn()
-      .then((data) => {
-        this.setState({ user: data, isLoggedIn: true});
-      })
-      .catch((error) => {
-        this.setState({ user: null, isLoggedIn: false});
-      });
+    //     await apiHandler
+    //   .isLoggedIn()
+    //   .then((data) => {
+    //     this.setState({ user: data, isLoggedIn: true});
+    //   })
+    //   .catch((error) => {
+    //     this.setState({ user: null, isLoggedIn: false});
+    //   });
     }
 
-    addCard = () => {
+    addCardToOwned = async () => {
         try {
             const cardToAdd = {
             pokemonTCGId: this.state.pokemon.id,
         }
         //CREATE A CARD
-            const newUserCard = apiHandler.addCard(cardToAdd);
-            console.log("card added")
+            const newUserCard = await apiHandler.addCard(cardToAdd);
+            console.log(newUserCard._id)
 
-        // GET THE OWNED COLLECTION
-            // apiHandler.addCardToCollection("Owned", {cards: });
-            
-
-
-        } 
+        // FIND THE OWNED COLLECTION AND ADD CARD TO NEW ARRAY
+            const foundCollection = await apiHandler.findUserCollection("Owned");
+            const updatedCardList = foundCollection[0].cards
+            updatedCardList.push(newUserCard._id)
+            console.log(updatedCardList)
         
+        // UPDATE THE COLLECTION WITH THE NEW ARRAY
+            const updatedCollection = await apiHandler.addCardToCollection("Owned", {cards : updatedCardList});
+            console.log(updatedCollection)
+        } 
         catch (error) {console.error(error)}
     }
+
+
+
+
 
     
     render() {
@@ -57,7 +64,7 @@ export class OneCardPage extends Component {
 
                         <img src={this.state.pokemon.images.large} alt="card"/>
 
-                            <OneCardActions addCard={this.addCard}>{this.state}</OneCardActions>
+                            <OneCardActions addCardToOwned={this.addCardToOwned}>{this.state}</OneCardActions>
 
                     </div>
     
