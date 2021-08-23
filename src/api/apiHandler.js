@@ -98,6 +98,20 @@ const apiHandler = {
     .patch(`/api/me/collection/${type}`, updatedCardList)
     .then(res => res.data)
     .catch(errorHandler)
+  },
+
+  createBid(){
+    return service
+    .post('/bids/create')
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  findBids(type){
+    return service
+    .get(`/api/collection/${type}`)
+    .then(res => res.data)
+    .catch(errorHandler)
   }
 };
 

@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import AllCards from "./pages/AllCards";
 import OneCardPage from "./pages/OneCardPage"
+import Bids from "./pages/Bids";
 
 function App() {
   return (
@@ -15,11 +16,12 @@ function App() {
       <NavMain />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/signin" component={Signin} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/cards" component={AllCards} />
+        <Route exact path="/signin" component= {Signin} />
+        <Route exact path="/signup" component= {Signup} />
+        <Route exact path="/cards" component= {AllCards} />
         <Route exact path="/cards/:id" component ={OneCardPage} />
-        <ProtectedRoute exact path="/profile" component={Profile} />
+        <Route exact path ="/bids" component= {Bids} />
+        <ProtectedRoute exact path="/profile" component= {Profile} />
       </Switch>
     </div>
   );
