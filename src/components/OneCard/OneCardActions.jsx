@@ -27,6 +27,10 @@ class OneCardActions extends Component {
                     userCards.length > 0 && 
                     <button onClick={() => this.props.addCard("Sell")}>Sell</button>} {/* user wants to sell this card */}
 
+                    
+                    <button>Buy</button>
+                    
+
                     <button>See all the versions of this card being sold</button> {/* user seeks to make a bid or exchange to get this card */}
                 </div>
             </div>

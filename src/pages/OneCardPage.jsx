@@ -50,13 +50,14 @@ export class OneCardPage extends Component {
 
         // Find the targeted collection and add the cardId to the array of cards
             const foundCollection = await apiHandler.findUserCollection(collection);
+            console.log(foundCollection)
             const updatedCardList = foundCollection[0].cards
             updatedCardList.push(newUserCard._id)
-            // console.log(updatedCardList)
+            console.log(updatedCardList)
         
         // Update the collection with the new array
-            /*const updatedCollection = */ await apiHandler.addCardToCollection(collection, {cards : updatedCardList});
-            // console.log(updatedCollection)
+            const updatedCollection =  await apiHandler.addCardToCollection(collection, {cards : updatedCardList});
+            console.log(updatedCollection)
 
         // Get all the cards from all collections 
 
