@@ -4,7 +4,7 @@ class OneCardActions extends Component {
 
     render() {
         const { isLoggedIn, userCards } = this.props.children;
-        console.log(isLoggedIn, userCards)
+
         return (
             <div>
                 <div>
@@ -25,9 +25,17 @@ class OneCardActions extends Component {
 
                     {isLoggedIn &&
                     userCards.length > 0 && 
-                    <button onClick={() => this.props.addCard("Sell")}>Sell</button>} {/* user wants to sell this card */}
+                    <button onClick={() => this.props.sellCard(userCards._id)}>Sell</button>} {/* user wants to sell this card */}
 
-                    <button>See all the versions of this card being sold</button> {/* user seeks to make a bid or exchange to get this card */}
+                    {userCards.map(card => {
+                        return(
+                            <div key={card._id}>
+                                <p>Card Id : {card._id} <button onClick={() => this.props.putCardOnSale(card._id)}>Sell</button> </p>
+                            </div>
+                        )
+                    })}
+
+                    <button>See offers from other vendors</button> {/* user seeks to make a bid or exchange to get this card */}
                 </div>
             </div>
         )

@@ -39,41 +39,44 @@ export class OneCardPage extends Component {
     }
 
 
-    addCard = async (collection) => {
+    addCard = async () => {
         try {
             const cardToAdd = {
             pokemonTCGId: this.state.pokemon.id,
         }
         // Create a card
-            const newUserCard = await apiHandler.addCard(cardToAdd);
+            await apiHandler.addCard(cardToAdd);
             // console.log(newUserCard._id)
 
         // Find the targeted collection and add the cardId to the array of cards
-            const foundCollection = await apiHandler.findUserCollection(collection);
-            const updatedCardList = foundCollection[0].cards
-            updatedCardList.push(newUserCard._id)
-            // console.log(updatedCardList)
+            // const foundCollectionRes = await apiHandler.findUserCollection("Owned");
+            // console.log("before owned collection", foundCollectionRes)
+            // const foundCollectionCards = foundCollectionRes[0].cards
+            // const updatedCardList = foundCollectionCards.push(newUserCard._id)
         
         // Update the collection with the new array
-            /*const updatedCollection = */ await apiHandler.addCardToCollection(collection, {cards : updatedCardList});
-            // console.log(updatedCollection)
-
-        // Get all the cards from all collections 
-
+            // const updatedCollection = await apiHandler.addCardToCollection("Owned", {cards : updatedCardList});
+            // console.log("updated Owned collection", updatedCollection)
         } 
         catch (error) {console.error(error)}
     }
 
-    // async componentDidUpdate (prevProps, prevState) {
-    //     if (this.state.userCards !== prevState.userCards) {
-    //         const userCards = await apiHandler.getOneUserCard(this.state.pokemon.id);
-    //         this.setState({
-    //             userCards: userCards
-    //         })
-    //     }
-    // }
+    putCardOnSale = async (id) => {
+        try {
+            await apiHandler.getOneUserCard(id);
+            const foundCollection = await apiHandler.findUserCollection("Sell")
+            const cardsOnSale = foundCollection[0].cards;
+            cardsOnSale.push(id)
+            await apiHandler.addCardToCollection("Sell", {cards: cardsOnSale})
+        }
+        catch (error) {console.log(error)}
+        
+
+
+    }
     
     render() {
+
         if(this.state.pokemon === null) return (<div>Loading...</div>)
         else {
             return (
@@ -81,10 +84,9 @@ export class OneCardPage extends Component {
                     <div className="div-left">
 
                         <img src={this.state.pokemon.images.large} alt="card"/>
-
-                            <OneCardActions addCard={this.addCard}>{this.state}</OneCardActions>
-
+                            <OneCardActions addCard={this.addCard} putCardOnSale={this.putCardOnSale}>{this.state}</OneCardActions>
                     </div>
+
     
                     <CardInfo
                     pokemon={this.state.pokemon}
