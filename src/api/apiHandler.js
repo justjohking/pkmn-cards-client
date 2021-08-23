@@ -87,14 +87,12 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  addCardToCollection(type, updatedCardList) {
+  addCardToCollection(collection, updatedCardList) {
     return service
-    .patch(`/api/me/collection/${type}`, updatedCardList)
+    .patch(`/api/me/collection/${collection}`, updatedCardList)
     .then(res => res.data)
     .catch(errorHandler)
   },
-
-
 
   createBid(){
     return service
@@ -120,6 +118,13 @@ const apiHandler = {
   getCardOnSell(id){
     return service
     .get("/api/cards/bids/" + id)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  getOneUserCard(id){
+    return service
+    .get("/api/me/cards/" + id)
     .then(res => res.data)
     .catch(errorHandler)
   }
