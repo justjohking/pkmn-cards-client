@@ -1,6 +1,13 @@
-.OneCard {
+.OneCard .container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  min-width: 200px;
+}
+
+.OneCard .container img {
+  width: 300px;
+}
+
+.OneCard .set img {
+  width: 20px;
 }

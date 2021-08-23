@@ -58,16 +58,30 @@ const apiHandler = {
       .catch(errorHandler)
   },
 
+  // getItems() {
+  //   return axios
+  //     .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
+  //     .then((res) => res.data.data)
+  //     .catch(errorHandler);
+  // },
+
   getItems() {
-    return axios
-      .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
-      .then((res) => res.data.data)
-      .catch(errorHandler);
+    return service
+    .get("/pokemonApi/all")
+    .then((res) => res.data)
+    .catch(errorHandler)
   },
 
+  // getOneCardFromApi(id) {
+  //   return axios 
+  //   .get(`https://api.pokemontcg.io/v2/cards/${id}?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac`)
+  //   .then(res => res.data)
+  //   .catch(errorHandler)
+  // },
+
   getOneCardFromApi(id) {
-    return axios 
-    .get(`https://api.pokemontcg.io/v2/cards/${id}?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac`)
+    return service
+    .get(`/pokemonApi/${id}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -81,7 +95,14 @@ const apiHandler = {
 
   addCard(card) {
     return service
-    .post("/api/me/cards/add/", card)
+    .post("/api/me/cards/add", card)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  updateCard(id, updatedCard) {
+    return service
+    .patch(`/api/me/cards/${id}/edit`, updatedCard)
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -114,7 +135,7 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  getUserInfoAboutCard(apiId) {
+  getAllUserCardsFromApiCard(apiId) {
     return service
     .get("/api/me/cards/all/" + apiId)
     .then(res => res.data)

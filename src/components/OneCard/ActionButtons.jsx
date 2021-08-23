@@ -11,31 +11,36 @@ class OneCardActions extends Component {
                     
                     {isLoggedIn && 
                     userCards.length === 0 && 
-                    <button onClick={() => this.props.addCard("Owned")}>Add to my collection</button> } {/* user indicates that they own this card */}
+                    <button onClick={this.props.addCard}>Add to my collection</button> } {/* user indicates that they own this card */}
 
                     {isLoggedIn && 
                     userCards.length > 0 && 
                     <div>
                         <p>You have {userCards.length} {userCards.length === 1 ? "version" : "versions"} of this card.</p>
-                        <button onClick={() => this.props.addCard("Owned")}>Add another to my collection</button>
+                        <button onClick={this.props.addCard}>Add another to my collection</button>
                     </div>}
-                    
-                    {!isLoggedIn && 
-                    <button onClick={() => this.props.addCard("Owned")}>Add to my collection</button>}
 
-                    {isLoggedIn &&
+                    {/* {isLoggedIn &&
                     userCards.length > 0 && 
-                    <button onClick={() => this.props.sellCard(userCards._id)}>Sell</button>} {/* user wants to sell this card */}
+                    <button onClick={() => this.props.sellCard(userCards._id)}>Sell</button>} user wants to sell this card */}
 
-                    {userCards.map(card => {
+                    {isLoggedIn && userCards.map(card => {
                         return(
                             <div key={card._id}>
-                                <p>Card Id : {card._id} <button onClick={() => this.props.putCardOnSale(card._id)}>Sell</button> </p>
+                                <p>Card Id : {card._id} => {card.onSale ? 
+                                <button onClick={() => this.props.putCardOnSale(card._id)}>Sell</button> :
+                                <span>Card on sale</span>}
+                                
+                                </p>
                             </div>
                         )
                     })}
 
-                    <button>See offers from other vendors</button> {/* user seeks to make a bid or exchange to get this card */}
+                    {isLoggedIn && 
+                    <button>See offers from other vendors</button>}
+                    
+                    {!isLoggedIn && 
+                    <div>See offers</div>} {/* user seeks to make a bid or exchange to get this card */}
                 </div>
             </div>
         )
