@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
-
+import React, { Component } from 'react';
 import axios from 'axios'
 import '../pages/AllCards.css'
-import { Link } from 'react-router-dom'
 import OneCardItemList from '../components/CardsList/OneCardItemList'
 
 export class AllCards extends Component {
@@ -69,6 +67,9 @@ export class AllCards extends Component {
 
         const loadingTextCSS = { display: this.state.loading ? "block" : "none" };
 
+
+
+        
         return (
            <div className="container">
             <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>

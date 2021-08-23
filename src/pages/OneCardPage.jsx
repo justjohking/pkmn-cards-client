@@ -54,7 +54,7 @@ export class OneCardPage extends Component {
             // console.log(updatedCardList)
         
         // Update the collection with the new array
-            const updatedCollection = await apiHandler.addCardToCollection(collection, {cards : updatedCardList});
+            /*const updatedCollection = */ await apiHandler.addCardToCollection(collection, {cards : updatedCardList});
             // console.log(updatedCollection)
 
         // Get all the cards from all collections 
