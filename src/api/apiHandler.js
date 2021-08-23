@@ -110,12 +110,16 @@ const apiHandler = {
   findBids(type){
     return service
     .get(`/api/collection/${type}`)
-  getOneUserCard(apiId) {
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  getUserInfoAboutCard(apiId) {
     return service
     .get("/api/me/cards/all/" + apiId)
     .then(res => res.data)
     .catch(errorHandler)
   }
-};
+}
 
 export default apiHandler;

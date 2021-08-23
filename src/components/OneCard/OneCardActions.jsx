@@ -16,7 +16,7 @@ class OneCardActions extends Component {
                     {isLoggedIn && 
                     userCards.length > 0 && 
                     <div>
-                        <p>You have {userCards.length} versions of this card.</p>
+                        <p>You have {userCards.length} {userCards.length === 1 ? "version" : "versions"} of this card.</p>
                         <button onClick={() => this.props.addCard("Owned")}>Add another to my collection</button>
                     </div>}
                     

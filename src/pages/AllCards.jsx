@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import '../pages/AllCards.css'
 import { Link } from 'react-router-dom'
+import OneCardItemList from '../components/CardsList/OneCardItemList'
 
 export class AllCards extends Component {
     state = {
@@ -68,21 +69,11 @@ export class AllCards extends Component {
 
         const loadingTextCSS = { display: this.state.loading ? "block" : "none" };
 
-
-
-        
         return (
            <div className="container">
             <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
             {this.state.cards.map(card => (
-                <div className="cardDiv" key={card.id}>
-                    <img src={card.images.small} alt="" height="400px" width="350px"/>
-                    <div>{card.name}</div>
-                    <Link to={"/cards/" + card.id}>Details</Link>
-                </div>
-                    
-                
-                
+                <OneCardItemList card={card}/>  
             ))}
             </div>
             <div

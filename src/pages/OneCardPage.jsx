@@ -29,7 +29,7 @@ export class OneCardPage extends Component {
                 pokemon: pokemonInfo.data
             })
 
-            const userCards = await apiHandler.getOneUserCard(this.state.pokemon.id);
+            const userCards = await apiHandler.getUserInfoAboutCard(this.state.pokemon.id);
             this.setState({
                 userCards: userCards
             })
@@ -38,36 +38,39 @@ export class OneCardPage extends Component {
         catch (error) {console.error(error)}
     }
 
-    async componentDidUpdate (prevProps, prevState) {
-        if (this.state !== prevState) {
-            const pokemonInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id)
-            this.setState({
-            pokemon: pokemonInfo.data
-        })
-        }
-    }
-
     addCard = async (collection) => {
         try {
             const cardToAdd = {
             pokemonTCGId: this.state.pokemon.id,
         }
-        //CREATE A CARD
+        // Create a card
             const newUserCard = await apiHandler.addCard(cardToAdd);
             // console.log(newUserCard._id)
 
-        // FIND THE OWNED COLLECTION AND ADD CARD TO NEW ARRAY
+        // Find the targeted collection and add the cardId to the array of cards
             const foundCollection = await apiHandler.findUserCollection(collection);
             const updatedCardList = foundCollection[0].cards
             updatedCardList.push(newUserCard._id)
             // console.log(updatedCardList)
         
-        // UPDATE THE COLLECTION WITH THE NEW ARRAY
+        // Update the collection with the new array
             const updatedCollection = await apiHandler.addCardToCollection(collection, {cards : updatedCardList});
             // console.log(updatedCollection)
+
+        // Get all the cards from all collections 
+
         } 
         catch (error) {console.error(error)}
     }
+
+    // async componentDidUpdate (prevProps, prevState) {
+    //     if (this.state.userCards !== prevState.userCards) {
+    //         const userCards = await apiHandler.getOneUserCard(this.state.pokemon.id);
+    //         this.setState({
+    //             userCards: userCards
+    //         })
+    //     }
+    // }
     
     render() {
         if(this.state.pokemon === null) return (<div>Loading...</div>)
@@ -93,6 +96,3 @@ export class OneCardPage extends Component {
 }
 
 export default OneCardPage
-/* 
-For the buttons :
-*/
