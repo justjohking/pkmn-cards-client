@@ -110,6 +110,9 @@ const apiHandler = {
   findBids(type){
     return service
     .get(`/api/collection/${type}`)
+  getOneUserCard(apiId) {
+    return service
+    .get("/api/me/cards/all/" + apiId)
     .then(res => res.data)
     .catch(errorHandler)
   }

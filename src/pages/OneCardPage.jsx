@@ -10,50 +10,64 @@ export class OneCardPage extends Component {
         user: {},
         pokemon : null,
         isLoggedIn: false,
+        userCards : [],
     }
 
     async componentDidMount() {
-        const pokemonInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id)
-        this.setState({
-            pokemon: pokemonInfo.data
-        })
+        try {
+            await apiHandler
+            .isLoggedIn()
+            .then((data) => {
+                this.setState({ user: data, isLoggedIn: true});
+            })
+            .catch((error) => {
+                this.setState({ user: null, isLoggedIn: false});
+            });
 
-    //     await apiHandler
-    //   .isLoggedIn()
-    //   .then((data) => {
-    //     this.setState({ user: data, isLoggedIn: true});
-    //   })
-    //   .catch((error) => {
-    //     this.setState({ user: null, isLoggedIn: false});
-    //   });
+            const pokemonInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id)
+            this.setState({
+                pokemon: pokemonInfo.data
+            })
+
+            const userCards = await apiHandler.getOneUserCard(this.state.pokemon.id);
+            this.setState({
+                userCards: userCards
+            })
+            // console.log(userCards)
+        }
+        catch (error) {console.error(error)}
     }
 
-    addCardToOwned = async () => {
+    async componentDidUpdate (prevProps, prevState) {
+        if (this.state !== prevState) {
+            const pokemonInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id)
+            this.setState({
+            pokemon: pokemonInfo.data
+        })
+        }
+    }
+
+    addCard = async (collection) => {
         try {
             const cardToAdd = {
             pokemonTCGId: this.state.pokemon.id,
         }
         //CREATE A CARD
             const newUserCard = await apiHandler.addCard(cardToAdd);
-            console.log(newUserCard._id)
+            // console.log(newUserCard._id)
 
         // FIND THE OWNED COLLECTION AND ADD CARD TO NEW ARRAY
-            const foundCollection = await apiHandler.findUserCollection("Owned");
+            const foundCollection = await apiHandler.findUserCollection(collection);
             const updatedCardList = foundCollection[0].cards
             updatedCardList.push(newUserCard._id)
-            console.log(updatedCardList)
+            // console.log(updatedCardList)
         
         // UPDATE THE COLLECTION WITH THE NEW ARRAY
-            const updatedCollection = await apiHandler.addCardToCollection("Owned", {cards : updatedCardList});
-            console.log(updatedCollection)
+            const updatedCollection = await apiHandler.addCardToCollection(collection, {cards : updatedCardList});
+            // console.log(updatedCollection)
         } 
         catch (error) {console.error(error)}
     }
-
-
-
-
-
     
     render() {
         if(this.state.pokemon === null) return (<div>Loading...</div>)
@@ -64,7 +78,7 @@ export class OneCardPage extends Component {
 
                         <img src={this.state.pokemon.images.large} alt="card"/>
 
-                            <OneCardActions addCardToOwned={this.addCardToOwned}>{this.state}</OneCardActions>
+                            <OneCardActions addCard={this.addCard}>{this.state}</OneCardActions>
 
                     </div>
     
