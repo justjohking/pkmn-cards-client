@@ -30,6 +30,13 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
+  logout() {
+    return service
+      .get("/api/auth/logout")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   isLoggedIn() {
     return service
       .get("/api/users/profile")
@@ -37,12 +44,7 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  logout() {
-    return service
-      .get("/api/auth/logout")
-      .then((res) => res.data)
-      .catch(errorHandler);
-  },
+ 
 
   
   getOneCard(id) {
@@ -52,7 +54,8 @@ const apiHandler = {
       .catch(errorHandler)
   },
 
-  getItems() {
+  //old getItems => getAllCards => will get all the cards from the API
+  getAllCards() {
     return axios
       .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
       .then((res) => res.data.data)
@@ -66,58 +69,26 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  getAllCards() {
+  //old getAllCards => getAllUserCards removed /api 
+  getAllUserCards() {
     return service 
-    .get("/api/me/cards")
+    .get("/me/cards")
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  //User Interaction
+  //old findUserCollection => getUserCollection removed /api
+  getUserCollection(type) {
+    return service 
+    .get(`/me/collection/${type}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
   addCard(card) {
     return service
-    .post("/api/me/cards/add/", card)
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
-
-  findUserCollection(type) {
-    return service 
-    .get(`/api/me/collection/${type}`)
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
-
-  addCardToCollection(collection, updatedCardList) {
-    return service
-    .patch(`/api/me/collection/${collection}`, updatedCardList)
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
-
-  createBid(){
-    return service
-    .post('/bids/create')
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
-
-  findBids(type){
-    return service
-    .get(`/api/collection/${type}`)
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
-
-  getUserInfoAboutCard(apiId) {
-    return service
-    .get("/api/me/cards/all/" + apiId)
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
-
-  getCardOnSell(id){
-    return service
-    .get("/api/cards/bids/" + id)
+    .post("/me/cards/add/", card)
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -127,7 +98,52 @@ const apiHandler = {
     .get("/api/me/cards/" + id)
     .then(res => res.data)
     .catch(errorHandler)
-  }
+  },
+
+
+
+  // addCardToCollection(collection, updatedCardList) {
+  //   return service
+  //   .patch(`/api/me/collection/${collection}`, updatedCardList)
+  //   .then(res => res.data)
+  //   .catch(errorHandler)
+  // },
+
+
+  // Bids 
+  //create a new bid
+  createBid(){
+    return service
+    .post('/bids/create')
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  //?? delete this i think
+  findBids(type){
+    return service
+    .get(`/api/collection/${type}`)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  // ?? removed /api
+  getUserInfoAboutCard(apiId) {
+    return service
+    .get("/me/cards/all/" + apiId)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  //Get all the cards that are on sell removed /api
+  getCardOnSell(id){
+    return service
+    .get("/cards/bids/" + id)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  
 }
 
 export default apiHandler;
