@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import OneCardItemList from './OneCardItemList';
 import apiHandler from '../../api/apiHandler';
-import OneUserCardPage from '../OneUserCard/OneUserCardPage';
+import FormSale from '../OneUserCard/FormSale';
 
 export class CardsList extends Component {
     state = {
@@ -43,7 +43,7 @@ export class CardsList extends Component {
                     return (
                         <div>
                     <OneCardItemList card={card.pokemonTCGId} link={"/profile/cards/" + card._id}/>
-                    <OneUserCardPage card={card}/>
+                    <FormSale card={card}/>
                     </div>)
                 })}
                 

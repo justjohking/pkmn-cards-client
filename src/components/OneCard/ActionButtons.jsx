@@ -27,17 +27,18 @@ class OneCardActions extends Component {
                     {isLoggedIn && userCards.map(card => {
                         return(
                             <div key={card._id}>
-                                <p>Card Id : {card._id} => {card.onSale ? 
-                                <button onClick={() => this.props.putCardOnSale(card._id)}>Sell</button> :
-                                <span>Card on sale</span>}
-                                
+                                <p>Card Id : {card._id} 
+                                 {/* <span>Card on sale</span> : 
+                                 <button onClick={() => this.props.putCardOnSale(card._id)}>Sell</button> 
+                               }
+                                 */}
                                 </p>
                             </div>
                         )
                     })}
 
                     {isLoggedIn && 
-                    <button>See offers from other vendors</button>}
+                    <div>All the current offers : </div>}
                     
                     {!isLoggedIn && 
                     <div>See offers</div>} {/* user seeks to make a bid or exchange to get this card */}
