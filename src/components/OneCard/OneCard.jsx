@@ -37,7 +37,7 @@ export class OneCard extends Component {
 
     addCard = async () => {
         try {
-            await apiHandler.addCard({tcgId: this.state.pokemon.id});
+            await apiHandler.addCard({pokemonTCGId: this.props.match.params.id});
         } catch (error) {console.error(error)}
     }
 

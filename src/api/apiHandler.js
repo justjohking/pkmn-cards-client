@@ -60,7 +60,7 @@ const apiHandler = {
 
   getItems() {
     return service
-    .get("/pokemonApi/all")
+    .get("/api/pokemonApi/all")
     .then((res) => res.data)
     .catch(errorHandler)
   },
@@ -96,7 +96,7 @@ const apiHandler = {
   //old getAllCards => getAllUserCards removed /api 
   getAllUserCards() {
     return service 
-    .get("/me/cards")
+    .get("/api/me/cards")
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -118,14 +118,14 @@ const apiHandler = {
   //old findUserCollection => getUserCollection removed /api
   getUserCollection(type) {
     return service 
-    .get(`/me/collection/${type}`)
+    .get(`/api/me/collection/${type}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
   addCard(card) {
     return service
-    .post("/me/cards/add/", card)
+    .post("/api/me/cards/add/", card)
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -151,7 +151,7 @@ const apiHandler = {
   //create a new bid
   createBid(){
     return service
-    .post('/bids/create')
+    .post('/api/bids/create')
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -174,7 +174,7 @@ const apiHandler = {
   //Get all the cards that are on sell removed /api
   getCardOnSell(id){
     return service
-    .get("/cards/bids/" + id)
+    .get("/api/cards/bids/" + id)
     .then(res => res.data)
     .catch(errorHandler)
   },
