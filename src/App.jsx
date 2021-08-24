@@ -11,6 +11,7 @@ import OneCard from "./components/OneCard/OneCard"
 import Bids from "./pages/Bids";
 import CardsList from "./components/CardsList/CardsList";
 import FormSale from "./components/Forms/FormSale";
+import UserBids from "./pages/UserBids";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <ProtectedRoute exact path="/profile" component= {Profile} />
         <ProtectedRoute path="/profile/cards" component={CardsList} />
         <ProtectedRoute exact path="/profile/cards/:id" component={FormSale} />
+        <ProtectedRoute path="/profile/bids" component={UserBids} />
       </Switch>
     </div>
   );

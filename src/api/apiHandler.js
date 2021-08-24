@@ -156,13 +156,28 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
+  deleteBid(bid){
+    return service
+      .delete(`/api/bids/${bid}`)
+      .then(res => res.data)
+      .catch(errorHandler)
+  },
+
   //?? delete this i think
-  findBids(){
+  findCardsOnSale(){
     return service
     .get(`/api/bids`)
     .then(res => res.data)
     .catch(errorHandler)
   },
+
+  findUserBids(){
+    return service
+      .get('/api/users/profile/bids')
+      .then(res => res.data)
+      .catch(errorHandler)
+  },
+  
 
   updatedBids(id, newBid){
       return service
