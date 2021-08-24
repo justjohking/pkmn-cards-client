@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler'
 import ActionButtons from "./ActionButtons"
 import CardInfo from "./CardInfo"
+import OffersTable from './OffersTable';
 import "./OneCard.css";
 
 
@@ -11,7 +12,8 @@ export class OneCard extends Component {
         pokemon : null,
         isLoggedIn: false,
         userCards : [],
-        formDisplayed: false
+        formDisplayed: false,
+        cardsOnSale: [],
     }
 
     async componentDidMount() {
@@ -31,6 +33,12 @@ export class OneCard extends Component {
             
             const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
             this.setState({ userCards: userCards })
+
+            console.log(this.state.pokemon)
+            const cardsOnSale = await apiHandler.getCardOnSale(this.state.pokemon.id)
+            this.setState({cardsOnSale: cardsOnSale} )
+
+            console.log(this.state.cardsOnSale)
         }
         catch (error) {console.error(error)}
     }
@@ -42,22 +50,9 @@ export class OneCard extends Component {
         } catch (error) {console.error(error)}
     }
 
-    putCardOnSale = async (id) => {
-        try {
-            await apiHandler.updateCard(id, {onSale: true})
-            // await apiHandler.getOneUserCard(id);
-            // const foundCollection = await apiHandler.findUserCollection("Sell")
-            // const cardsOnSale = foundCollection[0].cards;
-            // cardsOnSale.push(id)
-            // await apiHandler.addCardToCollection("Sell", {cards: cardsOnSale})
-        } catch (error) {console.log(error)}
-    }
+    
 
-    // displaySaleForm = () => {
-    //     this.setState({
-    //         formDisplayed: true
-    //     })
-    // }
+    
     
     render() {
         if(this.state.pokemon === null) return (<div>Loading...</div>)
@@ -76,6 +71,9 @@ export class OneCard extends Component {
                     >
                         {this.state}
                     </ActionButtons>
+                    <OffersTable offers={this.state.cardsOnSale} />
+
+                  
                     </div>
                 </div>
             )

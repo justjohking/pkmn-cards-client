@@ -50,6 +50,11 @@ export class SellCardForm extends Component {
             status: "ongoing"
         }
         const bidCreated = apiHandler.createBid(bid)
+        apiHandler.updateCard(this.props.card._id, {
+            onSale: true, 
+            price: this.state.initialPrice,
+            bid: bidCreated._id
+        })
 
         console.log("bid created", bidCreated)
     }

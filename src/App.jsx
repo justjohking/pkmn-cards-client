@@ -10,7 +10,7 @@ import AllCards from "./pages/AllCards";
 import OneCard from "./components/OneCard/OneCard"
 import Bids from "./pages/Bids";
 import CardsList from "./components/CardsList/CardsList";
-import OneUserCardPage from "./components/Forms/SellCardForm";
+import FormSale from "./components/OneUserCard/FormSale";
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
         <Route exact path ="/bids" component= {Bids} />
         <ProtectedRoute exact path="/profile" component= {Profile} />
         <ProtectedRoute path="/profile/cards" component={CardsList} />
+        <ProtectedRoute exact path="/profile/cards/:id" component={FormSale} />
       </Switch>
     </div>
   );

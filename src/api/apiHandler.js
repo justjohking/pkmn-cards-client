@@ -172,7 +172,7 @@ const apiHandler = {
   },
 
   //Get all the cards that are on sell removed /api
-  getCardOnSell(id){
+  getCardOnSale(id){
     return service
     .get("/api/cards/bids/" + id)
     .then(res => res.data)

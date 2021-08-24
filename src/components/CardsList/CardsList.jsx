@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import SellCardForm from '../Forms/SellCardForm'
 import apiHandler from '../../api/apiHandler';
-import ProtectedRoute from "../ProtectedRoute";
-import OneCardItemList from './OneCardItemList';
+import FormSale from '../OneUserCard/FormSale';
 
 export class CardsList extends Component {
     state = {
@@ -44,9 +43,9 @@ export class CardsList extends Component {
                 {this.state.cards.map(card => {
                     return (
                         <div>
-                            <ProtectedRoute exact path="/profile/cards/:id" card={card} component={SellCardForm}/>
-                            <OneCardItemList card={card.pokemonTCGId} link={"/profile/cards/" + card._id}/>
-                        </div>)
+                    <OneCardItemList card={card.pokemonTCGId} link={"/profile/cards/" + card._id}/>
+                    <FormSale card={card}/>
+                    </div>)
                 })}
                 
             </div>
