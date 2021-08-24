@@ -28,8 +28,8 @@ class OneCardActions extends Component {
                         return(
                             <div key={card._id}>
                                 <p>Card Id : {card._id} => {card.onSale ? 
-                                <button onClick={() => this.props.putCardOnSale(card._id)}>Sell</button> :
-                                <span>Card on sale</span>}
+                                <span>Card on sale</span> : 
+                                <button onClick={() => this.props.putCardOnSale(card._id)}>Sell</button>}
                                 
                                 </p>
                             </div>
