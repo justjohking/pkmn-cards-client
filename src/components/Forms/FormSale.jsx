@@ -39,7 +39,7 @@ export class SellCardForm extends Component {
     }
 
     
-    createBid = (event) => {
+    createBid = async (event) => {
         event.preventDefault();
 
         const bid = {
@@ -49,9 +49,11 @@ export class SellCardForm extends Component {
             endDate: this.state.endDate,
             status: "ongoing"
         }
-        const bidCreated = apiHandler.createBid(bid)
+        const bidCreated = await apiHandler.createBid(bid)
+        console.log(bidCreated)
+        
 
-        apiHandler.updateCard(this.props.card._id, {
+        await apiHandler.updateCard(this.props.card._id, {
             onSale: true, 
             price: this.state.initialPrice,
             bid: bidCreated._id,
