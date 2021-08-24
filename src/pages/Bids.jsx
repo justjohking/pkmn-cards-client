@@ -45,7 +45,7 @@ export class Bids extends Component {
                 {/* {console.log(this.state.collection)} */}
                 <h1>ALL THE CARDS ON SALE</h1>
                 <div>{this.state.collection.map(e => {
-                    console.log(e)
+                    // console.log(e)
                     return (
                         <BidItem card={e.pokemonTCGId} />
                     )

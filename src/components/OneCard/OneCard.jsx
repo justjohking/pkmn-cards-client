@@ -28,17 +28,17 @@ export class OneCard extends Component {
             });
 
             const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
-            console.log(apiInfo)
+            // console.log(apiInfo)
             this.setState({ pokemon: apiInfo.data});
             
             const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
             this.setState({ userCards: userCards })
 
-            console.log(this.state.pokemon)
-            const cardsOnSale = await apiHandler.getCardOnSale(this.state.pokemon.id)
-            this.setState({cardsOnSale: cardsOnSale} )
-
-            console.log(this.state.cardsOnSale)
+            // console.log(this.state.pokemon)
+            const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
+            // console.log(cards)
+            this.setState({ cardsOnSale: cards })
+            
         }
         catch (error) {console.error(error)}
     }
@@ -55,8 +55,11 @@ export class OneCard extends Component {
     
     
     render() {
+
+        console.log(this.state.cardsOnSale)
+
         if(this.state.pokemon === null) return (<div>Loading...</div>)
-        else {
+
             return (
                 <div className="OneCard">
                     <div className="container">
@@ -71,7 +74,12 @@ export class OneCard extends Component {
                     >
                         {this.state}
                     </ActionButtons>
-                    <OffersTable offers={this.state.cardsOnSale} />
+
+                    {this.state.cardsOnSale.length > 0 ?
+                        <OffersTable offers={this.state.cardsOnSale} /> :
+                        <div>No vendor is currently selling this card.</div>
+                    }
+
 
                   
                     </div>
@@ -80,7 +88,7 @@ export class OneCard extends Component {
         }
 
     }
-}
+
 
 export default OneCard
 
