@@ -6,6 +6,7 @@ export class OneOffer extends Component {
     state = {
         currentBid: 0,
         bidId: "",
+        previousBid: this.props.offer.bid.currentBid
     }
 
     handleChange = (event) => {
@@ -17,27 +18,30 @@ export class OneOffer extends Component {
     }
 
     handleSubmit = (id) => {
-        const updatedBid = {currentBid: this.state.currentBid}
-        apiHandler.updatedBids(id, updatedBid)
+        if(this.state.currentBid < this.state.previousBid) {
+            console.log("current bid is too low")
+        } else {
+            const updatedBid = {currentBid: this.state.currentBid}
+            apiHandler.updatedBids(id, updatedBid)
+        }
+        
     }
 
     render() {
         return (
-            <tr>
+            <tr key={this.props.offer._id}>
             <td>{this.props.offer.owner.email}</td>
             <td>{this.props.offer.cardState}</td>
             <td>{this.props.offer.bid.initialPrice} $</td>
             <td>{this.props.offer.bid.currentBid ? `${this.props.offer.bid.currentBid} $` : "Be the first to Bid"}</td>
             <td>{this.props.offer.bid.endDate}</td>
             <td>
-                {/* <Route path={`/cards/${this.props.offer.bid._id}/place-bid`}/> */}
-                {/* <Link to={`/cards/${this.props.offer.bid._id}/place-bid`}>Place bid</Link> */}
                 <input 
                     type="number" 
                     name="currentBid" 
                     value={this.state.currentBid}                                          
                     onChange={this.handleChange} 
-                    min={this.props.offer.bid.currentBid}
+                    // min={this.props.offer.bid.currentBid}
             />
             </td>
             <td><button onClick={
