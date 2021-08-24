@@ -81,14 +81,14 @@ const apiHandler = {
 
   getOneCardFromApi(id) {
     return service
-    .get(`/pokemonApi/${id}`)
+    .get(`/api/pokemonApi/${id}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
   getApiByPage(page) {
     return service 
-    .get(`/pokemonApi/${page}`)
+    .get(`/api/pokemonApi/all/${page}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
