@@ -166,7 +166,7 @@ const apiHandler = {
 
   getAllUserCardsFromApiCard(apiId) {
     return service
-    .get("/me/cards/all/" + apiId)
+    .get("/api/me/cards/all/" + apiId)
     .then(res => res.data)
     .catch(errorHandler)
   },
