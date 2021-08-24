@@ -10,7 +10,7 @@ import AllCards from "./pages/AllCards";
 import OneCard from "./components/OneCard/OneCard"
 import Bids from "./pages/Bids";
 import CardsList from "./components/CardsList/CardsList";
-import FormSale from "./components/OneUserCard/FormSale";
+import FormSale from "./components/Forms/FormSale";
 
 function App() {
   return (

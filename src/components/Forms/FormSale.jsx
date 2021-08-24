@@ -8,7 +8,8 @@ export class SellCardForm extends Component {
         card : null,
         isLoggedIn: false,
         initialPrice: 0,
-        endDate : ""
+        endDate : "",
+        cardState: "hello"
     }
 
     async componentDidMount() {
@@ -21,8 +22,6 @@ export class SellCardForm extends Component {
             .catch((error) => {
                 this.setState({ user: null, isLoggedIn: false});
             });
-
-            console.log(this.props)
 
             const cardInfo = await apiHandler.getOneCard(this.props.card._id);
             this.setState({ card: cardInfo});
@@ -38,6 +37,7 @@ export class SellCardForm extends Component {
             [event.target.name] : event.target.value
         })
     }
+
     
     createBid = (event) => {
         event.preventDefault();
@@ -50,17 +50,18 @@ export class SellCardForm extends Component {
             status: "ongoing"
         }
         const bidCreated = apiHandler.createBid(bid)
+
         apiHandler.updateCard(this.props.card._id, {
             onSale: true, 
             price: this.state.initialPrice,
-            bid: bidCreated._id
+            bid: bidCreated._id,
+            cardState: this.state.cardState
         })
 
-        console.log("bid created", bidCreated)
+        // console.log("bid created", bidCreated)
     }
     
     render() {
-        console.log(this.props)
         
         if(this.state.pokemon === null) return (<div>Loading...</div>)
         else {
@@ -69,6 +70,14 @@ export class SellCardForm extends Component {
                     <div className="container">
                             <div>
                                 <h2>SaleForm</h2>
+
+                                <FormField label="Select the state of the card you're selling" htmlFor="cardState"> 
+                                    <select name="cardState" onChange={this.handleChange}>
+                                        <option value="Mint">Mint</option>
+                                        <option value="Near Mint">Near Mint</option>
+                                        <option value="Bad">Bad</option>
+                                    </select>
+                                </FormField>
                                 <p>Initial Price : {this.props.card.pokemonTCGId.cardmarket.prices.averageSellPrice}</p>
                                 <FormField label="Choose a price" htmlFor="initialPrice">
                                     <input 

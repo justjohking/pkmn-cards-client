@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SellCardForm from '../Forms/SellCardForm'
 import apiHandler from '../../api/apiHandler';
-import FormSale from '../OneUserCard/FormSale';
+import FormSale from '../Forms/FormSale';
+import OneCardItemList from './OneCardItemList';
 
 export class CardsList extends Component {
     state = {

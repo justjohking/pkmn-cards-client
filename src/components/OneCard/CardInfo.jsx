@@ -41,12 +41,12 @@ export class CardInfo extends Component {
                         <div>
                             <p>Resistance</p>
                             {this.props.pokemon.resistances &&
-                            <p>{this.props.pokemon.resistances.type} <span>{this.props.pokemon.weaknesses.value}</span></p>}
+                            <p>{this.props.pokemon.resistances.type} <span>{this.props.pokemon.resistances.value}</span></p>}
                         </div>
                         <div>
                             <p>Retreat Cost</p>
                             {this.props.pokemon.retreatCost &&
-                            <p>{this.props.pokemon.retreatCost[0]} x {this.props.pokemon.weaknesses.value}</p>}
+                            <p>{this.props.pokemon.retreatCost[0]} x {this.props.pokemon.convertedRetreatCost}</p>}
                         </div>
                     </div>
 
