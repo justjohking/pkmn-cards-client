@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler'
-
+import OneCardItemList from '../components/CardsList/OneCardItemList';
 export class Bids extends Component {
     
     state = { 
@@ -57,7 +57,7 @@ export class Bids extends Component {
                 <div>{this.state.collection.map(e => {
                     console.log(e)
                     return (
-                        <div>{e.pokemonTCGId.name} </div>
+                        <OneCardItemList card={e.pokemonTCGId} />
                     )
                 })
                 
