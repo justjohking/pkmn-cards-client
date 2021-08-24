@@ -164,6 +164,14 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
+  updatedBids(id, newBid){
+      return service
+      .patch(`/api/bids/${id}`, newBid)
+      .then(res => res.data)
+      .catch(errorHandler)
+  },
+
+
   getAllUserCardsFromApiCard(apiId) {
     return service
     .get("/api/me/cards/all/" + apiId)
