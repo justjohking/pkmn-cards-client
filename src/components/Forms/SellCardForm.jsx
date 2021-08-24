@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
-import FormField from "../Forms/FormField"
+import FormField from "./FormField"
 
-export class OneUserCardPage extends Component {
+export class SellCardForm extends Component {
     state = {
         user: {},
         card : null,
@@ -93,4 +93,4 @@ export class OneUserCardPage extends Component {
     }
 }
 
-export default OneUserCardPage
+export default SellCardForm
