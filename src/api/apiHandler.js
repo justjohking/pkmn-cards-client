@@ -86,6 +86,13 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
+  getApiByPage(page) {
+    return service 
+    .get(`/pokemonApi/${page}`)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
   getAllCards() {
     return service 
     .get("/api/me/cards")

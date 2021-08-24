@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+// import axios from 'axios'
 import '../pages/AllCards.css'
 import OneCardItemList from '../components/CardsList/OneCardItemList'
+import apiHandler from '../api/apiHandler';
 
 export class AllCards extends Component {
     state = {
@@ -12,22 +13,30 @@ export class AllCards extends Component {
     }
     // We need to show only the pokemons whose cards are present in our DB
 
-
-    
-    
     getPokemons(page){
         this.setState({
             loading: true
         });
 
-        axios.get(`https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=40`).then((res) => {
-            
-            this.setState({cards: [...this.state.cards, ...res.data.data]});
-            console.log(this.state.cards)
+        apiHandler.getApiByPage(page)
+        .then((res) => {
+            console.log(res)
+            this.setState({cards: [...this.state.cards, ...res]});
+            // console.log(this.state.cards)
             this.setState({loading: false});
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err)
         })
+
+        // axios.get(`https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=40`).then((res) => {
+            
+        //     this.setState({cards: [...this.state.cards, ...res]});
+        //     console.log(this.state.cards)
+        //     this.setState({loading: false});
+        // }).catch(err => {
+        //     console.log(err)
+        // })
 
     }
     

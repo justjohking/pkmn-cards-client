@@ -1,66 +1,50 @@
 import React, { Component } from 'react';
 import OneCardItemList from './OneCardItemList';
 import apiHandler from '../../api/apiHandler';
-import axios from 'axios';
 
-
-export class AllCards extends Component {
+export class CardsList extends Component {
     state = {
-        userCards: [],
-        cardsApi: [],
-        loading: false,
+        cards: null,
+        searchName : ""
     }
-    // We need to show only the pokemons whose cards are present in our DB
 
-    getPokemons = async () => {
-        this.setState({
-            loading: true
-        });
-        try {
-            const allCards = await apiHandler.getAllCards()
-            // console.log(allCards)
-            this.setState({
-                userCards: allCards,
-            })
+    async componentDidMount() {
+        try{
+            const cards = await apiHandler.getAllCards();
+            console.log(cards)
 
-            let allCardsApi = []
+            // const cardPromises = cards.map(card => {
+            //     return apiHandler.getOneCardFromApi(card.pokemonTCGID)
+            // })
 
-            allCards.forEach(card => {
-                axios.get("https://api.pokemontcg.io/v2/cards/" + card.pokemonTCGId)
-                .then((res) => {
-                    // console.log(res.data.data)
-                    allCardsApi.push(res.data.data)
-                })
-                .catch(error => console.log(error))
-            })
+            // const responses = await Promise.all(cardPromises);
 
-            this.setState({
-                cardsApi: allCardsApi,
-                loading: false
-            })
+            // const populatedCards = cards.map((card, i) => {
+            //     return {
+            //         ...card,
+            //         pokemonTCGId: responses[i].data
+            //     }
+            // })
+            // this.setState({
+            //     cards: populatedCards
+            // })
         }
-        catch (error) {console.error(error)}
-    }
-    
-    componentDidMount(){
-        this.getPokemons();
+        catch (error) { console.error(error)}
     }
 
     render() {
-        if(this.state.loading) return <div>Loading...</div>
-        
+        if(this.state.cards === null) return <div>Loading...</div>
+
         return (
-           <div className="container">
-               {/* <h2>ALL CARDS</h2>
-            <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
-            {this.state.cards.map(card => (
-            <OneCardItemList card={card} />
-            ))}
-            </div> */}
-      </div>
+            <div className="CardsList">
+                <h2>ALL USER'S CARDS</h2>
+                {/* {this.state.cards.map(card => {
+                    <OneCardItemList card={card}/>
+                })} */}
+                
+            </div>
         )
     }
 }
 
-export default AllCards
-
+export default CardsList
