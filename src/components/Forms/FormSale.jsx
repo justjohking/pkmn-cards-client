@@ -9,7 +9,7 @@ export class SellCardForm extends Component {
         isLoggedIn: false,
         initialPrice: 0,
         endDate : "",
-        cardState: "hello"
+        cardState: ""
     }
 
     async componentDidMount() {
