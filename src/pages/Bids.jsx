@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import apiHandler from '../api/apiHandler'
-import OneCardItemList from '../components/CardsList/OneCardItemList';
+import apiHandler from '../api/apiHandler';
+import BidItem from '../components/Bids/BidItem'
+
 export class Bids extends Component {
     
     state = { 
@@ -8,27 +9,23 @@ export class Bids extends Component {
     }
 
     async componentDidMount(){
-        const cards =  await apiHandler.findBids("Sell");
+        const cards =  await apiHandler.findBids();
         
         const cardPromises = cards.map(card => {
             return apiHandler.getOneCardFromApi(card.pokemonTCGId);
         })
 
-
         const responses = await Promise.all(cardPromises);
-        console.log("---------------------------")
-        console.log("before",cards)
+        // console.log("---------------------------")
+        // console.log("before",cards)
         const populatedCards = cards.map((card,i) => {
           return {
               ...card,
               pokemonTCGId: responses[i].data
           }
         })
-
-
-        console.log("after,",populatedCards)
-
-        console.log("---------------------------")
+        // console.log("after,",populatedCards)
+        // console.log("---------------------------")
         this.setState({
             collection: populatedCards
         })
@@ -37,27 +34,20 @@ export class Bids extends Component {
 
     render() {
         
-        console.log(this.state.collection)
-        
-        // console.log(Array.isArray(this.state.collection))
-        // console.log(this.state.collection.length)
-        // console.log(this.state.collection)
-        this.state.collection.forEach(e => {
-            console.log(e)
-        })
+        // this.state.collection.forEach(e => {
+        //     console.log(e)
+        // })
 
         return (
-            
-
+        
             <div>
-                length ; 
                 {/* {this.state.collection[0]} */}
                 {/* {console.log(this.state.collection)} */}
-                <h1>Bidding Page</h1>
+                <h1>ALL THE CARDS ON SALE</h1>
                 <div>{this.state.collection.map(e => {
                     console.log(e)
                     return (
-                        <OneCardItemList card={e.pokemonTCGId} />
+                        <BidItem card={e.pokemonTCGId} />
                     )
                 })
                 

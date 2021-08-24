@@ -3,6 +3,7 @@ import axios from 'axios'
 import '../pages/AllCards.css'
 import OneCardItemList from '../components/CardsList/OneCardItemList'
 import apiHandler from '../api/apiHandler';
+import { Link } from 'react-router-dom'
 
 export class AllCards extends Component {
     state = {
@@ -83,7 +84,7 @@ export class AllCards extends Component {
            <div className="container">
             <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
             {this.state.cards.map(card => (
-                <OneCardItemList card={card}/>  
+                <OneCardItemList card={card} link={"/cards/" + card.id}/>  
             ))}
             </div>
             <div

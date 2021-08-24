@@ -11,6 +11,7 @@ export class OneCard extends Component {
         pokemon : null,
         isLoggedIn: false,
         userCards : [],
+        formDisplayed: false
     }
 
     async componentDidMount() {
@@ -51,6 +52,12 @@ export class OneCard extends Component {
             // await apiHandler.addCardToCollection("Sell", {cards: cardsOnSale})
         } catch (error) {console.log(error)}
     }
+
+    // displaySaleForm = () => {
+    //     this.setState({
+    //         formDisplayed: true
+    //     })
+    // }
     
     render() {
         if(this.state.pokemon === null) return (<div>Loading...</div>)
@@ -62,7 +69,13 @@ export class OneCard extends Component {
                         <CardInfo pokemon={this.state.pokemon}/>
                     </div>
                     <div>
-                    <ActionButtons addCard={this.addCard} putCardOnSale={this.putCardOnSale}>{this.state}</ActionButtons>
+                    <ActionButtons 
+                    addCard={this.addCard} 
+                    putCardOnSale={this.putCardOnSale}
+                    showForm={this.displaySaleForm}
+                    >
+                        {this.state}
+                    </ActionButtons>
                     </div>
                 </div>
             )

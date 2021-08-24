@@ -46,7 +46,7 @@ const apiHandler = {
   
   getOneCard(id) {
     return service 
-      .get("/api/cards/" + id)
+      .get("/api/me/cards/" + id)
       .then((res) => res.data)
       .catch(errorHandler)
   },
@@ -149,17 +149,17 @@ const apiHandler = {
 
   // Bids 
   //create a new bid
-  createBid(){
+  createBid(bid){
     return service
-    .post('/api/bids/create')
+    .post('/api/bids/create', bid)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
   //?? delete this i think
-  findBids(type){
+  findBids(){
     return service
-    .get(`/api/collection/${type}`)
+    .get(`/api/bids`)
     .then(res => res.data)
     .catch(errorHandler)
   },

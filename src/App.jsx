@@ -9,7 +9,8 @@ import Profile from "./pages/Profile";
 import AllCards from "./pages/AllCards";
 import OneCard from "./components/OneCard/OneCard"
 import Bids from "./pages/Bids";
-import CardsList from "./components/CardsList/CardsList"
+import CardsList from "./components/CardsList/CardsList";
+import OneUserCardPage from "./components/OneUserCard/OneUserCardPage";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route exact path="/cards/:id" component ={OneCard} />
         <Route exact path ="/bids" component= {Bids} />
         <ProtectedRoute exact path="/profile" component= {Profile} />
-        <ProtectedRoute exact path="/profile/cards" component={CardsList} />
+        <ProtectedRoute path="/profile/cards" component={CardsList} />
+        <ProtectedRoute exact path="/profile/cards/:id" component={OneUserCardPage} />
       </Switch>
     </div>
   );
