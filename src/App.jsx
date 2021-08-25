@@ -12,12 +12,14 @@ import Bids from "./pages/Bids";
 import CardsList from "./components/CardsList/CardsList";
 import FormSale from "./components/Forms/FormSale";
 import UserBids from "./pages/UserBids";
+import TestApi from "./pages/TestApi";
 
 function App() {
   return (
     <div className="App">
       <NavMain />
       <Switch>
+        <Route path="/test" component={TestApi} />
         <Route exact path="/" component={Home} />
         <Route exact path="/signin" component= {Signin} />
         <Route exact path="/signup" component= {Signup} />

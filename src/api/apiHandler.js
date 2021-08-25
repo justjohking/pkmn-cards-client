@@ -93,6 +93,13 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
+  filterApiByName(name) {
+    return service
+    .get(`/api/pokemonApi/search/${name}`)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
   //old getAllCards => getAllUserCards removed /api 
   getAllUserCards() {
     return service 
@@ -123,21 +130,12 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  addCard(card) {
-    return service
-    .post("/api/me/cards/add/", card)
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
-
   getOneUserCard(id){
     return service
     .get("/api/me/cards/" + id)
     .then(res => res.data)
     .catch(errorHandler)
   },
-
-
 
   // addCardToCollection(collection, updatedCardList) {
   //   return service

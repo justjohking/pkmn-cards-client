@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import '../pages/AllCards.css'
 import OneCardItemList from '../components/CardsList/OneCardItemList'
 import apiHandler from '../api/apiHandler';
-import { Link } from 'react-router-dom'
+import SearchBar from '../components/SearchBar/SearchBar';
 
 export class AllCards extends Component {
     state = {
         cards: [],
         loading: false,
         page: 1,
-        prevY: 0
+        prevY: 0,
+        name: ""
     }
     // We need to show only the pokemons whose cards are present in our DB
 
@@ -30,14 +30,11 @@ export class AllCards extends Component {
             console.log(err)
         })
 
-        // axios.get(`https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=40`).then((res) => {
-            
+        // axios.get(`https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=40`).then((res) => { 
         //     this.setState({cards: [...this.state.cards, ...res.data.data]});
         //     console.log(this.state.cards)
         //     this.setState({loading: false});
-        // }).catch(err => {
-        //     console.log(err)
-        // })
+        // }).catch(err => { console.log(err) })
 
     }
     
@@ -69,6 +66,24 @@ export class AllCards extends Component {
         this.setState({prevY: y})
     }
 
+    handleNameInputChange = async (input) => {
+        // const key = event.target.name;
+        // const value = event.target.value;
+        this.setState({
+            name: input
+        })
+        const filteredCards = await apiHandler.filterApiByName(this.state.name)
+        .then(cards => this.setState({
+            cards: filteredCards
+        }))
+    }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     if(this.state.input !== prevState.input) {
+    //         apiHandler.getAllCards()
+    //     }
+    // }
+
     render() {
         const loadingCSS = {
             height: "100px",
@@ -76,23 +91,28 @@ export class AllCards extends Component {
           };
 
         const loadingTextCSS = { display: this.state.loading ? "block" : "none" };
-
-
-
         
         return (
-           <div className="container">
-            <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
-            {this.state.cards.map(card => (
-                <OneCardItemList card={card} link={"/cards/" + card.id}/>  
-            ))}
-            </div>
-            <div
-            ref={loadingRef => (this.loadingRef = loadingRef)}
-            style={loadingCSS}
-            >
-            <span style={loadingTextCSS}>Loading...</span>
-            </div>
+            <div className="container">
+                <React.Fragment>
+                    <SearchBar 
+                    name={this.state.name}
+                    handleNameInputChange={this.handleNameInputChange}
+                    />
+                </React.Fragment>
+                
+
+                <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
+                {this.state.cards.map(card => (
+                    <OneCardItemList card={card} link={"/cards/" + card.id}/>  
+                ))}
+                </div>
+                <div
+                ref={loadingRef => (this.loadingRef = loadingRef)}
+                style={loadingCSS}
+                >
+                <span style={loadingTextCSS}>Loading...</span>
+                </div>
       </div>
         )
     }
