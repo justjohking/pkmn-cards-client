@@ -12,7 +12,9 @@ import Bids from "./pages/Bids";
 import CardsList from "./components/CardsList/CardsList";
 import FormSale from "./components/Forms/FormSale";
 import UserBids from "./pages/UserBids";
-import TestApi from "./pages/TestApi";
+// import TestApi from "./pages/TestApi";
+import OpenForExchanges from "./components/Exchange/OpenForExchange"
+import UserCardsOpenForExchange from "./components/Exchange/UserCardsOpenForExchange";
 
 function App() {
   return (
@@ -25,11 +27,13 @@ function App() {
         <Route exact path="/signup" component= {Signup} />
         <Route exact path="/cards" component= {AllCards} />
         <Route exact path="/cards/:id" component ={OneCard} />
-        <Route exact path ="/bids" component= {Bids} />
+        <Route exact path="/bids" component= {Bids} />
+        <Route exact path="/exchanges" component={OpenForExchanges} />
         <ProtectedRoute exact path="/profile" component= {Profile} />
         <ProtectedRoute path="/profile/cards" component={CardsList} />
         <ProtectedRoute exact path="/profile/cards/:id" component={FormSale} />
         <ProtectedRoute path="/profile/bids" component={UserBids} />
+        <ProtectedRoute path="/profile/exchanges" component={UserCardsOpenForExchange} />
       </Switch>
     </div>
   );

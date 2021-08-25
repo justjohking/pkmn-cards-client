@@ -15,18 +15,16 @@ export class UserBids extends Component {
                 apiHandler.getOneCardFromApi(e.item.pokemonTCGId)
             )
         })
-
         const responses = await Promise.all(promises)
         const populatedBids = myBids.map((bid, i) => {
             return ( 
                 {...bid, pokemonTCGId:responses[i].data}
             )
         })
-
         this.setState({
             bids: populatedBids,
         })
-        console.log(this.state.bids)
+        // console.log(this.state.bids)
     }
 
 
@@ -40,13 +38,9 @@ export class UserBids extends Component {
                 <h1>Hello</h1>
                 <div>
                     {this.state.bids.map(e => {
-                        return (
-                            
+                        return (                           
                             <OneBid bid={e} />
-                            
-                            
-                        )
-                        
+                        )                      
                     })}
                 </div>
             </div>

@@ -11,12 +11,12 @@ export class BtnExchangeStatus extends Component {
         //     return event.target.checked ? true : false
         // }
         // console.log("is checked", isChecked())
-        this.setState({
-            openForExchange: !event.target.checked
-        })
-        console.log(this.state.openForExchange)
+        // this.setState({
+        //     openForExchange: !event.target.checked
+        // })
+        // console.log(this.state.openForExchange)
         // try {
-    
+
         //     await apiHandler.updateCard(this.props.card._id, {
         //         openForExchange: this.state.openForExchange
         //     })
@@ -28,12 +28,37 @@ export class BtnExchangeStatus extends Component {
         // }
     }
 
+
+    handleClick = async () => {
+        try {
+            await apiHandler.updateCard(this.props.card._id, {
+                openForExchange: !this.props.card.openForExchange
+            })
+            console.log(this.props.card)
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
+
     render() {
         // console.log(this.state.openForExchange)
         return (
             <div>
-                <label htmlFor="openForExchange">Open for exchange</label>
-                <input type="checkbox" name="openForExchange" defaultChecked={this.state.openForExchange} onClick={this.handleChange}/>
+
+                {!this.props.card.openForExchange && 
+                <div>
+                    <p>Not open for exchanges</p>
+                    <button onClick={this.handleClick}>Accept exchanges</button>
+                </div>}
+
+                {this.props.card.openForExchange && 
+                <div>
+                    <p>Open for exchanges</p>
+                    <button onClick={this.handleClick}>Refuse exchange</button>
+                </div>}
+                
+                {/* <input type="checkbox" name="openForExchange" defaultChecked={this.state.openForExchange} onClick={this.handleChange}/> */}
             </div>
         )
     }

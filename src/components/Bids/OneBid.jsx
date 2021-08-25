@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import apiHandler from '../../api/apiHandler'
+import React, { Component } from 'react';
+import apiHandler from '../../api/apiHandler';
 
 export class OneBid extends Component {
     state = { 
@@ -26,11 +26,11 @@ export class OneBid extends Component {
     render() {
         return (
             <div> 
-                        <img src={this.props.bid.pokemonTCGId.images.small} alt="" />
-                        <div>{this.props.bid.pokemonTCGId.name}</div>
-                        <div>Current Offer : {this.props.bid.currentBid}</div>
-                        <button onClick={this.handleAccept}>Accept the offer</button>
-                        <button onClick={this.handleDelete}>Remove card from sale</button>
+                <img src={this.props.bid.pokemonTCGId.images.small} alt="" />
+                <div>{this.props.bid.pokemonTCGId.name}</div>
+                <div>Current Offer : {this.props.bid.currentBid}</div>
+                <button onClick={this.handleAccept}>Accept the offer</button>
+                <button onClick={this.handleDelete}>Remove card from sale</button>
             </div>
         )
     }

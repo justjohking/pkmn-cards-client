@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler'
 import ActionButtons from "./ActionButtons"
 // import CardInfo from "./CardInfo"
-import OffersTable from './OffersTable';
+import OffersTable from '../Bids/OffersTable';
 import "./OneCard.css";
 import OneCardContainer from './OneCardContainer';
+import TableCardsOpenForExchange from '../Exchange/TableCardsOpenForExchange';
 
 
 export class OneCard extends Component {
@@ -15,6 +16,7 @@ export class OneCard extends Component {
         userCards : [],
         formDisplayed: false,
         cardsOnSale: [],
+        cardsOpenForExchange: []
     }
 
     async componentDidMount() {
@@ -32,30 +34,32 @@ export class OneCard extends Component {
             this.setState({ pokemon: apiInfo});
             
             const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
-            this.setState({ userCards: userCards })
+            this.setState({ userCards: userCards });
 
-            const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
-            this.setState({ cardsOnSale: cards })
-            
+            const cardsOnSale = await apiHandler.getCardsOnSale(this.state.pokemon.id);
+            this.setState({ cardsOnSale: cardsOnSale });
+
+            const openForExchange = await apiHandler.getAllCardsOneOfApiIdOpenForExchange(this.state.pokemon.id);
+            this.setState({ cardsOpenForExchange: openForExchange})
         }
         catch (error) {console.error(error)}
     }
 
-        async componentDidUpdate(){
-            try {
+        // async componentDidUpdate(){
+        //     try {
                 
-                // const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
-                // this.setState({ pokemon: apiInfo});
+        //         // const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
+        //         // this.setState({ pokemon: apiInfo});
                 
-                const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
-                this.setState({ userCards: userCards })
+        //         const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
+        //         this.setState({ userCards: userCards })
 
-                const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
-                this.setState({ cardsOnSale: cards })
+        //         const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
+        //         this.setState({ cardsOnSale: cards })
                 
     
-            }catch(error) {console.log(error)}
-        }
+        //     }catch(error) {console.log(error)}
+        // }
     
     
     addCard = async () => {
@@ -63,11 +67,7 @@ export class OneCard extends Component {
             await apiHandler.addCard({pokemonTCGId: this.props.match.params.id});
         } catch (error) {console.error(error)}
     }
-
-    
-
-    
-    
+   
     render() {
 
         
@@ -92,6 +92,12 @@ export class OneCard extends Component {
                         <div>No vendor is currently selling this card.</div>
                     }
 
+                    {this.state.cardsOpenForExchange.length > 0 ? 
+                        <TableCardsOpenForExchange offers={this.state.cardsOpenForExchange} pokemon={this.state.pokemon}/> : 
+                        <div>No card is open for exchange for now.</div>
+                    }
+
+                     
 
                   
                     </div>

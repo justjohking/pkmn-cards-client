@@ -65,12 +65,12 @@ const apiHandler = {
     .catch(errorHandler)
   },
   //old getItems => getAllCards => will get all the cards from the API
-  getAllCards() {
-    return axios
-      .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
-      .then((res) => res.data.data)
-      .catch(errorHandler);
-  },
+  // getAllCards() {
+  //   return axios
+  //     .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
+  //     .then((res) => res.data.data)
+  //     .catch(errorHandler);
+  // },
 
 
   getOneCardFromApi(id) {
@@ -186,13 +186,27 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  //Get all the cards that are on sell removed /api
-  getCardOnSale(id){
+  //Get all the cards that are on sell
+  getCardsOnSale(tcgId){
     return service
-    .get("/api/cards/bids/" + id)
+    .get("/api/cards/bids/" + tcgId)
     .then(res => res.data)
     .catch(errorHandler)
   },
+
+  getAllCardsOpenForExchange() {
+    return service 
+    .get("/api/exchanges")
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  getAllCardsOneOfApiIdOpenForExchange(tcgId) {
+    return service 
+    .get("/api/exchanges/" + tcgId)
+    .then(res => res.data)
+    .catch(errorHandler)
+  }
 
   
 }
