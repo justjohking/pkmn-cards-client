@@ -171,6 +171,15 @@ const apiHandler = {
   },
   
 
+
+  findBid(id){
+    return service
+    .get(`/api/bids/${id}`)
+    .then(res => res.data)
+    .catch(errorHandler)
+},
+
+
   updatedBids(id, newBid){
       return service
       .patch(`/api/bids/${id}`, newBid)
