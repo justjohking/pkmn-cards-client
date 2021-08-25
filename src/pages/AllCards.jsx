@@ -3,6 +3,7 @@ import '../pages/AllCards.css'
 import OneCardItemList from '../components/CardsList/OneCardItemList'
 import apiHandler from '../api/apiHandler';
 import SearchBar from '../components/SearchBar/SearchBar';
+import { Link } from 'react-router-dom'
 
 export class AllCards extends Component {
     state = {
@@ -78,11 +79,11 @@ export class AllCards extends Component {
         }))
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if(this.state.input !== prevState.input) {
-    //         apiHandler.getAllCards()
-    //     }
-    // }
+    addCard = async (apiId) => {
+        try {
+            await apiHandler.addCard({pokemonTCGId: apiId});
+        } catch (error) {console.error(error)}
+    }
 
     render() {
         const loadingCSS = {
@@ -104,7 +105,13 @@ export class AllCards extends Component {
 
                 <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
                 {this.state.cards.map(card => (
-                    <OneCardItemList card={card} link={"/cards/" + card.id}/>  
+                    <OneCardItemList card={card}>
+                        <div>
+                            <Link to={"/cards/" + card.id}>Card details</Link>
+                            <button onClick={() => {this.addCard(card.id)}}>Add Card</button>
+                        </div>
+                    </OneCardItemList>
+
                 ))}
                 </div>
                 <div
