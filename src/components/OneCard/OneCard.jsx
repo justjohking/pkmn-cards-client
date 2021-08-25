@@ -28,7 +28,7 @@ export class OneCard extends Component {
             });
 
             const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
-            this.setState({ pokemon: apiInfo.data});
+            this.setState({ pokemon: apiInfo});
             
             const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
             this.setState({ userCards: userCards })
