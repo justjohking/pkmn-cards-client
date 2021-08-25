@@ -17,6 +17,11 @@ export class OneBid extends Component {
         await apiHandler.deleteBid(this.props.bid._id)
         console.log("bid finished")
     }
+
+    handleDelete = async () => {
+        await apiHandler.deleteBid(this.props.bid._id)
+        console.log("bid deleted")
+    }
     
     render() {
         return (
@@ -25,7 +30,7 @@ export class OneBid extends Component {
                         <div>{this.props.bid.pokemonTCGId.name}</div>
                         <div>Current Offer : {this.props.bid.currentBid}</div>
                         <button onClick={this.handleAccept}>Accept the offer</button>
-                        <button>Remove card from sale</button>
+                        <button onClick={this.handleDelete}>Remove card from sale</button>
             </div>
         )
     }
