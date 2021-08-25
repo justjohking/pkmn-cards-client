@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import OneCardToExchange from './OneCardToExchange'
+import OneListing from './OneListing'
 
-export class TableCardsOpenForExchange extends Component {
+export class TableListings extends Component {
+
     render() {
         return (
             <div>
@@ -13,12 +14,14 @@ export class TableCardsOpenForExchange extends Component {
                         <td>Card state</td>
                         <td>Average Sell Price</td>
                         <td>What do you wanna exchange ?</td>
+                        <td>Your current offer</td>
+                        <td>Confirm offer</td>
                     </tr>
                 </thead>
                 <tbody>
                     {this.props.offers.map(offer => {
                         return (
-                            <OneCardToExchange offer={offer} pokemon={this.props.pokemon}/>
+                            <OneListing offer={offer} pokemon={this.props.pokemon}/>
                         )
                     })}
                 </tbody>
@@ -29,4 +32,4 @@ export class TableCardsOpenForExchange extends Component {
     }
 }
 
-export default TableCardsOpenForExchange
+export default TableListings

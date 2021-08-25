@@ -22,9 +22,7 @@ export class AllCards extends Component {
 
         apiHandler.getApiByPage(page)
         .then((res) => {
-            console.log(res)
             this.setState({cards: [...this.state.cards, ...res.data]});
-            // console.log(this.state.cards)
             this.setState({loading: false});
         })
         .catch(err => {

@@ -5,7 +5,7 @@ import ActionButtons from "./ActionButtons"
 import OffersTable from '../Auctions/OffersTable';
 import "./OneCard.css";
 import OneCardContainer from './OneCardContainer';
-import TableCardsOpenForExchange from '../Exchange/TableCardsOpenForExchange';
+import TableListings from '../Exchange/TableListings';
 
 
 export class OneCard extends Component {
@@ -73,15 +73,7 @@ export class OneCard extends Component {
     //                     if(cards !== this.state.cardsOnSale) { 
     //                         console.log("here set state ")
     //                     }
-
     //                 }
-
-                    
-                   
-                    
-        
-                
-            
     //     }
     
     
@@ -95,8 +87,7 @@ export class OneCard extends Component {
 
     
     // handleBid =  async (event) => {
-    //     try {
-            
+    //     try {      
     //         const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
     //         this.setState({ cardsOnSale: cards })
     //     } catch (error) {console.error(error)}
@@ -126,7 +117,7 @@ export class OneCard extends Component {
                     }
 
                     {this.state.cardsOpenForExchange.length > 0 ? 
-                        <TableCardsOpenForExchange offers={this.state.cardsOpenForExchange} pokemon={this.state.pokemon}/> : 
+                        <TableListings offers={this.state.cardsOpenForExchange} pokemon={this.state.pokemon}/> : 
                         <div>No card is open for exchange for now.</div>
                     }
 

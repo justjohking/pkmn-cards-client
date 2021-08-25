@@ -9,7 +9,6 @@ export class UserAuctions extends Component {
     
     async componentDidMount(){
         const myAuctions = await apiHandler.findUserAuctions()
-        console.log(myAuctions)
         const promises = myAuctions.map(auction => {
             return ( 
                 apiHandler.getOneCardFromApi(auction.item.pokemonTCGId)
@@ -26,7 +25,6 @@ export class UserAuctions extends Component {
         })
     }
     render() {
-        console.log(this.state.auctions)
         return (
             
             <div>

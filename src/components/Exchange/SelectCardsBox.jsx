@@ -1,49 +1,27 @@
-// import React, { Component } from 'react';
-// import apiHandler from '../../api/apiHandler';
-// import SelectCardsDialog from './SelectCardsDialog';
+import React, { Component } from 'react';
 
-// export class SelectCardsBox extends Component {
-//     state = {
-//         cards: []
-//     }
+export class SelectCardsBox extends Component {
 
-//     handleClickOpen = () => {
-//         setOpen(true);
-//       };
+    handleChange = (event) => {
+        this.props.handleChange(event)
+    }
 
-//     handleClose = (value) => {
-//         setOpen(false);
-//         setSelectedValue(value);
-//     };
+    
+    render() {
+        return (
+            <div>
+                <p>Select card(s)</p>
+                {this.props.cards.map(card => {
+                    return(
+                        <div key={card._id}>
+                            <input type="checkbox" id={card._id} onChange={this.props.handleChange} />
+                            <label htmlFor="items">{card.pokemonTCGId.name} – {card._id}</label>
+                        </div>
+                    )
+                })}
+            </div>
+        )
+    }
+}
 
-//     async componentDidMount() {
-//         const cards =  await apiHandler.getAllUserCards();
-//         const cardPromises = cards.map(card => {
-//             return apiHandler.getOneCardFromApi(card.pokemonTCGId);
-//         })
-//         const responses = await Promise.all(cardPromises);
-//         const populatedCards = cards.map((card,i) => {
-//           return {
-//               ...card,
-//               pokemonTCGId: responses[i]
-//           }
-//         })
-//         this.setState({
-//             cards: populatedCards
-//         })
-//     }
-//     render() {
-//         return (
-//             <div>
-//                 <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-//                 <br />
-//                 <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-//                 Open simple dialog
-//                 </Button>
-//                 <SelectCardsDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
-//             </div>
-//         )
-//     }
-// }
-
-// export default SelectCardsBox
+export default SelectCardsBox

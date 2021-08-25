@@ -40,7 +40,7 @@ export class OpenForExchange extends Component {
                 <h2>Cards open for exchanges</h2>
                 {this.state.cards.map(card => {
                     return (
-                        <OneCardItemList card={card.pokemonTCGId}>
+                        <OneCardItemList card={card.pokemonTCGId} key={card._id}>
                             <Link to={"/cards/" + card.pokemonTCGId.id}>Card details</Link>
                         </OneCardItemList>
                     )
