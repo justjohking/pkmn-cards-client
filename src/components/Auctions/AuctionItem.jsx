@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import OneCardItemList from '../CardsList/OneCardItemList';
 
-const BidItem = (props) => {
+const AuctionItem = (props) => {
     return (
         <div className="cardDiv" key={props.card._id}>
             <OneCardItemList card={props.card.pokemonTCGId} link={"/profile/cards/" + props.card._id}/>
@@ -14,4 +14,4 @@ const BidItem = (props) => {
     )
 }
 
-export default BidItem
+export default AuctionItem

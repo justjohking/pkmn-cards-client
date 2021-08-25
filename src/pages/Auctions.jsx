@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler';
-import BidItem from '../components/Bids/BidItem'
+import BidItem from '../components/Auctions/AuctionItem'
 
 export class Bids extends Component {
     
@@ -33,8 +33,6 @@ export class Bids extends Component {
         return (
         
             <div>
-                {/* {this.state.collection[0]} */}
-                {/* {console.log(this.state.collection)} */}
                 <h1>ALL THE CARDS ON SALE</h1>
                 <div>{this.state.cards.map(e => {
                     return (
@@ -43,7 +41,6 @@ export class Bids extends Component {
                 })
                 }
                 </div>
-                
             </div>
         )
     }

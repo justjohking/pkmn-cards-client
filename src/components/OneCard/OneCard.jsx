@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler'
 import ActionButtons from "./ActionButtons"
 // import CardInfo from "./CardInfo"
-import OffersTable from '../Bids/OffersTable';
+import OffersTable from '../Auctions/OffersTable';
 import "./OneCard.css";
 import OneCardContainer from './OneCardContainer';
 import TableCardsOpenForExchange from '../Exchange/TableCardsOpenForExchange';
@@ -38,27 +38,15 @@ export class OneCard extends Component {
             const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
             this.setState({ userCards: userCards });
 
-<<<<<<< HEAD
             const cardsOnSale = await apiHandler.getCardsOnSale(this.state.pokemon.id);
             this.setState({ cardsOnSale: cardsOnSale });
 
             const openForExchange = await apiHandler.getAllCardsOneOfApiIdOpenForExchange(this.state.pokemon.id);
             this.setState({ cardsOpenForExchange: openForExchange})
-=======
-
-            const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
-            this.setState({ cardsOnSale: cards }); 
-
-            
-            
-            
-            
->>>>>>> 30bd0ebde349e4ab20a1a3750668357bcbbcb35d
         }
         catch (error) {console.error(error)}
     }
 
-<<<<<<< HEAD
         // async componentDidUpdate(){
         //     try {
                 
@@ -74,7 +62,6 @@ export class OneCard extends Component {
     
         //     }catch(error) {console.log(error)}
         // }
-=======
     // componentDidUpdate(prevProps, prevState){
 
 
@@ -96,7 +83,6 @@ export class OneCard extends Component {
                 
             
     //     }
->>>>>>> 30bd0ebde349e4ab20a1a3750668357bcbbcb35d
     
     
     addCard = async () => {
@@ -106,26 +92,18 @@ export class OneCard extends Component {
             this.setState({ userCards: userCards })
         } catch (error) {console.error(error)}
     }
-<<<<<<< HEAD
-   
-=======
 
     
-    handleBid =  async (event) => {
-        try {
+    // handleBid =  async (event) => {
+    //     try {
             
-            const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
-            this.setState({ cardsOnSale: cards })
-        } catch (error) {console.error(error)}
-        
-     
-    }
+    //         const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
+    //         this.setState({ cardsOnSale: cards })
+    //     } catch (error) {console.error(error)}
+    // }
     
     
->>>>>>> 30bd0ebde349e4ab20a1a3750668357bcbbcb35d
     render() {
-
-        
 
         if(this.state.pokemon === null) return (<div>Loading...</div>)
 

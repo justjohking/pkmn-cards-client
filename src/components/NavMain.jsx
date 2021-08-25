@@ -31,7 +31,7 @@ const NavMain = (props) => {
               <NavLink to="/profile/cards">User Cards</NavLink>
             </li>
             <li>
-              <NavLink to="/profile/bids">Bids</NavLink>
+              <NavLink to="/profile/auctions">Auctions</NavLink>
             </li>
             <li>
               <NavLink to="/profile/exchanges">User Exchanges</NavLink>

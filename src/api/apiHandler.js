@@ -163,9 +163,9 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  findUserBids(){
+  findUserAuctions(){
     return service
-      .get('/api/users/profile/bids')
+      .get("/api/profile/auctions")
       .then(res => res.data)
       .catch(errorHandler)
   },
@@ -215,8 +215,7 @@ const apiHandler = {
     .get("/api/exchanges/" + tcgId)
     .then(res => res.data)
     .catch(errorHandler)
-  }
-
+  },
   
 }
 
