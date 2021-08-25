@@ -218,6 +218,13 @@ const apiHandler = {
     .get("/api/profile/exchanges")
     .then(res => res.data)
     .catch(errorHandler)
+  },
+
+  deleteExchange(id) {
+    return service
+    .delete(`/api/profile/exchanges/${id}`)
+    .then(res => res.data)
+    .catch(errorHandler)
   }
   
 }

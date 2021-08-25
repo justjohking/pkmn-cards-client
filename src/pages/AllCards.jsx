@@ -13,7 +13,6 @@ export class AllCards extends Component {
         prevY: 0,
         name: ""
     }
-    // We need to show only the pokemons whose cards are present in our DB
 
     getPokemons(page){
         this.setState({
@@ -28,15 +27,37 @@ export class AllCards extends Component {
         .catch(err => {
             console.log(err)
         })
-
-        // axios.get(`https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=40`).then((res) => { 
-        //     this.setState({cards: [...this.state.cards, ...res.data.data]});
-        //     console.log(this.state.cards)
-        //     this.setState({loading: false});
-        // }).catch(err => { console.log(err) })
-
     }
     
+
+
+    handleObserver(entities, observer){
+        const y = entities[0].boundingClientRect.y;
+        if (this.state.prevY > y){
+           
+            const curPage = this.state.page + 1;
+            this.getPokemons(curPage);
+            this.setState({page: curPage})
+        }
+        this.setState({prevY: y})
+    }
+
+    handleNameInputChange = (input) => {
+        this.setState({
+            name: input
+        })
+        // const filteredCards = await apiHandler.filterApiByName(this.state.name)
+        // .then(cards => this.setState({
+        //     cards: filteredCards
+        // }))
+    }
+
+    addCard = async (apiId) => {
+        try {
+            await apiHandler.addCard({pokemonTCGId: apiId});
+        } catch (error) {console.error(error)}
+    }
+
     componentDidMount(){
         this.getPokemons(this.state.page);
 
@@ -54,34 +75,7 @@ export class AllCards extends Component {
         this.observer.observe(this.loadingRef)
     }
 
-    handleObserver(entities, observer){
-        const y = entities[0].boundingClientRect.y;
-        if (this.state.prevY > y){
-           
-            const curPage = this.state.page + 1;
-            this.getPokemons(curPage);
-            this.setState({page: curPage})
-        }
-        this.setState({prevY: y})
-    }
-
-    handleNameInputChange = async (input) => {
-        // const key = event.target.name;
-        // const value = event.target.value;
-        this.setState({
-            name: input
-        })
-        const filteredCards = await apiHandler.filterApiByName(this.state.name)
-        .then(cards => this.setState({
-            cards: filteredCards
-        }))
-    }
-
-    addCard = async (apiId) => {
-        try {
-            await apiHandler.addCard({pokemonTCGId: apiId});
-        } catch (error) {console.error(error)}
-    }
+    
 
     render() {
         const loadingCSS = {
@@ -93,12 +87,10 @@ export class AllCards extends Component {
         
         return (
             <div className="container">
-                <React.Fragment>
-                    <SearchBar 
-                    name={this.state.name}
-                    handleNameInputChange={this.handleNameInputChange}
-                    />
-                </React.Fragment>
+                <SearchBar 
+                name={this.state.name}
+                handleNameInputChange={this.handleNameInputChange}
+                />
                 
 
                 <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>

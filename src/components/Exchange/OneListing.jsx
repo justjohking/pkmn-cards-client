@@ -5,6 +5,7 @@ import apiHandler from '../../api/apiHandler';
 export class OneListing extends Component {
 
     state = {
+        loading: true,
         cards: [],
         exchangeItems: []
     }
@@ -59,8 +60,10 @@ export class OneListing extends Component {
               pokemonTCGId: responses[i]
           }
         })
+
         this.setState({
-            cards: populatedCards
+            cards: populatedCards, 
+            loading: false
         })
     }
 
@@ -72,11 +75,16 @@ export class OneListing extends Component {
                 <td>{this.props.pokemon.cardmarket.prices.averageSellPrice}</td>
                 <td>
                     <div>
+                    {(this.state.loading) && 
+                    <div><p>Catching all your pokemons... plz hooold</p></div>
+                    }
+                    {(!this.state.loading) && 
                     <SelectCardsBox 
                     cards={this.state.cards}
                     exchangeItems={this.state.exchangeItems}
                     handleChange={this.handleChange}
                     />
+                    }
                     </div>
                 </td>
                 <td>
