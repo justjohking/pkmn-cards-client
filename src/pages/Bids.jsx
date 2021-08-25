@@ -21,7 +21,7 @@ export class Bids extends Component {
         const populatedCards = cards.map((card,i) => {
           return {
               ...card,
-              pokemonTCGId: responses[i].data
+              pokemonTCGId: responses[i]
           }
         })
         // console.log("after,",populatedCards)
