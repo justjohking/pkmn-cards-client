@@ -1,14 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import OneCardItemList from '../CardsList/OneCardItemList';
 
 const BidItem = (props) => {
-    console.log(props)
     return (
-        <div className="cardDiv" key={props.card.id}>
-        <img src={props.card.images.small} alt="" height="400px" width="350px"/>
-        <p>Average price: {props.card.cardmarket.prices.averageSellPrice}</p>
-        <div>{props.card.name}</div>
-        <Link to={"/cards/" + props.card.id}>Details</Link>
+        <div className="cardDiv" key={props.card._id}>
+            <OneCardItemList card={props.card.pokemonTCGId} link={"/profile/cards/" + props.card._id}/>
+            <div>
+            <p>Average price: {props.card.pokemonTCGId.cardmarket.prices.averageSellPrice}</p>
+            <Link to={"/cards/" + props.card._id}>Bid Details</Link>
+            </div>
         </div>
     )
 }

@@ -6,7 +6,8 @@ const OneCardItemList = (props) => {
         <div className="cardDiv" key={props.card.id}>
         <img src={props.card.images.small} alt="" height="400px" width="350px"/>
         <div>{props.card.name}</div>
-        <Link to={props.link}>Details</Link>
+        <Link to={props.link}>Card Info</Link>
+        {props.children}
         </div>
     )
 }

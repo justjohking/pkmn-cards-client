@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler'
 import ActionButtons from "./ActionButtons"
-import CardInfo from "./CardInfo"
+// import CardInfo from "./CardInfo"
 import OffersTable from './OffersTable';
 import "./OneCard.css";
+import OneCardContainer from './OneCardContainer';
 
 
 export class OneCard extends Component {
@@ -58,10 +59,8 @@ export class OneCard extends Component {
 
             return (
                 <div className="OneCard">
-                    <div className="container">
-                        <img src={this.state.pokemon.images.large} alt="card"/>
-                        <CardInfo pokemon={this.state.pokemon}/>
-                    </div>
+                    <OneCardContainer pokemon={this.state.pokemon}/>
+                    
                     <div>
                     <ActionButtons 
                     addCard={this.addCard} 
