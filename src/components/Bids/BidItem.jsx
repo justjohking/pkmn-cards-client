@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const OneCardItemList = (props) => {
+const BidItem = (props) => {
     console.log(props)
     return (
         <div className="cardDiv" key={props.card.id}>
@@ -13,4 +13,4 @@ const OneCardItemList = (props) => {
     )
 }
 
-export default OneCardItemList
+export default BidItem

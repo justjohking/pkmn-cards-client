@@ -28,21 +28,17 @@ export class OneCard extends Component {
             });
 
             const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
-            // console.log(apiInfo)
             this.setState({ pokemon: apiInfo.data});
             
             const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
             this.setState({ userCards: userCards })
 
-            // console.log(this.state.pokemon)
             const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
-            // console.log(cards)
             this.setState({ cardsOnSale: cards })
             
         }
         catch (error) {console.error(error)}
     }
-
 
     addCard = async () => {
         try {
