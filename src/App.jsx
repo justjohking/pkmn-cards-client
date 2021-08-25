@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <NavMain />
       <Switch>
-        <Route path="/test" component={TestApi} />
+        {/* <Route path="/test" component={TestApi} /> */}
         <Route exact path="/" component={Home} />
         <Route exact path="/signin" component= {Signin} />
         <Route exact path="/signup" component= {Signup} />
