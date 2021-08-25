@@ -6,8 +6,25 @@ export class OneOffer extends Component {
     state = {
         currentBid: 0,
         bidId: "",
-        previousBid: this.props.offer.bid.currentBid
+        previousBid: this.props.offer.bid.currentBid,
+        bid: {},
     }
+
+
+
+    async componentDidMount(){
+        const bid = await apiHandler.findBid( this.props.offer.bid._id)
+        this.setState({
+            bid: bid
+        })
+        console.log("Bid called in oneOffer ",  this.state.bid)
+    }
+
+
+    componentDidUpdate(){
+        
+    }
+
 
     handleChange = (event) => {
         const key = event.target.name
@@ -18,22 +35,35 @@ export class OneOffer extends Component {
     }
 
     handleSubmit = (id) => {
+        console.log("HandleSubmit")
         if(this.state.currentBid < this.state.previousBid) {
             console.log("current bid is too low")
         } else {
             const updatedBid = {currentBid: this.state.currentBid}
             apiHandler.updatedBids(id, updatedBid)
+            this.setState({
+                bid: updatedBid
+            })
+            this.props.onBid()
         }
+        
+    }
+
+    finalFunction = async (id) => {
+        try {
+            await this.handleSubmit(id)
+            await this.props.onBid()
+        } catch (error) {console.log(error)}
         
     }
 
     render() {
         return (
-            <tr key={this.props.offer._id}>
+            <tr key={this.state.bid._id}>
             <td>{this.props.offer.owner.email}</td>
             <td>{this.props.offer.cardState}</td>
             <td>{this.props.offer.bid.initialPrice} $</td>
-            <td>{this.props.offer.bid.currentBid ? `${this.props.offer.bid.currentBid} $` : "Be the first to Bid"}</td>
+            <td>{this.state.bid.currentBid ? `${this.state.bid.currentBid} $` : "Be the first to Bid"}</td>
             <td>{this.props.offer.bid.endDate}</td>
             <td>
                 <input 
@@ -41,12 +71,14 @@ export class OneOffer extends Component {
                     name="currentBid" 
                     value={this.state.currentBid}                                          
                     onChange={this.handleChange} 
-                    // min={this.props.offer.bid.currentBid}
+                    // min={this.state.bid.bid.currentBid}
             />
             </td>
-            <td><button onClick={
-                () => { this.handleSubmit(this.props.offer.bid._id) 
-            }}>Place Bid</button></td>
+            <td>
+                <button  onClick={() => this.handleSubmit(this.state.bid._id)} >
+                    Place Bid
+                    </button>
+                </td>
         </tr>
         )
     }

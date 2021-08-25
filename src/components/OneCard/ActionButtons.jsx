@@ -27,12 +27,7 @@ class OneCardActions extends Component {
                     {isLoggedIn && userCards.map(card => {
                         return(
                             <div key={card._id}>
-                                <p>Card Id : {card._id} 
-                                 {/* <span>Card on sale</span> : 
-                                 <button onClick={() => this.props.putCardOnSale(card._id)}>Sell</button> 
-                               }
-                                 */}
-                                </p>
+                                
                             </div>
                         )
                     })}

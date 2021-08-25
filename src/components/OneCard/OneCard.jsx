@@ -30,21 +30,35 @@ export class OneCard extends Component {
                 this.setState({ user: null, isLoggedIn: false});
             });
 
+
+            
             const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
             this.setState({ pokemon: apiInfo});
             
             const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
             this.setState({ userCards: userCards });
 
+<<<<<<< HEAD
             const cardsOnSale = await apiHandler.getCardsOnSale(this.state.pokemon.id);
             this.setState({ cardsOnSale: cardsOnSale });
 
             const openForExchange = await apiHandler.getAllCardsOneOfApiIdOpenForExchange(this.state.pokemon.id);
             this.setState({ cardsOpenForExchange: openForExchange})
+=======
+
+            const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
+            this.setState({ cardsOnSale: cards }); 
+
+            
+            
+            
+            
+>>>>>>> 30bd0ebde349e4ab20a1a3750668357bcbbcb35d
         }
         catch (error) {console.error(error)}
     }
 
+<<<<<<< HEAD
         // async componentDidUpdate(){
         //     try {
                 
@@ -60,14 +74,55 @@ export class OneCard extends Component {
     
         //     }catch(error) {console.log(error)}
         // }
+=======
+    // componentDidUpdate(prevProps, prevState){
+
+
+                               
+    //                 if (this.state.pokemon !== null && this.state.cardsOnSale !== prevState.cardsOnSale)  {
+                         
+    //                     const cards =  apiHandler.getCardOnSale(this.state.pokemon.id)
+
+    //                     if(cards !== this.state.cardsOnSale) { 
+    //                         console.log("here set state ")
+    //                     }
+
+    //                 }
+
+                    
+                   
+                    
+        
+                
+            
+    //     }
+>>>>>>> 30bd0ebde349e4ab20a1a3750668357bcbbcb35d
     
     
     addCard = async () => {
         try {
             await apiHandler.addCard({pokemonTCGId: this.props.match.params.id});
+            const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
+            this.setState({ userCards: userCards })
         } catch (error) {console.error(error)}
     }
+<<<<<<< HEAD
    
+=======
+
+    
+    handleBid =  async (event) => {
+        try {
+            
+            const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
+            this.setState({ cardsOnSale: cards })
+        } catch (error) {console.error(error)}
+        
+     
+    }
+    
+    
+>>>>>>> 30bd0ebde349e4ab20a1a3750668357bcbbcb35d
     render() {
 
         
@@ -88,7 +143,7 @@ export class OneCard extends Component {
                     </ActionButtons>
 
                     {this.state.cardsOnSale.length > 0 ?
-                        <OffersTable offers={this.state.cardsOnSale} /> :
+                        <OffersTable onBid={this.handleBid} offers={this.state.cardsOnSale} /> :
                         <div>No vendor is currently selling this card.</div>
                     }
 

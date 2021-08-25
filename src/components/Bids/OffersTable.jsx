@@ -4,7 +4,7 @@ import OneOffer from './OneOffer';
 
 export class OffersTable extends Component {
     render() {
-        
+        console.log(this.props.offers)
         return (
             <div>
                 <table>
@@ -27,9 +27,7 @@ export class OffersTable extends Component {
                             return (
                                <OneOffer 
                                offer={e}
-                            //    currentBid={this.state.currentBid}
-                            //    handleChange={this.handleChange}
-                            //    handleSubmit={this.handleSubmit}
+                               onBid={this.props.onBid}
                                />
                             )
                         })}
