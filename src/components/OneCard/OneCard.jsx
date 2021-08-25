@@ -40,6 +40,23 @@ export class OneCard extends Component {
         catch (error) {console.error(error)}
     }
 
+        async componentDidUpdate(){
+            try {
+                
+                // const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
+                // this.setState({ pokemon: apiInfo});
+                
+                const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
+                this.setState({ userCards: userCards })
+
+                const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
+                this.setState({ cardsOnSale: cards })
+                
+    
+            }catch(error) {console.log(error)}
+        }
+    
+    
     addCard = async () => {
         try {
             await apiHandler.addCard({pokemonTCGId: this.props.match.params.id});
@@ -52,7 +69,7 @@ export class OneCard extends Component {
     
     render() {
 
-        console.log(this.state.cardsOnSale)
+        
 
         if(this.state.pokemon === null) return (<div>Loading...</div>)
 

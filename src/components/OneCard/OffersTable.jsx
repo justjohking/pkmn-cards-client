@@ -22,8 +22,7 @@ export class OffersTable extends Component {
                     </thead>
                     <tbody>
                         {this.props.offers.map(e => {
-                            console.log(e)
-                            console.log(e.bid)
+                            
 
                             return (
                                <OneOffer 
