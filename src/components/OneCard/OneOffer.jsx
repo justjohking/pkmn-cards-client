@@ -44,18 +44,12 @@ export class OneOffer extends Component {
             this.setState({
                 bid: updatedBid
             })
-            this.props.onBid()
+           
         }
         
     }
 
-    finalFunction = async (id) => {
-        try {
-            await this.handleSubmit(id)
-            await this.props.onBid()
-        } catch (error) {console.log(error)}
-        
-    }
+    
 
     render() {
         return (

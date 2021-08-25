@@ -27,7 +27,7 @@ export class OffersTable extends Component {
                             return (
                                <OneOffer 
                                offer={e}
-                               onBid={this.props.onBid}
+                               
                                />
                             )
                         })}

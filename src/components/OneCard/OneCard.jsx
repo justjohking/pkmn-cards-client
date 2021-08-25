@@ -40,34 +40,10 @@ export class OneCard extends Component {
             this.setState({ cardsOnSale: cards }); 
 
             
-            
-            
-            
         }
         catch (error) {console.error(error)}
     }
 
-    // componentDidUpdate(prevProps, prevState){
-
-
-                               
-    //                 if (this.state.pokemon !== null && this.state.cardsOnSale !== prevState.cardsOnSale)  {
-                         
-    //                     const cards =  apiHandler.getCardOnSale(this.state.pokemon.id)
-
-    //                     if(cards !== this.state.cardsOnSale) { 
-    //                         console.log("here set state ")
-    //                     }
-
-    //                 }
-
-                    
-                   
-                    
-        
-                
-            
-    //     }
     
     
     addCard = async () => {
@@ -78,16 +54,6 @@ export class OneCard extends Component {
         } catch (error) {console.error(error)}
     }
 
-    
-    handleBid =  async (event) => {
-        try {
-            
-            const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
-            this.setState({ cardsOnSale: cards })
-        } catch (error) {console.error(error)}
-        
-     
-    }
     
     
     render() {
@@ -112,7 +78,7 @@ export class OneCard extends Component {
                     </ActionButtons>
 
                     {this.state.cardsOnSale.length > 0 ?
-                        <OffersTable onBid={this.handleBid} offers={this.state.cardsOnSale} /> :
+                        <OffersTable  offers={this.state.cardsOnSale} /> :
                         <div>No vendor is currently selling this card.</div>
                     }
 
