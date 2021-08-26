@@ -88,9 +88,9 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  filterApiByName(name) {
+  filterApiByName(name, page) {
     return service
-    .get(`/api/pokemonApi/search/${name}`)
+    .get(`/api/pokemonApi/search/${name}/${page}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
