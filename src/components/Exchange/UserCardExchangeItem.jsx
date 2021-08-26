@@ -30,8 +30,10 @@ class UserCardExchangeItem extends React.Component {
 
         }
         catch (error) { console.error(error)}
- 
+    }
 
+    handleDecline = async () => {
+        await apiHandler.deleteExchange(this.props.exchange._id)
     }
 
     render () {
@@ -47,7 +49,7 @@ class UserCardExchangeItem extends React.Component {
                 <ExchangeOfferBox items={this.props.exchange.buyerItem}/>
                 <div>
                     <button onClick={this.handleAccept}>Accept Offer</button>
-                    <button>Decline Offer</button>
+                    <button onClick={this.handleDecline}>Decline Offer</button>
                 </div>
             </div>
         )

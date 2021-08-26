@@ -37,7 +37,7 @@ export class UserExchanges extends Component {
     render() {
         if(this.state.loading) return <Loading />
 
-        if(this.state.exchanges.length === 0) return <Message>You don't have any cards open for exchange...</Message>
+        if(this.state.exchanges.length === 0) return <Message>You don't have offers for exchanges yet...</Message>
         
         return (
             <div>

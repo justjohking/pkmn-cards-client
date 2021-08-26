@@ -18,7 +18,6 @@ export class OneListing extends Component {
         })
     }
 
-
     deleteCard = (card) => {
         let array = [...this.state.exchangeItems];
         let newArr = array.filter(e => e !== card);
