@@ -17,12 +17,10 @@ export class OneOffer extends Component {
 
     async componentDidMount(){
         await apiHandler.isLoggedIn().then((response => {
-            console.log(response)
             this.setState({
                 userId: response._id
             })
         }))
-        console.log(this.state.userId)
 
         const currentAuction = await apiHandler.findAuction(this.props.offer.bid._id)
         this.setState({
@@ -74,7 +72,6 @@ export class OneOffer extends Component {
             })
             this.displayCurrentBid();
         }
-        console.log(this.state)
     }
 
     finalFunction = async (id) => {
@@ -93,7 +90,7 @@ export class OneOffer extends Component {
     }
 
     render() {
-        console.log(this.state.auction.currentBid)
+        console.log(this.props)
         return (
             <tr key={this.state.auction._id}>
 

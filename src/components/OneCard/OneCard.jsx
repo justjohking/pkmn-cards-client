@@ -70,8 +70,7 @@ export class OneCard extends Component {
     
     
     render() {
-        console.log(this.state.userCards)
-
+        console.log(this.state)
         if(this.state.pokemon === null) return <Loading />
 
             return (
@@ -90,7 +89,9 @@ export class OneCard extends Component {
                     <h1>Shop Section</h1>
 
                     {this.state.cardsOnSale.length > 0 ?
-                        <OffersTable  offers={this.state.cardsOnSale} /> :
+                        <OffersTable  
+                        auctions={this.state.cardsOnSale} 
+                        onBid={this.handleBid}/> :
                         <div>No vendor is currently selling this card.</div>
                     }
 

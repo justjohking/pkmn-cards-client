@@ -11,7 +11,7 @@ export class UserExchanges extends Component {
         loading: true
     }
 
-    async componentDidMount() {
+    getAllExchangeOffers = async () => {
         try {
             const myExchanges = await apiHandler.getExchangeOffers();
             const promises = myExchanges.map(exchange => {
@@ -28,48 +28,15 @@ export class UserExchanges extends Component {
 
             this.setState({
                 exchanges: populatedCards,
-                loading: false
             })
         }
         catch (error) { console.error(error)}
-        this.setState({
-            loading: false
-        })
     }
 
-
-    // handleAccept = async () => {
-    //     try {
-    //         console.log("handle accept work")
-    //         // update seller items
-    //         const updatedSellerItem = {
-    //             owner: this.state.exchanges.buyer,
-    //             openForExchange: false
-    //         }
-    //         const newCard = await apiHandler.updateCard(this.state.exchanges.sellerItem._id, updatedSellerItem);
-    //         console.log(newCard)
-
-    //         // update buyer items
-    //         const updatedBuyerItem = {
-    //             owner: this.state.exchanges.seller,
-    //             openForExchange: false
-    //         }
-    //         const promises = this.state.exchanges.buyerItem.map(item => {
-    //             return (
-    //                 apiHandler.updateCard(item._id, updatedBuyerItem)
-    //             )
-    //         })
-    //         await Promise.all(promises)
-
-    //         await apiHandler.deleteExchange(this.state.exchanges._id)
-
-    //     }
-    //     catch (error) { console.error(error)};
-    // }
-
+    // when user accepts an echange, the items exchanged swap owners & exchange gets deleted
     handleAccept = async (exchange) => {
         try {
-            // update seller items with id buyer
+            // update seller items with id buyer & reset to unavailable for exchanges
             const updatedSellerItem = {
                 owner: exchange.buyer,
                 openForExchange: false
@@ -77,7 +44,7 @@ export class UserExchanges extends Component {
             const newCard = await apiHandler.updateCard(exchange.sellerItem._id, updatedSellerItem);
             console.log(newCard)
 
-            // update buyer items with id seller
+            // update buyer items with id seller & reset to unavailable for exchanges
             const updatedBuyerItem = {
                 owner: exchange.seller,
                 openForExchange: false
@@ -94,10 +61,27 @@ export class UserExchanges extends Component {
 
         }
         catch (error) { console.error(error)};
+        
+        this.handleClick();
     }
 
-    handleDecline = async () => {
-        await apiHandler.deleteExchange()
+    //when a user declines an offer ==> deletes the exchange.
+    handleDecline = async (exchange) => {
+        await apiHandler.deleteExchange(exchange._id);
+        this.handleClick();
+    }
+
+    // calls the API again to update the exchange offers
+    handleClick = () => {
+        this.getAllExchangeOffers();
+    }
+
+    async componentDidMount() {
+        this.getAllExchangeOffers();
+        
+        this.setState({
+            loading: false
+        })
     }
 
     render() {

@@ -17,19 +17,16 @@ export class AllCards extends Component {
         name: ""
     }
 
+    // pokemon API method to get all the pokemons
     getAllPokemons(page){
-        this.setState({
-            loading: true
-        });
-
+        this.resetState();
+        
         apiHandler.getApiByPage(page)
         .then((res) => {
             this.setState({cards: [...this.state.cards, ...res.data]});
             this.setState({loading: false});
         })
-        .catch(err => {
-            console.log(err)
-        })
+        .catch(err => { console.log(err) })
 
         var options = {
             root: null,
@@ -45,14 +42,12 @@ export class AllCards extends Component {
         this.observer.observe(this.loadingRef)
     }
 
-
+    // pokemon API method to get all the pokemons that start with the input
     getPokemonsByName = (name, page) => {
-        this.setState({ loading: true });
+        this.setState({ loading: true, page: 1, prevY: 0 });
         apiHandler.filterApiByName(name, page)
         .then((res) => {
-            this.setState({
-                cards: res.data,
-            });
+            this.setState({cards: [...this.state.cards, ...res.data]});
             this.setState({ loading: false})
         })
         .catch(error => console.log(error))
@@ -76,33 +71,44 @@ export class AllCards extends Component {
         this.setState({prevY: y})
     }
 
-
+    // handle the change of input
+    // function is a prop to <SearchBar />
     handleChange = (input) => {
-        this.setState({
-            name: input
-        });
+        this.setState({ name: input });
     }
 
-    handleClick = (input) => {
-        this.getPokemonsByName(this.state.name, 1);
+    // click on "search" button to filter the input name
+    // function is a prop to <SearchBar />
+    handleClick = () => {
+        this.setState({ loading: true, page: 1, prevY: 0, cards: [] });
+        this.getPokemonsByName(this.state.name, this.state.page);
     }
 
+    // click on "reset search" to get all the Pokemons back
+    // function is a prop to <SearchBar />
     handleReset = () => {
-        // console.log("it works")
+        this.getAllPokemons(this.state.page);
+        console.log(this.state.cards.length)
     }
 
+    // add a card to my collection
     addCard = async (apiId) => {
         try {
             await apiHandler.addCard({pokemonTCGId: apiId});
         } catch (error) {console.error(error)}
     }
 
-    componentDidMount(){
-        this.getAllPokemons(this.state.page);
+    resetState = () => {
+        this.setState({
+            loading: true, 
+            page: 1, 
+            prevY: 0, 
+            cards: []
+        })
     }
 
-    componentWillUnmoung() {
-        this.abortController.abort()
+    componentDidMount(){
+        this.getAllPokemons(this.state.page);
     }
 
     render() {
@@ -113,12 +119,10 @@ export class AllCards extends Component {
 
         const loadingTextCSS = { display: this.state.loadingItems ? "block" : "none" };
 
-        
-
         return (
             <div className="container">
                 <div className="search-div">
-                    <h1>Search for a Pokemon ! : </h1>
+                    <h1>Search for a Pokemon ! </h1>
                     <SearchBar 
                     name={this.state.name}
                     handleChange={this.handleChange}
