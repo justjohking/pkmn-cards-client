@@ -65,17 +65,7 @@ export class OneCard extends Component {
     // componentDidUpdate(prevProps, prevState){
 
 
-                               
-    //                 if (this.state.pokemon !== null && this.state.cardsOnSale !== prevState.cardsOnSale)  {
-                         
-    //                     const cards =  apiHandler.getCardOnSale(this.state.pokemon.id)
 
-    //                     if(cards !== this.state.cardsOnSale) { 
-    //                         console.log("here set state ")
-    //                     }
-    //                 }
-    //     }
-    
     
     addCard = async () => {
         try {
@@ -85,15 +75,6 @@ export class OneCard extends Component {
         } catch (error) {console.error(error)}
     }
 
-    
-    // handleBid =  async (event) => {
-    //     try {      
-    //         const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
-    //         this.setState({ cardsOnSale: cards })
-    //     } catch (error) {console.error(error)}
-    // }
-    
-    
     render() {
 
         if(this.state.pokemon === null) return (<div>Loading...</div>)
