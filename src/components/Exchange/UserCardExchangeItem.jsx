@@ -5,16 +5,16 @@ import apiHandler from '../../api/apiHandler';
 
 class UserCardExchangeItem extends React.Component {
 
-    handleAccept = () => {
-        this.props.handleAccept();
+    handleAccept = (exchange) => {
+        this.props.handleAccept(exchange);
     }
 
-    handleDecline = () => {
-        this.props.handleDecline()
+    handleDecline = (exchange) => {
+        this.props.handleDecline(exchange)
     }
 
     render () {
-        console.log(this.props.exchange)
+        // console.log(this.props.exchange)
         return (
             <div key={this.props.exchange.sellerItem._id +1}>
                 <OneCardItemList 
@@ -25,8 +25,8 @@ class UserCardExchangeItem extends React.Component {
                 </div>
                 <ExchangeOfferBox items={this.props.exchange.buyerItem}/>
                 <div>
-                    <button onClick={this.handleAccept}>Accept Offer</button>
-                    <button onClick={this.handleDecline}>Decline Offer</button>
+                    <button onClick={() => {this.handleAccept(this.props.exchange)}}>Accept Offer</button>
+                    <button onClick={() => {this.handleDecline(this.props.exchange)}}>Decline Offer</button>
                 </div>
             </div>
         )

@@ -120,10 +120,10 @@ export class OneOffer extends Component {
                 />}
                 
             </td>
-            <td>
+            <td>{!this.state.hasHighestBid &&
                 <button  onClick={() => this.handleSubmit(this.state.auction._id)} >
                     Place Bid
-                    </button>
+                    </button>}
                 </td>
         </tr>
         )
