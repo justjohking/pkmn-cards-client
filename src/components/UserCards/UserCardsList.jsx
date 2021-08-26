@@ -5,7 +5,7 @@ import OneCardItemList from '../OneCardItemList';
 import BtnExchangeStatus from './BtnExchangeStatus';
 import Loading from '../Loading';
 import {Link} from "react-router-dom"
-import "./CardsList.css"
+import "./UserCards.css"
 
 export class CardsList extends Component {
     state = {
@@ -59,7 +59,7 @@ export class CardsList extends Component {
                     return (
                         <div key={card._id}>
                         <OneCardItemList card={card.pokemonTCGId} link={"/profile/cards/" + card._id}>
-                        <button>Sell</button>
+                        <Link to={"/profile/cards/" + card._id}>See card</Link>
                         <BtnExchangeStatus card={card}/>
                     </OneCardItemList>
                     <FormSale card={card}/>
