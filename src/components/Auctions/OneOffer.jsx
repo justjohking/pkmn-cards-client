@@ -10,19 +10,12 @@ export class OneOffer extends Component {
         bid: {},
     }
 
-
-
     async componentDidMount(){
         const bid = await apiHandler.findBid( this.props.offer.bid._id)
         this.setState({
             bid: bid
         })
         console.log("Bid called in oneOffer ",  this.state.bid)
-    }
-
-
-    componentDidUpdate(){
-        
     }
 
 
@@ -35,7 +28,6 @@ export class OneOffer extends Component {
     }
 
     handleSubmit = (id) => {
-        console.log("HandleSubmit")
         if(this.state.currentBid < this.state.previousBid) {
             console.log("current bid is too low")
         } else {
