@@ -6,60 +6,85 @@ export class CardInfo extends Component {
     //Get all the infos about the card being displayed
 
     render() {
+        console.log(this.props)
         return (
-            <div className="info-container">
+            <div className="info-container" style={{"border" : "1px solid black"}}>
                 <div>
                     <h2 className="pokemon-name">{this.props.pokemon.name}</h2>
 
                     <div className="pokemon-type">
                         <h3>{this.props.pokemon.subtypes[0]} {this.props.pokemon.supertype}</h3>
-                        <p>HP{this.props.pokemon.hp}/</p>
+                        <p>Health : {this.props.pokemon.hp} HP</p>
                     </div>
                 </div>
 
-                {this.props.abilities && 
-                <div className="abilities">
-                <h3>{this.props.pokemon.abilities.type}</h3>
-                <p>{this.props.pokemon.abilities.name}</p>
-                <p>{this.props.pokemon.abilities.text}</p>
-                </div>}
+              
                 
 
                 <div className="attacks">
-                    <p>{this.props.pokemon.attacks.name} <span>{this.props.pokemon.attacks.damage}</span></p>
-                    <p>{this.props.pokemon.attacks.text}</p>
+                    <h2>Attacks : </h2>
+                    {this.props.pokemon.attacks.map(e => {
+                        return(
+                            <div>
+                                <p><b>{e.name}</b><span> {e.damage} </span></p>
+                                <p><b>Description : </b>{e.text}</p>
+                            </div>
+                        )
+
+                    })}
+
+
+                    {/* <p><b>{this.props.pokemon.attacks[0].name}</b><span> {this.props.pokemon.attacks[0].damage} Damage</span></p>
+                    <p>Description : {this.props.pokemon.attacks[0].text}</p>
+                    
+                    <p><b>{this.props.pokemon.attacks[1].name}</b><span> {this.props.pokemon.attacks[1].damage} Damage</span></p>
+                    <p>Description : {this.props.pokemon.attacks[1].text}</p> */}
                 </div>
 
                 <div className="pokemon-div-3">
 
                     <div className="w-r-rc">
+                        <h2>Weaknesses : </h2>
                         <div>
-                            <p>Weakness</p>
-                            {this.props.pokemon.weaknesses &&
-                                <p>{this.props.pokemon.weaknesses.type} x {this.props.pokemon.weaknesses.value}</p>}
+                            
+                            { this.props.pokemon.weaknesses &&
+
+                            
+                            this.props.pokemon.weaknesses.map(e => {
+                                return ( 
+                                    <div>
+                                        <p><b>{e.type} :</b> {e.value}</p>
+                                    </div>
+                                )
+                            })}
                         </div>
                         <div>
-                            <p>Resistance</p>
+                            <h2>Resistances : </h2>
+                            {this.props.pokemon.resistances && this.props.pokemon.resistances.map(e => {
+                                return (
+                                    <div>
+                                        <p> <b>{e.type} :</b> {e.value}</p>
+                                    </div>
+                                )
+                            })}
+                            
                             {this.props.pokemon.resistances &&
                             <p>{this.props.pokemon.resistances.type} <span>{this.props.pokemon.resistances.value}</span></p>}
-                        </div>
-                        <div>
-                            <p>Retreat Cost</p>
-                            {this.props.pokemon.retreatCost &&
-                            <p>{this.props.pokemon.retreatCost[0]} x {this.props.pokemon.convertedRetreatCost}</p>}
                         </div>
                     </div>
 
                     <div className="set">
+                        <h2>Set :</h2>
                         <div>
-                            <p>{this.props.pokemon.supertype.series} – {this.props.pokemon.name}</p>
-                            <p>{this.props.pokemon.number}/{this.props.pokemon.set.total} {this.props.pokemon.rarity}</p>
+                            <p><b>{this.props.pokemon.set.name}</b> – {this.props.pokemon.name}</p>
+                            <p><b>Rarity : </b>{this.props.pokemon.number}/{this.props.pokemon.set.total} {this.props.pokemon.rarity}</p>
                         </div>
+                            <p><b>Set Symbol :</b> </p>
                             <img src={this.props.pokemon.set.images.symbol} alt="symbol set" />
                     </div>
                 </div>
                 
-                <div><p>Illustrator : {this.props.pokemon.artist}</p></div>
+                <div><p> <b>Illustrator :</b> {this.props.pokemon.artist}</p></div>
 
             </div>
         )

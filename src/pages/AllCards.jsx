@@ -145,7 +145,10 @@ export class AllCards extends Component {
                     {this.state.cards.map(card => (
                         <OneCardItemList card={card}>
                             <div>
-                                <Link to={"/cards/" + card.id}>Card details</Link>
+                                <Link to={"/cards/" + card.id}><b>Card details</b></Link>
+                                
+                            </div>
+                            <div>
                                 <button onClick={() => {this.addCard(card.id)}}>Add Card</button>
                             </div>
                         </OneCardItemList>

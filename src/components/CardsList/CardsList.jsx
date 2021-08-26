@@ -3,7 +3,8 @@ import apiHandler from '../../api/apiHandler';
 import FormSale from '../Forms/FormSale';
 import OneCardItemList from './OneCardItemList';
 import BtnExchangeStatus from './BtnExchangeStatus'
-
+import {Link} from "react-router-dom"
+import "./CardsList.css"
 export class CardsList extends Component {
     state = {
         cards: null,
@@ -42,12 +43,14 @@ export class CardsList extends Component {
             <div className="CardsList">
                 <h2>ALL USER'S CARDS</h2>
                 {this.state.cards.map(card => {
+                    
                     return (
-                        <div key={card._id}>
+                        <div key={card._id} className="oneCard">
                         <OneCardItemList card={card.pokemonTCGId} link={"/profile/cards/" + card._id}>
-                        <button>Sell</button>
-                        <BtnExchangeStatus card={card}/>
-                    </OneCardItemList>
+                            <Link to={`/cards/${card.pokemonTCGId.id}`}>Card details</Link>
+                            <BtnExchangeStatus card={card}/>
+                        </OneCardItemList>
+                        
                     <FormSale card={card}/>
                     </div>)
                 })}

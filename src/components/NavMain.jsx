@@ -20,21 +20,32 @@ const NavMain = (props) => {
   }
 
   return (
-    <nav className="NavMain">
+    <nav className="NavMain navbar">
       <NavLink exact to="/">
-        <h3 className="logo">App name</h3>
+        <h3 className="logo">PokemonTCG</h3>
       </NavLink>
       <ul className="nav-list">
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/profile/cards">User Cards</NavLink>
+              <NavLink to="/cards">All Cards</NavLink>
             </li>
             <li>
-              <NavLink to="/profile/auctions">Auctions</NavLink>
+              <NavLink to="/profile/cards">My Cards</NavLink>
             </li>
             <li>
-              <NavLink to="/profile/exchanges">User Exchanges</NavLink>
+            <div class="dropdown">
+              <button class="dropbtn">Shop
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <NavLink to="/auctions" className="NavLink">All Auctions</NavLink>
+                <NavLink to="/exchanges" className="NavLink">All Exchanges</NavLink>
+                <NavLink to="/profile/auctions" className="NavLink">My Auctions</NavLink>
+                <NavLink to="/profile/exchanges" className="NavLink">My Exchanges</NavLink>
+              </div>
+            </div>
+              
             </li>
             <li>
               <NavLink to="/profile">

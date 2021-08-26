@@ -6,6 +6,8 @@
 
 .OneCard .container img {
   width: 300px;
+  margin-right: 30px;
+  margin-bottom: 10px ;
 }
 
 .OneCard .set img {
