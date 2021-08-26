@@ -14,7 +14,7 @@ import FormSale from "./components/Forms/FormSale";
 import UserAuctions from "./pages/UserAuctions";
 // import TestApi from "./pages/TestApi";
 import OpenForExchanges from "./components/Exchange/OpenForExchange"
-import UserCardsOpenForExchange from "./components/Exchange/UserCardsOpenForExchange";
+import UserExchanges from "./components/Exchange/UserExchanges";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         <ProtectedRoute path="/profile/cards" component={CardsList} />
         <ProtectedRoute exact path="/profile/cards/:id" component={FormSale} />
         <ProtectedRoute path="/profile/auctions" component={UserAuctions} />
-        <ProtectedRoute path="/profile/exchanges" component={UserCardsOpenForExchange} />
+        <ProtectedRoute path="/profile/exchanges" component={UserExchanges} />
       </Switch>
     </div>
   );

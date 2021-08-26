@@ -64,6 +64,7 @@ const apiHandler = {
     .then((res) => res.data)
     .catch(errorHandler)
   },
+
   //old getItems => getAllCards => will get all the cards from the API
   // getAllCards() {
   //   return axios
@@ -87,9 +88,9 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  filterApiByName(name) {
+  filterApiByName(name, page) {
     return service
-    .get(`/api/pokemonApi/search/${name}`)
+    .get(`/api/pokemonApi/search/${name}/${page}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -131,14 +132,6 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  // addCardToCollection(collection, updatedCardList) {
-  //   return service
-  //   .patch(`/api/me/collection/${collection}`, updatedCardList)
-  //   .then(res => res.data)
-  //   .catch(errorHandler)
-  // },
-
-
   // Bids 
   //create a new bid
   createBid(bid){
@@ -170,15 +163,12 @@ const apiHandler = {
       .catch(errorHandler)
   },
   
-
-
   findBid(id){
     return service
     .get(`/api/bids/${id}`)
     .then(res => res.data)
     .catch(errorHandler)
 },
-
 
   updatedBids(id, newBid){
       return service
@@ -187,7 +177,6 @@ const apiHandler = {
       .catch(errorHandler)
   },
 
-
   getAllUserCardsFromApiCard(apiId) {
     return service
     .get("/api/me/cards/all/" + apiId)
@@ -195,7 +184,7 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  //Get all the cards that are on sell
+  //Get all the cards that are on sale
   getCardsOnSale(tcgId){
     return service
     .get("/api/cards/bids/" + tcgId)
@@ -216,6 +205,27 @@ const apiHandler = {
     .then(res => res.data)
     .catch(errorHandler)
   },
+  
+  createExchange(exchange) {
+    return service 
+    .post("/api//profile/exchanges/create", exchange)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  getUserCardsOpenForExchange() {
+    return service 
+    .get("/api/profile/exchanges")
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  deleteExchange(id) {
+    return service
+    .delete(`/api/profile/exchanges/${id}`)
+    .then(res => res.data)
+    .catch(errorHandler)
+  }
   
 }
 

@@ -6,35 +6,11 @@ export class BtnExchangeStatus extends Component {
         openForExchange : this.props.card.openForExchange
     }
 
-    handleChange = async (event) => {
-        // const isChecked = () => {
-        //     return event.target.checked ? true : false
-        // }
-        // console.log("is checked", isChecked())
-        // this.setState({
-        //     openForExchange: !event.target.checked
-        // })
-        // console.log(this.state.openForExchange)
-        // try {
-
-        //     await apiHandler.updateCard(this.props.card._id, {
-        //         openForExchange: this.state.openForExchange
-        //     })
-
-        //     console.log(this.props.card)
-        // }
-        // catch (error) {
-        //     console.error(error);
-        // }
-    }
-
-
     handleClick = async () => {
         try {
             await apiHandler.updateCard(this.props.card._id, {
                 openForExchange: !this.props.card.openForExchange
             })
-            console.log(this.props.card)
         }
         catch (error) {
             console.error(error);
@@ -42,7 +18,6 @@ export class BtnExchangeStatus extends Component {
     }
 
     render() {
-        // console.log(this.state.openForExchange)
         return (
             <div>
 

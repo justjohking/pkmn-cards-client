@@ -75,7 +75,8 @@ export class SellCardForm extends Component {
 
                                 <FormField label="Select the state of the card you're selling" htmlFor="cardState"> 
                                     <select name="cardState" onChange={this.handleChange}>
-                                        <option value="Mint" selected="selected">Mint</option>
+                                        <option disabled>Select</option>
+                                        <option value="Mint">Mint</option>
                                         <option value="Near Mint">Near Mint</option>
                                         <option value="Bad">Bad</option>
                                     </select>
