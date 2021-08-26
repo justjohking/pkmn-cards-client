@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import apiHandler from '../api/apiHandler'
-import UserAuctionItem from '../components/Auctions/UserAuctionItem'
+import React, { Component } from 'react';
+import apiHandler from '../../../api/apiHandler';
+import UserAuctionItem from './UserAuctionItem';
+import Message from '../../Message';
 
 export class UserAuctions extends Component {
     state = {
@@ -28,7 +29,15 @@ export class UserAuctions extends Component {
         return (
             
             <div>
-                <h1>User Auctions</h1>
+                <h1>Your auctions</h1>
+                <p>Here are all the bids you received for your ongoing auctions.</p>
+                
+                {/* If the user hasn't receive any bid for his auctions yet.*/}
+                {this.state.auctions.length === 0 && 
+                <Message>
+                    <p>You don't have any bids from your open auctions right now.</p>
+                </Message>}
+
                 <div>
                     {this.state.auctions.map(e => {
                         return (                           

@@ -3,6 +3,7 @@ import Loading from '../Loading';
 import apiHandler from '../../api/apiHandler';
 import Message from '../Message';
 import UserCardExchangeItem from './UserCardExchangeItem';
+import Explanation from '../Explanation';
 
 export class UserExchanges extends Component {
 
@@ -86,12 +87,17 @@ export class UserExchanges extends Component {
 
     render() {
         if(this.state.exchanges === null) return <Loading />
-
-        if(this.state.exchanges.length === 0) return <Message>You don't have offers for exchanges yet...</Message>
         
         return (
             <div>
                 <h2>Offers for exchange</h2>
+                    <Explanation>
+                        <p>Here are all the offers of exchange you have received.</p>
+                    </Explanation>
+                
+                {this.state.exchanges.length === 0 && 
+                <Message>You don't have offers for exchanges yet...</Message>}
+        
 
                 {!this.state.loading &&
                     <div>

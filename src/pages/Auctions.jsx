@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import apiHandler from '../api/apiHandler';
-import AuctionItem from '../components/Auctions/AuctionItem'
-import "./Auctions.css"
+import AuctionItem from '../components/Auctions/UserAuctions/AuctionItem';
+import "./Auctions.css";
+import Message from '../components/Message';
+import Explanation from '../components/Explanation';
 
-export class Bids extends Component {
+export class Auctions extends Component {
     
     state = { 
         cards: [],
@@ -34,7 +36,17 @@ export class Bids extends Component {
         return (
         
             <div>
-                <h1>Cards on Sale : </h1>
+                <h1>Ongoing auctions</h1>
+
+                <Explanation>
+                    <p>Here are all the ongoing auctions. You can place a bid in order to acquire those cards.</p>
+                    <p>Each item in this list represent a model of Pokemon card. To see all the auctions for this model, click on "Auction Details".</p>
+                </Explanation>
+
+                {this.state.cards.length === 0 &&
+                <Message>
+                    <p>There are no ongoing auctions.</p>
+                </Message>}
                 <div className="auctions-div">{this.state.cards.map(e => {
                     return (
                         <AuctionItem card={e} />
@@ -47,4 +59,4 @@ export class Bids extends Component {
     }
 }
 
-export default Bids
+export default Auctions

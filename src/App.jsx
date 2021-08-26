@@ -11,7 +11,7 @@ import OneCard from "./components/OneCard/OneCard"
 import Auctions from "./pages/Auctions";
 import CardsList from "./components/UserCards/UserCardsList";
 import FormSale from "./components/Forms/FormSale";
-import UserAuctions from "./pages/UserAuctions";
+import UserAuctions from "./components/Auctions/UserAuctions/UserAuctions"
 import OpenForExchanges from "./components/Exchange/CardsOpenForExchange"
 import UserExchanges from "./components/Exchange/UserExchangesList";
 

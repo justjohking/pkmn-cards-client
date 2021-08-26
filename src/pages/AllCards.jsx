@@ -19,8 +19,14 @@ export class AllCards extends Component {
 
     // pokemon API method to get all the pokemons
     getAllPokemons(page){
-        this.resetState();
-        
+        this.setState({
+            loading: true, 
+            page: 1, 
+            prevY: 0, 
+            cards: [],
+            name: ""
+        })
+
         apiHandler.getApiByPage(page)
         .then((res) => {
             this.setState({cards: [...this.state.cards, ...res.data]});
@@ -44,7 +50,12 @@ export class AllCards extends Component {
 
     // pokemon API method to get all the pokemons that start with the input
     getPokemonsByName = (name, page) => {
-        this.setState({ loading: true, page: 1, prevY: 0 });
+        this.setState({
+            loading: true, 
+            page: 1, 
+            prevY: 0, 
+            cards: [],
+        })
         apiHandler.filterApiByName(name, page)
         .then((res) => {
             this.setState({cards: [...this.state.cards, ...res.data]});
@@ -96,15 +107,6 @@ export class AllCards extends Component {
         try {
             await apiHandler.addCard({pokemonTCGId: apiId});
         } catch (error) {console.error(error)}
-    }
-
-    resetState = () => {
-        this.setState({
-            loading: true, 
-            page: 1, 
-            prevY: 0, 
-            cards: []
-        })
     }
 
     componentDidMount(){

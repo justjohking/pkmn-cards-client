@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import apiHandler from '../../api/apiHandler';
+import apiHandler from '../../../api/apiHandler';
+import { withUser } from '../../Auth/withUser';
 
 export class OneOffer extends Component {
     constructor(props) {
@@ -8,35 +9,66 @@ export class OneOffer extends Component {
             currentBid: 0,
             previousBid: this.props.offer.bid?.currentBid ||0,
             auction: {},
-            bidPlaced: false,
             hasHighestBid: false,
-            userId: "",
         }
         this.timer = null;
+        this.updateAuction = this.updateAuction.bind(this)
     }
 
-    async componentDidMount(){
-        await apiHandler.isLoggedIn().then((response => {
-            this.setState({
-                userId: response._id
-            })
-        }))
+    getCurrentAuction = async (id) => {
+        await apiHandler.findAuction(id)
+        .then((response) => { this.setState({ auction: response }) })
+        .catch(error => console.log(error))
+    }
 
-        const currentAuction = await apiHandler.findAuction(this.props.offer.bid._id)
+    handleChange = (event) => {
+        const key = event.target.name
+        const value = event.target.value
         this.setState({
-            auction: currentAuction
+            [key]: value, 
         })
-        this.displayCurrentBid()
     }
 
-    getCurrentAuction = async (_id) => {
-        await apiHandler.findAuction(_id)
-            .then((response) => {
-                this.setState({
-                    auction: response
-                })
-            })
-            .catch(error => console.log(error))
+    updateAuction = (id) => { this.props.updateAuction(id) }
+
+    handleSubmit = async (id) => {
+        if(this.state.currentBid < this.state.previousBid) {
+            console.log("current bid is too low")
+        } 
+
+        // update the auction : the "currentBid" is now the "highest bid"
+        const updatedBid = {currentBid: this.state.currentBid}
+        await apiHandler.updatedBids(id, updatedBid)
+        .then((response) => { this.setState({ auction: response }) })
+        .catch(error => console.log(error))
+
+        // GET to update the auction's infos
+        // this.updateAuction();
+
+        this.displayCurrentBid();
+    }
+
+
+    finalFunction = async (id) => {
+        try {
+            await this.handleSubmit(id)
+            await this.handleBid()
+        } catch (error) {console.log(error)}
+    }
+
+    displayCurrentBid = () => {
+        if(this.props.offer.bid.buyer === this.props.context.user._id) {
+            this.setState({ hasHighestBid: true })
+        }
+    }
+
+    componentDidMount(){
+        this.getCurrentAuction(this.props.offer.bid._id)
+
+        if(this.props.context.isLoggedIn) {
+            this.displayCurrentBid()
+        }
+        
     }
 
     async componentDidUpdate() {
@@ -49,53 +81,8 @@ export class OneOffer extends Component {
         clearTimeout(this.timer)
     }
 
-    handleChange = (event) => {
-        const key = event.target.name
-        const value = event.target.value
-        this.setState({
-            [key]: value, 
-        })
-    }
-
-    handleBid = () => {
-        this.props.onBid();
-    }
-
-    handleSubmit = (id) => {
-        if(this.state.currentBid < this.state.previousBid) {
-            console.log("current bid is too low")
-        } else {
-            const updatedBid = {currentBid: this.state.currentBid}
-            apiHandler.updatedBids(id, updatedBid)
-            this.setState({
-                auction: updatedBid
-            })
-            this.handleBid();
-            this.setState({
-                bidPlaced : true
-            })
-            this.displayCurrentBid();
-        }
-    }
-
-
-    finalFunction = async (id) => {
-        try {
-            await this.handleSubmit(id)
-            await this.handleBid()
-        } catch (error) {console.log(error)}
-    }
-
-    displayCurrentBid = () => {
-        if(this.props.offer.bid.buyer === this.state.userId) {
-            this.setState({
-                hasHighestBid: true
-            })
-        }
-    }
 
     render() {
-        console.log(this.props)
         return (
             <tr key={this.state.auction._id}>
 
@@ -103,7 +90,8 @@ export class OneOffer extends Component {
 
             <td>{this.props.offer.cardState}</td>
 
-            <td>{this.props.offer.bid.initialPrice} $</td>
+            <td>
+                {this.props.offer.bid.initialPrice} $</td>
 
             <td>{this.state.auction.currentBid ? `${this.state.auction.currentBid} $` : "Be the first to Bid"}</td>
             <td>{this.props.offer.bid.endDate}</td>
@@ -123,7 +111,7 @@ export class OneOffer extends Component {
                 
             </td>
             <td>{!this.state.hasHighestBid &&
-                <button  onClick={() => this.handleSubmit(this.state.auction._id)} >
+                <button onClick={() => this.handleSubmit(this.state.auction._id)} >
                     Place Bid
                     </button>}
                 </td>
@@ -132,5 +120,5 @@ export class OneOffer extends Component {
     }
 }
 
-export default OneOffer;
+export default withUser(OneOffer);
 

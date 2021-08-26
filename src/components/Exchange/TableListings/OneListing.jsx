@@ -13,6 +13,7 @@ export class OneListing extends Component {
         exchangeExists: false,
     }
 
+    // add a card to the user's offer (before confirming)
     addCard = (card) => {
         let array = this.state.exchangeItems;
         array.push(card)
@@ -21,12 +22,11 @@ export class OneListing extends Component {
         })
     }
 
+    // delete a card from the user's offer (before confirming)
     deleteCard = (card) => {
         let array = [...this.state.exchangeItems];
         let newArr = array.filter(e => e !== card);
-        this.setState({
-            exchangeItems : newArr
-        })
+        this.setState({ exchangeItems : newArr })
     }
 
     handleChange = (event) => {
@@ -55,6 +55,7 @@ export class OneListing extends Component {
     }
 
     getAllUserCards = async () => {
+        {this.setState({ loading : true })}
         const cards =  await apiHandler.getAllUserCards();
         const cardPromises = cards.map(card => {
             return apiHandler.getOneCardFromApi(card.pokemonTCGId);
@@ -124,7 +125,9 @@ export class OneListing extends Component {
                         handleChange={this.handleChange}
                     />
                     }
-                    {this.state.callBox && this.state.cards.length === 0 &&
+                    {this.state.callBox && 
+                    this.state.cards.length === 0 &&
+                    !this.state.loading &&
                     <div>You have no cards to exchange !</div>}
                     </div>
                 </td>

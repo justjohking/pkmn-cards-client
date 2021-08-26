@@ -2,57 +2,54 @@ import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler'
 import ActionButtons from "./ActionButtons"
 // import CardInfo from "./CardInfo"
-import OffersTable from '../Auctions/OffersTable';
+import OffersTable from '../Auctions/AuctionsListings/OffersTable';
 import "./OneCard.css";
 import OneCardContainer from './OneCardContainer';
 import TableListings from '../Exchange/TableListings/TableListings';
 import Loading from '../Loading';
+import { withUser } from '../Auth/withUser';
 
 
 export class OneCard extends Component {
     state = {
-        user: {},
+        loading: true,
         pokemon : null,
-        isLoggedIn: false,
         userCards : [],
         formDisplayed: false,
         cardsOnSale: [],
-        cardsOpenForExchange: []
+        cardsOpenForExchange: [],
+        message: ""
     }
 
-    async componentDidMount() {
-        try {
-            await apiHandler
-            .isLoggedIn()
-            .then((data) => {
-                this.setState({ user: data, isLoggedIn: true});
-            })
-            .catch((error) => {
-                this.setState({ user: null, isLoggedIn: false});
-            });
-
-            const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
-            this.setState({ pokemon: apiInfo});
-            
-            this.getUserCardsFromModel(this.state.pokemon.id)
-
-            const cardsOnSale = await apiHandler.getCardsOnSale(this.state.pokemon.id);
-            this.setState({ cardsOnSale: cardsOnSale });
-
-            const openForExchange = await apiHandler.getAllCardsOneOfApiIdOpenForExchange(this.state.pokemon.id);
-            this.setState({ cardsOpenForExchange: openForExchange})
-        }
-        catch (error) {console.error(error)}
+    // get all the info about this card model
+    getInfoCardFromApi = async (tcgId) => {
+        await apiHandler.getOneCardFromApi(tcgId)
+        .then((response) => { this.setState({ pokemon: response}) })
+        .catch((error) => { console.log(error) })
     }
 
-    getUserCardsFromModel = async (TCGId) => {
-        try {
-            const userCards = await apiHandler.getAllUserCardsFromApiCard(TCGId);
-            this.setState({ userCards: userCards });
-        } 
-        catch (error) {console.log(error)}
+    // get all the cards the user has in a specifique pokemon card model
+    getUserCardsFromModel = async (tcgId) => {
+        await apiHandler.getAllUserCardsFromApiCard(tcgId)
+        .then((response) => { this.setState({ userCards: response }) })
+        .catch((error) => { console.log(error) })
     }
-    
+
+    // get all the ongoing auctions for this model
+    getOngoingAuctions = async (tcgId) => {
+        await apiHandler.getCardsOnSale(tcgId)
+        .then((cards) => { this.setState({ cardsOnSale : cards }) })
+        .catch((error) => { console.log(error) })
+    }
+
+    // get all the cards of this model open for exchange
+    getCardsOpenForExchange = async (tcgId) => {
+        await apiHandler.getAllCardsOneOfApiIdOpenForExchange(tcgId)
+        .then((response) => { this.setState({ cardsOpenForExchange: response })})
+        .catch((error) => { console.log(error) })
+    }
+
+    // add the card to the user's collection ("My Cards") --> indicate that the owner owns a version of it
     addCard = async () => {
         try {
             await apiHandler.addCard({pokemonTCGId: this.props.match.params.id});
@@ -61,38 +58,43 @@ export class OneCard extends Component {
         } catch (error) {console.error(error)}
     }
 
-    handleBid =  async (event) => {
-        try {      
-            const cards = await apiHandler.getCardsOnSale(this.state.pokemon.id)
-            this.setState({ cardsOnSale: cards })
-        } catch (error) {console.error(error)}
+    updateAuction = (id) => {
+        this.getOngoingAuctions(id)
+    }
+
+    async componentDidMount() {
+        await this.getInfoCardFromApi(this.props.match.params.id);
+        await this.getUserCardsFromModel(this.props.match.params.id)
+        await this.getOngoingAuctions(this.props.match.params.id);
+        await this.getCardsOpenForExchange(this.props.match.params.id)
+        await this.setState({ loading : false })
     }
     
     
     render() {
-        console.log(this.state)
-        if(this.state.pokemon === null) return <Loading />
+        if (this.state.loading) return <Loading />
 
             return (
                 <div className="OneCard">
                     <OneCardContainer pokemon={this.state.pokemon}/>
 
                     <ActionButtons 
-                        addCard={this.addCard} 
-                        putCardOnSale={this.putCardOnSale}
-                        showForm={this.displaySaleForm}
+                    addCard={this.addCard} 
+                    putCardOnSale={this.putCardOnSale}
+                    showForm={this.displaySaleForm}
                     >
-                        {this.state}
+                    {this.state}
                     </ActionButtons>
                     
                     <section className="shop-section">
-                    <h1>Shop Section</h1>
+                    <h1>How to get this card ?</h1>
 
                     {this.state.cardsOnSale.length > 0 ?
                         <OffersTable  
                         auctions={this.state.cardsOnSale} 
-                        onBid={this.handleBid}/> :
-                        <div>No vendor is currently selling this card.</div>
+                        updateAuction={this.updateAuction}
+                        /> :
+                        <div>There are no ongoing auctions for this model.</div>
                     }
 
                     {this.state.cardsOpenForExchange.length > 0 ? 
@@ -100,6 +102,7 @@ export class OneCard extends Component {
                         <div>No card is open for exchange for now.</div>
                     }
                     </section>
+
                 </div>
             )
         }
@@ -107,5 +110,5 @@ export class OneCard extends Component {
     }
 
 
-export default OneCard
+export default withUser(OneCard);
 

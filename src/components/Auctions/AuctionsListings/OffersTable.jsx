@@ -24,7 +24,11 @@ export class OffersTable extends Component {
                     </thead>
                     <tbody>
                         {this.props.auctions.map(offer => {
-                            return ( <OneOffer offer={offer} onBid={this.props.onBid}/> )
+                            return ( 
+                            <OneOffer 
+                            offer={offer} 
+                            updateAuction={this.props.updateAuction}
+                            /> )
                         })}
                     </tbody>
                 </table>

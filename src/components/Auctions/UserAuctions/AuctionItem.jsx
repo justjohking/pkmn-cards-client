@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import OneCardItemList from '../OneCardItemList';
+import OneCardItemList from '../../OneCardItemList';
 
 const AuctionItem = (props) => {
     
@@ -9,7 +9,7 @@ const AuctionItem = (props) => {
             <OneCardItemList card={props.card.pokemonTCGId} link={"/profile/cards/" + props.card._id}/>
                 <div>
             <h2><b>Average price: {props.card.pokemonTCGId.cardmarket.prices.averageSellPrice}</b></h2>
-            <Link to={"/cards/" + props.card.pokemonTCGId.id} className="template-button-all-cards">Bid Details</Link>
+            <Link to={"/cards/" + props.card.pokemonTCGId.id} className="template-button-all-cards">Auction Details</Link>
             </div>
         </div>
     )

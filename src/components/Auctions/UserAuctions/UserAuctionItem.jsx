@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import apiHandler from '../../api/apiHandler';
-import OneCardItemList from '../OneCardItemList'
+import apiHandler from '../../../api/apiHandler';
+import OneCardItemList from '../../OneCardItemList'
 
 export class UserAuctionItem extends Component {
-    // state = { 
-    //     bidId: this.props.auction._id,
-    // }
     
+    // accept the highest bid for an auction
     handleAccept = async () => {
+
+        // update the owner of the card
         const card = this.props.auction.item
         const updatedCard = {
             owner: this.props.auction.buyer,
@@ -15,10 +15,13 @@ export class UserAuctionItem extends Component {
             price: null,
         }
         await apiHandler.updateCard(card._id, updatedCard)
+
+        // delete "bid" (auction)
         await apiHandler.deleteBid(this.props.auction._id)
         console.log("bid finished")
     }
 
+    // cancel the auction ==> delete "bid" (auction)
     handleDelete = async () => {
         await apiHandler.deleteBid(this.props.auction._id)
         console.log("bid deleted")

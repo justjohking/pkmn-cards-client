@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
 import OneCardItemList from '../OneCardItemList';
 import { Link } from "react-router-dom"
-import './OpenForExchange.css'
+import './OpenForExchange.css';
+import Message from '../Message';
+import Explanation from '../Explanation';
 
 
 export class OpenForExchange extends Component {
@@ -39,7 +41,15 @@ export class OpenForExchange extends Component {
         return (
             <div>
                 <h2>Cards open for exchanges</h2>
+                <Explanation>
+                    <p>Here are all the cards available for an exchange.</p>
+                </Explanation>
+
                 <div className="exchange-div">
+
+                    {this.state.cards.length === 0 &&
+                    <Message>There are no cards available for an exchange right now.</Message>}
+
                     {this.state.cards.map(card => {
                         return (
                             <OneCardItemList card={card.pokemonTCGId} key={card._id}>

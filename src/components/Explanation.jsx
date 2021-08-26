@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Message = (props) => {
+const Explanation = (props) => {
     return (
-        <div className="Message">
+        <div>
             {props.children}
         </div>
     )
 }
 
-export default Message
+export default Explanation
