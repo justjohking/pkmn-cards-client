@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 class OneCardActions extends Component {
 
+    handleAdd = () => {
+        this.props.getUserCardsFromModel();
+    }
+
     render() {
         const { isLoggedIn, userCards } = this.props.children;
 

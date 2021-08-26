@@ -4,9 +4,9 @@ import OneOffer from './OneOffer';
 
 export class OffersTable extends Component {
     render() {
-        console.log(this.props.offers)
         return (
             <div>
+                <h3>All the auctions</h3>
                 <table>
                     <thead>
                         <tr>
@@ -38,4 +38,4 @@ export class OffersTable extends Component {
     }
 }
 
-export default OffersTable
+export default OffersTable;

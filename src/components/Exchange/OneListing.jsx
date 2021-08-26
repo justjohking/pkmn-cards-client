@@ -103,5 +103,5 @@ export class OneListing extends Component {
     }
 }
 
-export default OneListing
+export default OneListing;
 

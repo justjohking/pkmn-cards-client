@@ -30,8 +30,11 @@ export class CardsList extends Component {
 
         this.setState({
             cards: populatedCards
-        })
-            
+        })     
+    }
+
+    componentWillUnmount() {
+        
     }
 
     render() {

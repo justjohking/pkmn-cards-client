@@ -30,13 +30,10 @@ export class OneCard extends Component {
                 this.setState({ user: null, isLoggedIn: false});
             });
 
-
-            
             const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
             this.setState({ pokemon: apiInfo});
             
-            const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
-            this.setState({ userCards: userCards });
+            this.getUserCardsFromModel(this.state.pokemon.id)
 
             const cardsOnSale = await apiHandler.getCardsOnSale(this.state.pokemon.id);
             this.setState({ cardsOnSale: cardsOnSale });
@@ -47,25 +44,14 @@ export class OneCard extends Component {
         catch (error) {console.error(error)}
     }
 
-        // async componentDidUpdate(){
-        //     try {
-                
-        //         // const apiInfo = await apiHandler.getOneCardFromApi(this.props.match.params.id);
-        //         // this.setState({ pokemon: apiInfo});
-                
-        //         const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
-        //         this.setState({ userCards: userCards })
-
-        //         const cards = await apiHandler.getCardOnSale(this.state.pokemon.id)
-        //         this.setState({ cardsOnSale: cards })
-                
+    getUserCardsFromModel = async (TCGId) => {
+        try {
+            const userCards = await apiHandler.getAllUserCardsFromApiCard(TCGId);
+            this.setState({ userCards: userCards });
+        } 
+        catch (error) {console.log(error)}
+    }
     
-        //     }catch(error) {console.log(error)}
-        // }
-    // componentDidUpdate(prevProps, prevState){
-
-
-
     
     addCard = async () => {
         try {
@@ -75,6 +61,15 @@ export class OneCard extends Component {
         } catch (error) {console.error(error)}
     }
 
+    
+    handleBid =  async (event) => {
+        try {      
+            const cards = await apiHandler.getCardsOnSale(this.state.pokemon.id)
+            this.setState({ cardsOnSale: cards })
+        } catch (error) {console.error(error)}
+    }
+    
+    
     render() {
 
         if(this.state.pokemon === null) return (<div>Loading...</div>)

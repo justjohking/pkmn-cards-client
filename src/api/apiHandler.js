@@ -90,7 +90,7 @@ const apiHandler = {
 
   filterApiByName(name, page) {
     return service
-    .get(`/api/pokemonApi/search/${name}/${page}`)
+    .get(`/api/pokemonApi/search/${name}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -163,7 +163,7 @@ const apiHandler = {
       .catch(errorHandler)
   },
   
-  findBid(id){
+  findAuction(id){
     return service
     .get(`/api/bids/${id}`)
     .then(res => res.data)
