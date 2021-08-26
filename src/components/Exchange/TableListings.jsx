@@ -4,6 +4,7 @@ import OneListing from './OneListing'
 export class TableListings extends Component {
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <h3>All listings open for exchange</h3>
@@ -12,7 +13,6 @@ export class TableListings extends Component {
                     <tr>
                         <td>Owner</td>
                         <td>Card state</td>
-                        <td>Average Sell Price</td>
                         <td>What do you wanna exchange ?</td>
                         <td>Your current offer</td>
                         <td>Confirm offer</td>

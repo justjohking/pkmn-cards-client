@@ -11,6 +11,7 @@ export class BtnExchangeStatus extends Component {
             await apiHandler.updateCard(this.props.card._id, {
                 openForExchange: !this.props.card.openForExchange
             })
+            this.props.update();
         }
         catch (error) {
             console.error(error);

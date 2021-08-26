@@ -6,11 +6,11 @@ export class SelectCardsBox extends Component {
         this.props.handleChange(event)
     }
 
+    // get all the Pokemons
     
     render() {
         return (
             <div>
-                <p>Select card(s)</p>
                 {this.props.cards.map(card => {
                     return(
                         <div key={card._id}>

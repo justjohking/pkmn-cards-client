@@ -6,7 +6,6 @@ export class CardInfo extends Component {
     //Get all the infos about the card being displayed
 
     render() {
-        console.log(this.props)
         return (
             <div className="info-container" style={{"border" : "1px solid black"}}>
                 <div>

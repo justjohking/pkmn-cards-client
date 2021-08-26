@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import SelectCardsBox from './SelectCardsBox';
 import apiHandler from '../../api/apiHandler';
+import BtnExchangeStatus from '../UserCards/BtnExchangeStatus';
 
 export class OneListing extends Component {
 
     state = {
-        loading: true,
+        callBox: false,
+        loading: false,
         cards: [],
-        exchangeItems: []
+        exchangeItems: [],
+        loadingItems: true,
+        exchangeExists: false,
     }
 
     addCard = (card) => {
@@ -45,9 +49,14 @@ export class OneListing extends Component {
             await apiHandler.createExchange(exchangeOffer)
         }
         catch (error) {console.error(error)}
+
+        this.setState({
+            callBox: false,
+            exchangeCreated: true
+        })
     }
 
-    async componentDidMount() {
+    getAllUserCards = async () => {
         const cards =  await apiHandler.getAllUserCards();
         const cardPromises = cards.map(card => {
             return apiHandler.getOneCardFromApi(card.pokemonTCGId);
@@ -62,26 +71,45 @@ export class OneListing extends Component {
 
         this.setState({
             cards: populatedCards, 
+            loadingItems: false
+        })
+    }
+
+    handleClick = () => {
+        this.setState({
+            loadingItems: true,
+            callBox: true,
+        })
+        this.getAllUserCards();
+    }
+
+    async componentDidMount() {
+        this.setState({
             loading: false
         })
     }
 
     render() {
+        console.log(this.state.exchangeItems)
         return (
             <tr key={this.props.offer._id}>
                 <td>{this.props.offer.owner.email}</td>
-                <td>{this.props.offer.cardState}</td>
-                <td>{this.props.pokemon.cardmarket.prices.averageSellPrice}</td>
                 <td>
+                    {!this.props.offer.cardState && <p>N/D</p>}
+                    {this.props.offer.cardState && this.props.offer.cardState}
+                    </td>
+                <td>
+                    <button onClick={this.handleClick}>Select cards</button>
                     <div>
-                    {(this.state.loading) && 
+                    {/* {(this.state.callBox) && 
                     <div><p>Catching all your pokemons... plz hooold</p></div>
-                    }
-                    {(!this.state.loading) && 
+                    } */}
+                    {(this.state.callBox) &&
                     <SelectCardsBox 
-                    cards={this.state.cards}
-                    exchangeItems={this.state.exchangeItems}
-                    handleChange={this.handleChange}
+                        getUserCards={this.getUserCards}
+                        cards={this.state.cards}
+                        exchangeItems={this.state.exchangeItems}
+                        handleChange={this.handleChange}
                     />
                     }
                     </div>
@@ -96,7 +124,13 @@ export class OneListing extends Component {
                     </ul>
                 </td>
                 <td>
-                    <button onClick={this.handleSubmit}>Confirm offer</button>
+                    {!this.state.exchangeExists && 
+                        <button onClick={this.handleSubmit}>Confirm offer</button>
+                    }
+                    {this.state.exchangeExists && 
+                        <p>Here is your offer</p>}
+                    
+                    
                 </td>
             </tr>
         )

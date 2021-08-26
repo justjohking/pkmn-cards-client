@@ -34,11 +34,11 @@ const NavMain = (props) => {
               <NavLink to="/profile/cards">My Cards</NavLink>
             </li>
             <li>
-            <div class="dropdown">
-              <button class="dropbtn">Shop
-                <i class="fa fa-caret-down"></i>
+            <div className="dropdown">
+              <button className="dropbtn">Shop
+                <i className="fa fa-caret-down"></i>
               </button>
-              <div class="dropdown-content">
+              <div className="dropdown-content">
                 <NavLink to="/auctions" className="NavLink">All Auctions</NavLink>
                 <NavLink to="/exchanges" className="NavLink">All Exchanges</NavLink>
                 <NavLink to="/profile/auctions" className="NavLink">My Auctions</NavLink>

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 
 export class AllCards extends Component {
+
     state = {
         cards: [],
         loading: false,
@@ -63,16 +64,31 @@ export class AllCards extends Component {
         if (this.state.prevY > y){
            
             const curPage = this.state.page + 1;
-            this.getAllPokemons(curPage);
-            this.setState({page: curPage})
+
+            if(this.state.name !== "") {
+                this.getPokemonsByName(this.state.name, curPage);
+            } else {
+                this.getAllPokemons(curPage);
+            }
+
+            this.setState({page: curPage});
         }
         this.setState({prevY: y})
     }
 
-    handleNameInputChange = (input) => {
+
+    handleChange = (input) => {
         this.setState({
             name: input
-        })
+        });
+    }
+
+    handleClick = (input) => {
+        this.getPokemonsByName(this.state.name, 1);
+    }
+
+    handleReset = () => {
+        // console.log("it works")
     }
 
     addCard = async (apiId) => {
@@ -85,14 +101,8 @@ export class AllCards extends Component {
         this.getAllPokemons(this.state.page);
     }
 
-    async componentDidUpdate(prevProp, prevState) {
-        if(this.state.name !== prevState.name) {
-            this.getPokemonsByName(this.state.name);
-        }
-
-        if(this.state.name !== prevState.name && this.state.name === "") {
-            this.getAllPokemons(this.state.page)
-        }
+    componentWillUnmoung() {
+        this.abortController.abort()
     }
 
     render() {
@@ -107,14 +117,19 @@ export class AllCards extends Component {
 
         return (
             <div className="container">
-                <h1>Hello</h1>
+                <h1>All cards</h1>
+
+                <p></p>
                 <SearchBar 
                 name={this.state.name}
-                handleNameInputChange={this.handleNameInputChange}
+                handleChange={this.handleChange}
+                handleClick={this.handleClick}
+                handleReset={this.handleReset}
                 />
 
                 {this.state.loading && 
                 <Loading />}
+                
                 
                 <div>
                     <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>

@@ -42,11 +42,7 @@ export class CardsList extends Component {
     }
 
     updateStatus = () => {
-        // try {
-
-        // }
-        // catch
-        // await apiHandler.getAllUserCardsFromApiCard()
+        this.getAllCards()
     }
 
     render() {
@@ -59,8 +55,8 @@ export class CardsList extends Component {
                     return (
                         <div key={card._id}>
                         <OneCardItemList card={card.pokemonTCGId} link={"/profile/cards/" + card._id}>
-                        <Link to={"/profile/cards/" + card._id}>See card</Link>
-                        <BtnExchangeStatus card={card}/>
+                        
+                        <BtnExchangeStatus card={card} update={this.updateStatus}/>
                     </OneCardItemList>
                     <FormSale card={card}/>
                     </div>)

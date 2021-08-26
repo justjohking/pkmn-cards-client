@@ -4,28 +4,39 @@ import FormField from '../Forms/FormField';
 export class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.handleNameInputChange = this.handleNameInputChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
 
-    handleNameInputChange(e) {
-        this.props.handleNameInputChange(e.target.value)
-    };
+    handleChange = (e) => {
+        this.props.handleChange(e.target.value)
+    }
+
+    handleClick = () => {
+        this.props.handleClick()
+    }
+
+    handleReset = () => {
+        this.props.handleReset();
+    }
+
 
     render() {
         return (
             <div className="SearchBar">
-                <form onSubmit={this.props.onSubmit}>
-                    <FormField>
-                        <input
-                        type="text"
-                        value={this.props.name}
-                        onChange={this.handleNameInputChange}
-                        name="name"
-                        />
-                    </FormField>
-                    <button type='submit'>Search</button>
-
-                </form>
+                <FormField>
+                    <input
+                    type="text"
+                    value={this.props.name}
+                    onChange={this.handleChange}
+                    />
+                </FormField>
+                <div>
+                    <button onClick={this.handleClick}>Search</button>
+                    <button onClick={this.handleReset}>Reset search</button>
+                </div>
+                    
             </div>
         )
     }

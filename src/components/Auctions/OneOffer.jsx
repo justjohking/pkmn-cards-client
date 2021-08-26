@@ -6,7 +6,7 @@ export class OneOffer extends Component {
         super(props);
         this.state = {
             currentBid: 0,
-            previousBid: this.props.offer.bid.currentBid,
+            previousBid: this.props.offer.auction.currentBid,
             auction: {},
             bidPlaced: false,
             hasHighestBid: false,

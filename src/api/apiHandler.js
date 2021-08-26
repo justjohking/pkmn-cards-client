@@ -90,7 +90,7 @@ const apiHandler = {
 
   filterApiByName(name, page) {
     return service
-    .get(`/api/pokemonApi/search/${name}`)
+    .get(`/api/pokemonApi/search/${name}/${page}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -223,6 +223,13 @@ const apiHandler = {
   deleteExchange(id) {
     return service
     .delete(`/api/profile/exchanges/${id}`)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  getOneExchange (id) {
+    return service
+    .get(`/api/profile/exchanges/${id}`)
     .then(res => res.data)
     .catch(errorHandler)
   }
