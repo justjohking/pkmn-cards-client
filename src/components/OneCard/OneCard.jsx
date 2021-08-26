@@ -84,13 +84,13 @@ export class OneCard extends Component {
                     <OneCardContainer pokemon={this.state.pokemon}/>
                     
                     <div>
-                    <ActionButtons 
+                    {/* <ActionButtons 
                     addCard={this.addCard} 
                     putCardOnSale={this.putCardOnSale}
                     showForm={this.displaySaleForm}
                     >
                         {this.state}
-                    </ActionButtons>
+                    </ActionButtons> */}
 
                     {this.state.cardsOnSale.length > 0 ?
                         <OffersTable  offers={this.state.cardsOnSale} /> :
