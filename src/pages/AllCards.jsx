@@ -132,6 +132,7 @@ export class AllCards extends Component {
 
         return (
             <div className="container">
+                <h1>Hello</h1>
                 <SearchBar 
                 name={this.state.name}
                 handleNameInputChange={this.handleNameInputChange}
