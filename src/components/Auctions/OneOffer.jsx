@@ -57,6 +57,10 @@ export class OneOffer extends Component {
         })
     }
 
+    handleBid = () => {
+        this.props.onBid();
+    }
+
     handleSubmit = (id) => {
         if(this.state.currentBid < this.state.previousBid) {
             console.log("current bid is too low")
@@ -66,7 +70,7 @@ export class OneOffer extends Component {
             this.setState({
                 auction: updatedBid
             })
-            this.props.onBid();
+            this.handleBid();
             this.setState({
                 bidPlaced : true
             })
@@ -74,10 +78,11 @@ export class OneOffer extends Component {
         }
     }
 
+
     finalFunction = async (id) => {
         try {
             await this.handleSubmit(id)
-            await this.props.onBid()
+            await this.handleBid()
         } catch (error) {console.log(error)}
     }
 

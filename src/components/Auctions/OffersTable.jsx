@@ -3,7 +3,9 @@ import "./OffersTable.css";
 import OneOffer from './OneOffer';
 
 export class OffersTable extends Component {
+    
     render() {
+        console.log(this.props)
         return (
             <div>
                 <h3>All the auctions</h3>
@@ -22,7 +24,7 @@ export class OffersTable extends Component {
                     </thead>
                     <tbody>
                         {this.props.auctions.map(offer => {
-                            return ( <OneOffer offer={offer} /> )
+                            return ( <OneOffer offer={offer} onBid={this.props.onBid}/> )
                         })}
                     </tbody>
                 </table>
