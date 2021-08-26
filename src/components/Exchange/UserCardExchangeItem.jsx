@@ -1,5 +1,5 @@
 import React from 'react';
-import OneCardItemList from '../CardsList/OneCardItemList';
+import OneCardItemList from '../OneCardItemList';
 import ExchangeOfferBox from './ExchangeOfferBox';
 import apiHandler from '../../api/apiHandler';
 

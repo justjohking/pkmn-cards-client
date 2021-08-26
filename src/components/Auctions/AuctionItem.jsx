@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import OneCardItemList from '../CardsList/OneCardItemList';
+import OneCardItemList from '../OneCardItemList';
 
 const AuctionItem = (props) => {
     return (

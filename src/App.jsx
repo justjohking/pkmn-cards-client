@@ -9,10 +9,9 @@ import Profile from "./pages/Profile";
 import AllCards from "./pages/AllCards";
 import OneCard from "./components/OneCard/OneCard"
 import Auctions from "./pages/Auctions";
-import CardsList from "./components/CardsList/CardsList";
+import CardsList from "./components/UserCards/UserCardsList";
 import FormSale from "./components/Forms/FormSale";
 import UserAuctions from "./pages/UserAuctions";
-// import TestApi from "./pages/TestApi";
 import OpenForExchanges from "./components/Exchange/OpenForExchange"
 import UserExchanges from "./components/Exchange/UserExchanges";
 

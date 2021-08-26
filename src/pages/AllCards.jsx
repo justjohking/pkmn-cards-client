@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../pages/AllCards.css'
-import OneCardItemList from '../components/CardsList/OneCardItemList'
+import OneCardItemList from '../components/OneCardItemList'
 import apiHandler from '../api/apiHandler';
 import SearchBar from '../components/SearchBar/SearchBar';
 import { Link } from 'react-router-dom';

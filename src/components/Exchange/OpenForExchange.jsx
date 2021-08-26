@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
-import OneCardItemList from '../CardsList/OneCardItemList';
+import OneCardItemList from '../OneCardItemList';
 import { Link } from "react-router-dom"
 
 
