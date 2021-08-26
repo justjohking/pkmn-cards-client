@@ -1,6 +1,10 @@
 .cardDiv {
     margin: 10px;
+    border: black 1px solid;
+    display: flex;
+    flex-direction: column;
 }
+
 
 .container {
     width: 100%;

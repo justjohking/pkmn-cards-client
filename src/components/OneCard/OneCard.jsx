@@ -88,7 +88,7 @@ export class OneCard extends Component {
                     </ActionButtons>
 
                     {this.state.cardsOnSale.length > 0 ?
-                        <OffersTable onBid={this.handleBid} offers={this.state.cardsOnSale} /> :
+                        <OffersTable  offers={this.state.cardsOnSale} /> :
                         <div>No vendor is currently selling this card.</div>
                     }
 
