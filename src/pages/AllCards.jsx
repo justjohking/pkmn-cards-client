@@ -9,7 +9,7 @@ import Loading from '../components/Loading';
 export class AllCards extends Component {
     state = {
         cards: [],
-        loading: false,
+        loadingPage: false,
         page: 1,
         prevY: 0,
         name: ""
@@ -28,19 +28,6 @@ export class AllCards extends Component {
         .catch(err => {
             console.log(err)
         })
-
-        var options = {
-            root: null,
-            rootMargin: "0px",
-            threshold: 1.0
-        }
-
-        this.observer = new IntersectionObserver(
-            this.handleObserver.bind(this),
-            options
-        );
-
-        this.observer.observe(this.loadingRef)
     }
 
     getPokemonsByName = (name, page) => {
@@ -49,7 +36,7 @@ export class AllCards extends Component {
         .then((res) => {
             this.setState({
                 cards: [...this.state.cards, ...res.data],
-                loading: false
+                loadingPage: true
             });
         })
         .catch(error => console.log(error))
@@ -57,12 +44,24 @@ export class AllCards extends Component {
     }
 
 
-    handleObserver(entities, observer){
+    handleObserverAll(entities, observer){
         const y = entities[0].boundingClientRect.y;
         if (this.state.prevY > y){
            
             const curPage = this.state.page + 1;
             this.getAllPokemons(curPage);
+            this.setState({page: curPage})
+        }
+        this.setState({prevY: y})
+    }
+
+
+    handleObserverName(entities, observer){
+        const y = entities[0].boundingClientRect.y;
+        if (this.state.prevY > y){
+           
+            const curPage = this.state.page + 1;
+            this.getPokemonsByName(this.state.name, curPage);
             this.setState({page: curPage})
         }
         this.setState({prevY: y})
@@ -82,14 +81,25 @@ export class AllCards extends Component {
 
     componentDidMount(){
         this.getAllPokemons(this.state.page);
+        var options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 1.0
+        }
 
-        
+        this.observer = new IntersectionObserver(
+            this.handleObserverAll.bind(this),
+            options
+        );
+
+        this.observer.observe(this.loadingRef)
     }
 
     async componentDidUpdate(prevProp, prevState) {
-        console.log("updated")
         if(this.state.name !== prevState.name) {
+            // console.log(this.state.name)
             this.getPokemonsByName(this.state.name, this.state.page);
+            console.log(this.state.cards)
 
             var options = {
                 root: null,
@@ -98,7 +108,7 @@ export class AllCards extends Component {
             }
     
             this.observer = new IntersectionObserver(
-                this.handleObserver.bind(this),
+                this.handleObserverName.bind(this),
                 options
             );
     
@@ -117,6 +127,7 @@ export class AllCards extends Component {
           };
 
         const loadingTextCSS = { display: this.state.loading ? "block" : "none" };
+
         
 
         return (
@@ -126,25 +137,29 @@ export class AllCards extends Component {
                 handleNameInputChange={this.handleNameInputChange}
                 />
 
-                {this.state.loading && 
+                {this.state.loadingPage && 
                 <Loading />}
                 
                 <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
-                {this.state.cards.map(card => (
-                    <OneCardItemList card={card}>
-                        <div>
-                            <Link to={"/cards/" + card.id}>Card details</Link>
-                            <button onClick={() => {this.addCard(card.id)}}>Add Card</button>
-                        </div>
-                    </OneCardItemList>
+                    {this.state.cards.map(card => (
+                        <OneCardItemList card={card}>
+                            <div>
+                                <Link to={"/cards/" + card.id}>Card details</Link>
+                                <button onClick={() => {this.addCard(card.id)}}>Add Card</button>
+                            </div>
+                        </OneCardItemList>
 
-                ))}
+                    ))}
                 </div>
+                
                 <div
                 ref={loadingRef => (this.loadingRef = loadingRef)}
                 style={loadingCSS}
                 >
-                <span style={loadingTextCSS}>Loading...</span>
+                    {this.state.cards.length > 0 && 
+                    <Loading style={loadingTextCSS}/>}
+
+                {/* <span style={loadingTextCSS}>Loading...</span> */}
                 </div>
       </div>
         )
