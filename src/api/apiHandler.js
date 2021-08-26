@@ -213,7 +213,7 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  getUserCardsOpenForExchange() {
+  getExchangeOffers() {
     return service 
     .get("/api/profile/exchanges")
     .then(res => res.data)
@@ -227,9 +227,11 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  getOneExchange (id) {
+  // Find the exchange offer initiated by the user
+  // over one particular item
+  getExchangeBySellerItem (idItem) {
     return service
-    .get(`/api/profile/exchanges/${id}`)
+    .get(`/api/profile/exchanges/${idItem}`)
     .then(res => res.data)
     .catch(errorHandler)
   }

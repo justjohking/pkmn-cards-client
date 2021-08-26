@@ -5,35 +5,12 @@ import apiHandler from '../../api/apiHandler';
 
 class UserCardExchangeItem extends React.Component {
 
-    handleAccept = async () => {
-        try {
-            // update seller items
-            const updatedSellerItem = {
-                owner: this.props.exchange.buyer,
-                openForExchange: false
-            }
-            await apiHandler.updateCard(this.props.exchange.sellerItem._id, updatedSellerItem);
-
-            // update buyer items
-            const updatedBuyerItem = {
-                owner: this.props.exchange.seller,
-                openForExchange: false
-            }
-            const promises = this.props.exchange.buyerItem.map(item => {
-                return (
-                    apiHandler.updateCard(item._id, updatedBuyerItem)
-                )
-            })
-            await Promise.all(promises)
-
-            await apiHandler.deleteExchange(this.props.exchange._id)
-
-        }
-        catch (error) { console.error(error)}
+    handleAccept = () => {
+        this.props.handleAccept();
     }
 
-    handleDecline = async () => {
-        await apiHandler.deleteExchange(this.props.exchange._id)
+    handleDecline = () => {
+        this.props.handleDecline()
     }
 
     render () {

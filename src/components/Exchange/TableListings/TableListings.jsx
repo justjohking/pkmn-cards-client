@@ -4,7 +4,6 @@ import OneListing from './OneListing'
 export class TableListings extends Component {
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <h3>All listings open for exchange</h3>
@@ -21,7 +20,7 @@ export class TableListings extends Component {
                 <tbody>
                     {this.props.offers.map(offer => {
                         return (
-                            <OneListing offer={offer} pokemon={this.props.pokemon}/>
+                            <OneListing listing={offer} pokemon={this.props.pokemon}/>
                         )
                     })}
                 </tbody>

@@ -121,7 +121,9 @@ export class AllCards extends Component {
                     <h1>Search for a Pokemon ! : </h1>
                     <SearchBar 
                     name={this.state.name}
-                    handleNameInputChange={this.handleNameInputChange}
+                    handleChange={this.handleChange}
+                    handleClick={this.handleClick}
+                    handleReset={this.handleReset}
                     />
                 </div>
                 

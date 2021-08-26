@@ -25,7 +25,7 @@ export class CardsList extends Component {
 
     getAllCards = async () => {
         try {
-            const cards = await apiHandler.getAllUserCards();
+            const cards = await apiHandler.getAllUserCards(); //get all the user's card (one element per card, not per tcg model)
             const cardPromises = cards.map(card => {
                 return apiHandler.getOneCardFromApi(card.pokemonTCGId);
             })

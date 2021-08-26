@@ -12,8 +12,8 @@ import Auctions from "./pages/Auctions";
 import CardsList from "./components/UserCards/UserCardsList";
 import FormSale from "./components/Forms/FormSale";
 import UserAuctions from "./pages/UserAuctions";
-import OpenForExchanges from "./components/Exchange/OpenForExchange"
-import UserExchanges from "./components/Exchange/UserExchanges";
+import OpenForExchanges from "./components/Exchange/CardsOpenForExchange"
+import UserExchanges from "./components/Exchange/UserExchangesList";
 
 function App() {
   return (

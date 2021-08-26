@@ -5,7 +5,8 @@ import ActionButtons from "./ActionButtons"
 import OffersTable from '../Auctions/OffersTable';
 import "./OneCard.css";
 import OneCardContainer from './OneCardContainer';
-import TableListings from '../Exchange/TableListings';
+import TableListings from '../Exchange/TableListings/TableListings';
+import Loading from '../Loading';
 
 
 export class OneCard extends Component {
@@ -52,7 +53,6 @@ export class OneCard extends Component {
         catch (error) {console.log(error)}
     }
     
-    
     addCard = async () => {
         try {
             await apiHandler.addCard({pokemonTCGId: this.props.match.params.id});
@@ -61,7 +61,6 @@ export class OneCard extends Component {
         } catch (error) {console.error(error)}
     }
 
-    
     handleBid =  async (event) => {
         try {      
             const cards = await apiHandler.getCardsOnSale(this.state.pokemon.id)
@@ -71,22 +70,24 @@ export class OneCard extends Component {
     
     
     render() {
+        console.log(this.state.userCards)
 
-        if(this.state.pokemon === null) return (<div>Loading...</div>)
+        if(this.state.pokemon === null) return <Loading />
 
             return (
                 <div className="OneCard">
                     <OneCardContainer pokemon={this.state.pokemon}/>
-                    
-                    <div className="shop-section">
-                    <h1>Shop Section</h1>
+
                     <ActionButtons 
-                    addCard={this.addCard} 
-                    putCardOnSale={this.putCardOnSale}
-                    showForm={this.displaySaleForm}
+                        addCard={this.addCard} 
+                        putCardOnSale={this.putCardOnSale}
+                        showForm={this.displaySaleForm}
                     >
                         {this.state}
                     </ActionButtons>
+                    
+                    <section className="shop-section">
+                    <h1>Shop Section</h1>
 
                     {this.state.cardsOnSale.length > 0 ?
                         <OffersTable  offers={this.state.cardsOnSale} /> :
@@ -97,11 +98,7 @@ export class OneCard extends Component {
                         <TableListings offers={this.state.cardsOpenForExchange} pokemon={this.state.pokemon}/> : 
                         <div>No card is open for exchange for now.</div>
                     }
-
-                     
-
-                  
-                    </div>
+                    </section>
                 </div>
             )
         }
