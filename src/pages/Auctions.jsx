@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import apiHandler from '../api/apiHandler';
-import BidItem from '../components/Auctions/AuctionItem'
+import AuctionItem from '../components/Auctions/AuctionItem'
+import "./Auctions.css"
 
 export class Bids extends Component {
     
@@ -33,10 +34,10 @@ export class Bids extends Component {
         return (
         
             <div>
-                <h1>ALL THE CARDS ON SALE</h1>
-                <div>{this.state.cards.map(e => {
+                <h1>Cards on Sale : </h1>
+                <div className="auctions-div">{this.state.cards.map(e => {
                     return (
-                        <BidItem card={e} />
+                        <AuctionItem card={e} />
                     )
                 })
                 }

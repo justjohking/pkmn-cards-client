@@ -21,17 +21,22 @@ const NavMain = (props) => {
 
   return (
     <nav className="NavMain navbar">
+      <div className="home-div"> 
+      
       <NavLink exact to="/">
-        <h3 className="logo">PokemonTCG</h3>
+      <img className="pokeball-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1200px-Pok%C3%A9_Ball_icon.svg.png" alt="" />
+
       </NavLink>
+      </div>
+      
       <ul className="nav-list">
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/cards">All Cards</NavLink>
+              <NavLink to="/cards" className="NavLink">All Cards</NavLink>
             </li>
             <li>
-              <NavLink to="/profile/cards">My Cards</NavLink>
+              <NavLink to="/profile/cards" className="NavLink">My Cards</NavLink>
             </li>
             <li>
             <div className="dropdown">
@@ -48,22 +53,22 @@ const NavMain = (props) => {
               
             </li>
             <li>
-              <NavLink to="/profile">
+              <NavLink to="/profile" className="NavLink">
                 {context.user && context.user.email}
               </NavLink>
             </li>
             <li>
-              <p onClick={handleLogout}>Logout</p>
+              <p onClick={handleLogout} className="NavLink">Logout</p>
             </li>
           </React.Fragment>
         )}
         {!context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/signin">Log in</NavLink>
+              <NavLink to="/signin" className="NavLink">Log in</NavLink>
             </li>
             <li>
-              <NavLink to="/signup">Create account</NavLink>
+              <NavLink to="/signup" className="NavLink">Create account</NavLink>
             </li>
           </React.Fragment>
         )}

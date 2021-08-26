@@ -23,7 +23,7 @@ import { UserContext } from "./UserContext";
 
 // This component is not exported as default, so you have to import it
 // this way :
-// import { withUser } from "../relative/path/to/this/file"
+  // import { withUser } from "../relative/path/to/this/file"
 
 export const withUser = (ComponentToPassUserContextTo) => {
   return function (props) {

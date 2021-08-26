@@ -21,7 +21,7 @@ class OneCardActions extends Component {
                     userCards.length > 0 && 
                     <div>
                         <p>You have {userCards.length} {userCards.length === 1 ? "version" : "versions"} of this card.</p>
-                        <button onClick={this.props.addCard}>Add another to my collection</button>
+                        <button onClick={this.props.addCard} className="template-button-all-cards">Add another to my collection</button>
                     </div>}
 
                     {/* {isLoggedIn &&
@@ -37,7 +37,7 @@ class OneCardActions extends Component {
                     })}
 
                     {isLoggedIn && 
-                    <div>All the current offers : </div>}
+                    <h2>All the current offers : </h2>}
                     
                     {!isLoggedIn && 
                     <div>See offers</div>} {/* user seeks to make a bid or exchange to get this card */}

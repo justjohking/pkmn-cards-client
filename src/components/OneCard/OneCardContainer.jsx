@@ -8,7 +8,7 @@ const OneCardContainer = (props) => {
             <img src={props.pokemon.images.large} alt="card"/>
             </div>
             
-            <CardInfo pokemon={props.pokemon}/>
+            <CardInfo pokemon={props.pokemon} className="card-info-div"/>
         </div>
     )
 }

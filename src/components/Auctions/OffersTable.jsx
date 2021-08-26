@@ -21,12 +21,12 @@ export class OffersTable extends Component {
                         
                     </thead>
                     <tbody>
-                        {this.props.offers.map(e => {
+                        {this.props.offers.map(offer => {
                             
 
                             return (
                                <OneOffer 
-                               offer={e}
+                               offer={offer}
                                
                                />
                             )
