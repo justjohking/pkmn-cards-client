@@ -1,5 +1,5 @@
 .NavMain {
-  background-color: transparent;
+  background-color: #e02f41;
   color: rgb(57, 57, 57);
   display: flex;
   align-items: center;
@@ -27,11 +27,14 @@
 /* Links inside the navbar */
 .navbar .NavLink {
   float: left;
+  font-weight: bold;
   font-size: 16px;
   color: black;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+  background-color: inherit;
+  border: none;
+  
+  
 }
 
 /* The dropdown container */
@@ -46,16 +49,15 @@
   border: none;
   outline: none;
   color: black;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: inherit;
+  padding: 14px 16px;
+  background-color: #e02f41;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
 }
 
 /* Add a red background color to navbar links on hover */
 .navbar .NavLink:hover, .dropdown:hover .dropbtn {
-  background-color: red;
+  background-color: #e02f41;
 }
 
 /* Dropdown content (hidden by default) */
@@ -86,4 +88,13 @@
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.pokeball-logo { 
+  width: 50px;
+  height: 50px;
+}
+
+.home-div {
+  display: flex;
 }

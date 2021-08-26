@@ -22,8 +22,9 @@ export class SearchBar extends Component {
                         onChange={this.handleNameInputChange}
                         name="name"
                         />
+                        <button type='submit' className="template-button-all-cards">Search</button>
                     </FormField>
-                    <button type='submit'>Search</button>
+                    
 
                 </form>
             </div>

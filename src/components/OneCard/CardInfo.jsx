@@ -8,7 +8,7 @@ export class CardInfo extends Component {
     render() {
         console.log(this.props)
         return (
-            <div className="info-container" style={{"border" : "1px solid black"}}>
+            <div className="info-container" >
                 <div>
                     <h2 className="pokemon-name">{this.props.pokemon.name}</h2>
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
 import OneCardItemList from '../OneCardItemList';
 import { Link } from "react-router-dom"
+import './OpenForExchange.css'
 
 
 export class OpenForExchange extends Component {
@@ -38,13 +39,16 @@ export class OpenForExchange extends Component {
         return (
             <div>
                 <h2>Cards open for exchanges</h2>
-                {this.state.cards.map(card => {
-                    return (
-                        <OneCardItemList card={card.pokemonTCGId} key={card._id}>
-                            <Link to={"/cards/" + card.pokemonTCGId.id}>Card details</Link>
-                        </OneCardItemList>
-                    )
-                })}
+                <div className="exchange-div">
+                    {this.state.cards.map(card => {
+                        return (
+                            <OneCardItemList card={card.pokemonTCGId} key={card._id}>
+                                <Link to={"/cards/" + card.pokemonTCGId.id} className="template-button-all-cards">Card details</Link>
+                            </OneCardItemList>
+                        )
+                    })}
+                </div>
+                
             </div>
         )
     }

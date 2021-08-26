@@ -107,11 +107,15 @@ export class AllCards extends Component {
 
         return (
             <div className="container">
-                <h1>Hello</h1>
-                <SearchBar 
-                name={this.state.name}
-                handleNameInputChange={this.handleNameInputChange}
-                />
+                <div className="search-div">
+                    <h1>Search for a Pokemon ! : </h1>
+                    <SearchBar 
+                    name={this.state.name}
+                    handleNameInputChange={this.handleNameInputChange}
+                    />
+                </div>
+                
+                
 
                 {this.state.loading && 
                 <Loading />}
@@ -121,8 +125,8 @@ export class AllCards extends Component {
                         {this.state.cards.map(card => (
                             <OneCardItemList card={card}>
                                 <div>
-                                    <Link to={"/cards/" + card.id}>Card details</Link>
-                                    <button onClick={() => {this.addCard(card.id)}}>Add Card</button>
+                                    <Link to={"/cards/" + card.id} className="template-button-all-cards">Card details</Link>
+                                    <button onClick={() => {this.addCard(card.id)}} className="template-button-all-cards">Add Card</button>
                                 </div>
                             </OneCardItemList>
 

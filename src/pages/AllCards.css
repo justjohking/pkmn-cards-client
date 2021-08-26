@@ -1,6 +1,6 @@
 .cardDiv {
     margin: 10px;
-    border: black 1px solid;
+    
     display: flex;
     flex-direction: column;
 }
@@ -8,5 +8,20 @@
 
 .container {
     width: 100%;
+    
+}
+
+.template-button-all-cards { 
+    background-color: #e5e831;
+    font-weight: bold;
+    font-size: 20px;
+    border: solid black 5px;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-right: 5px
+}
+
+.template-button-all-cards:hover { 
+    background-color: #e63e4f;
     
 }

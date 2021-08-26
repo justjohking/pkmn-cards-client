@@ -78,7 +78,8 @@ export class OneCard extends Component {
                 <div className="OneCard">
                     <OneCardContainer pokemon={this.state.pokemon}/>
                     
-                    <div>
+                    <div className="shop-section">
+                    <h1>Shop Section</h1>
                     <ActionButtons 
                     addCard={this.addCard} 
                     putCardOnSale={this.putCardOnSale}
