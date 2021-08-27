@@ -29,6 +29,7 @@ export class OneListing extends Component {
         this.setState({ exchangeItems : newArr })
     }
 
+    // add or remove a card from the exchange offer
     handleChange = (event) => {
         if(event.target.checked) {
             this.addCard(event.target.id)
@@ -44,6 +45,8 @@ export class OneListing extends Component {
             sellerItem : this.props.listing._id,
             buyerItem : this.state.exchangeItems
         }
+
+        // create an exchange offer
         try {
             await apiHandler.createExchange(exchangeOffer);
             this.setState({
@@ -78,7 +81,7 @@ export class OneListing extends Component {
     handleClick = () => {
         this.setState({
             loadingItems: true,
-            callBox: true,
+            callBox: true
         })
         this.getAllUserCards();
     }
@@ -113,19 +116,22 @@ export class OneListing extends Component {
                     {this.props.listing.cardState && this.props.listing.cardState}
                     </td>
                 <td>
-                    <button onClick={this.handleClick} className="template-button-all-cards">Select cards</button>
+                    {!this.state.callBox &&
+                    <button onClick={this.handleClick} className="template-button-all-cards">Place an offer</button>}
+                    
                     <div>
                     {this.state.callBox && this.state.loadingItems &&
-                    <div><p>Catching all your pokemons... plz hooold</p></div>
+                    <div><p>Catching all your pokemons</p></div>
                     }
-                    {(this.state.callBox) &&
+                    {this.state.callBox && 
+                    this.state.loadingItems &&
                     <SelectCardsBox 
                         getUserCards={this.getUserCards}
                         cards={this.state.cards}
                         exchangeItems={this.state.exchangeItems}
                         handleChange={this.handleChange}
-                    />
-                    }
+                        handleClick={this.handleClick}
+                    />} 
                     {this.state.callBox && 
                     this.state.cards.length === 0 &&
                     !this.state.loading &&
@@ -143,7 +149,7 @@ export class OneListing extends Component {
                 </td>
                 <td>
                     {/* {!this.state.exchangeExists &&  */}
-                        <button onClick={this.handleSubmit} className="template-button-all-cards">Confirm offer</button>
+                        <button onClick={this.handleSubmit} className="template-button-all-cards">Confirm my offer</button>
                     {/* } */}
                     {/* {this.state.exchangeExists &&
                         <p>Here is your offer</p>} */}

@@ -1,0 +1,16 @@
+.dropdown-menu {
+  background-color: white;
+  padding: 1em;
+}
+
+.dropdown-cards label {
+  color: red;
+}
+
+.dropdown-cards input {
+  margin-right: 1em;
+}
+
+.dropdown-basic {
+  background-color: white;
+}

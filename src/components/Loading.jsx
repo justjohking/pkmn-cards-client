@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import "./Loading.css"
 
 const Loading = () => {
     return (
         <div>
-            <p>Wait a bit... we need to catch 'em all ! </p>
+            <img className="loading-img "src="https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png" alt="" />
         </div>
     )
 }
