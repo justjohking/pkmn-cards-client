@@ -25,8 +25,8 @@ class UserCardExchangeItem extends React.Component {
                 </div>
                 <ExchangeOfferBox items={this.props.exchange.buyerItem}/>
                 <div>
-                    <button onClick={() => {this.handleAccept(this.props.exchange)}}>Accept Offer</button>
-                    <button onClick={() => {this.handleDecline(this.props.exchange)}}>Decline Offer</button>
+                    <button onClick={() => {this.handleAccept(this.props.exchange)}} className="template-button-all-cards">Accept Offer</button>
+                    <button onClick={() => {this.handleDecline(this.props.exchange)}} className="template-button-all-cards">Decline Offer</button>
                 </div>
             </div>
         )

@@ -33,8 +33,8 @@ export class SearchBar extends Component {
                     />
                 </FormField>
                 <div>
-                    <button onClick={this.handleClick}>Search</button>
-                    <button onClick={this.handleReset}>Reset search</button>
+                    <button onClick={this.handleClick} className="template-button-all-cards">Search</button>
+                    <button onClick={this.handleReset} className="template-button-all-cards">Reset search</button>
                 </div>
                     
             </div>

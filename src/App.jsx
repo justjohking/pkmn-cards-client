@@ -18,7 +18,10 @@ import UserExchanges from "./components/Exchange/UserExchangesList";
 function App() {
   return (
     <div className="App">
+      <header>
       <NavMain />
+      </header>
+      <body>
       <Switch>
         {/* <Route path="/test" component={TestApi} /> */}
         <Route exact path="/" component={Home} />
@@ -34,6 +37,8 @@ function App() {
         <ProtectedRoute path="/profile/auctions" component={UserAuctions} />
         <ProtectedRoute path="/profile/exchanges" component={UserExchanges} />
       </Switch>
+      </body>
+      
     </div>
   );
 }

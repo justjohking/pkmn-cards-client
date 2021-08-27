@@ -15,7 +15,7 @@ class OneCardActions extends Component {
                     
                     {isLoggedIn && 
                     userCards.length === 0 && 
-                    <button onClick={this.props.addCard}>Add to my collection</button> } {/* user indicates that they own this card */}
+                    <button onClick={this.props.addCard} className="template-button-all-cards">Add to my collection</button> } {/* user indicates that they own this card */}
 
                     {isLoggedIn && 
                     userCards.length > 0 && 
