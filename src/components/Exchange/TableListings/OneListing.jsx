@@ -142,11 +142,11 @@ export class OneListing extends Component {
                     </ul>
                 </td>
                 <td>
-                    {!this.state.exchangeExists && 
+                    {/* {!this.state.exchangeExists &&  */}
                         <button onClick={this.handleSubmit}>Confirm offer</button>
-                    }
-                    {this.state.exchangeExists && 
-                        <p>Here is your offer</p>}
+                    {/* } */}
+                    {/* {this.state.exchangeExists &&
+                        <p>Here is your offer</p>} */}
                     
                     
                 </td>
