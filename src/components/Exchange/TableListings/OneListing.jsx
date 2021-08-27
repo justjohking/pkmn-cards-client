@@ -54,6 +54,7 @@ export class OneListing extends Component {
         catch (error) {console.error(error)}
     }
 
+    // get all cards that the user owns
     getAllUserCards = async () => {
         {this.setState({ loading : true })}
         const cards =  await apiHandler.getAllUserCards();

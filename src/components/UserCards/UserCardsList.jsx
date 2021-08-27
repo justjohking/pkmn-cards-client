@@ -10,7 +10,8 @@ import "./UserCards.css"
 export class CardsList extends Component {
     state = {
         cards: null,
-        searchName : ""
+        searchName : "",
+        callForm: false
     }
 
     async componentDidMount() {
@@ -45,6 +46,14 @@ export class CardsList extends Component {
         this.getAllCards()
     }
 
+    callForm = () => {
+        this.setState({ callForm : true })
+    }
+
+    closeForm = () => {
+        this.setState({ callForm : false })
+    }
+
     render() {
         if(this.state.cards === null) return <Loading />
 
@@ -55,10 +64,13 @@ export class CardsList extends Component {
                     return (
                         <div key={card._id}>
                         <OneCardItemList card={card.pokemonTCGId} link={"/profile/cards/" + card._id}>
+                            <button onClick={this.callForm}>Sell</button>
                         
                         <BtnExchangeStatus card={card} update={this.updateStatus}/>
-                    </OneCardItemList>
-                    <FormSale card={card}/>
+                        </OneCardItemList>
+
+                    {this.state.callForm && <FormSale card={card} closeForm={this.closeForm}/>}
+                    
                     </div>)
                 })}
                 

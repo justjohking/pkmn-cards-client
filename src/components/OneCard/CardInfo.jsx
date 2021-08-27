@@ -17,9 +17,6 @@ export class CardInfo extends Component {
                     </div>
                 </div>
 
-              
-                
-
                 <div className="attacks">
                     <h2>Attacks : </h2>
                     {this.props.pokemon.attacks.map(e => {

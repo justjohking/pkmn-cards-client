@@ -38,10 +38,14 @@ export class SellCardForm extends Component {
         })
     }
 
+    closeForm = () => {
+        this.props.closeForm();
+    }
     
     createBid = async (event) => {
         event.preventDefault();
 
+        // create a bid (auction)
         const bid = {
             item: this.props.card._id,
             initialPrice: this.state.initialPrice,
@@ -52,7 +56,7 @@ export class SellCardForm extends Component {
         const bidCreated = await apiHandler.createBid(bid)
         console.log(bidCreated)
         
-
+        // update the onSale status of the card
         await apiHandler.updateCard(this.props.card._id, {
             onSale: true, 
             price: this.state.initialPrice,
@@ -60,7 +64,8 @@ export class SellCardForm extends Component {
             cardState: this.state.cardState
         })
 
-        // console.log("bid created", bidCreated)
+        // close the form
+        this.closeForm();
     }
     
     render() {
@@ -91,14 +96,14 @@ export class SellCardForm extends Component {
                                     />
                                 </FormField>
 
-                                <FormField label="end of the bid" htmlFor="endDate">
+                                {/* <FormField label="end of the bid" htmlFor="endDate">
                                     <input 
                                     type="datetime-local"
                                     onChange={this.handleChange}
                                     value={this.state.endTime}
                                     name="endDate"
                                     />
-                                </FormField>
+                                </FormField> */}
 
                              <button onClick={this.createBid}>Sell</button>
                             </div>

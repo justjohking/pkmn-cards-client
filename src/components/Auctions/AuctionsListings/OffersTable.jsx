@@ -16,7 +16,7 @@ export class OffersTable extends Component {
                             <td>Card State</td>
                             <td>Initial Price</td>
                             <td>Current Bid</td>
-                            <td>End date</td>
+                            {/* <td>End date</td> */}
                             <td>Your offer</td>
                             <td>Confirm</td>
                         </tr>

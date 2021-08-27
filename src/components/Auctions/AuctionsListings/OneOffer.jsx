@@ -94,7 +94,7 @@ export class OneOffer extends Component {
                 {this.props.offer.bid.initialPrice} $</td>
 
             <td>{this.state.auction.currentBid ? `${this.state.auction.currentBid} $` : "Be the first to Bid"}</td>
-            <td>{this.props.offer.bid.endDate}</td>
+            {/* <td>{this.props.offer.bid.endDate}</td> */}
             <td>
                 {this.state.hasHighestBid && 
                 <div>

@@ -91,7 +91,6 @@ export class AllCards extends Component {
     // click on "search" button to filter the input name
     // function is a prop to <SearchBar />
     handleClick = () => {
-        this.setState({ loading: true, page: 1, prevY: 0, cards: [] });
         this.getPokemonsByName(this.state.name, this.state.page);
     }
 
@@ -99,7 +98,6 @@ export class AllCards extends Component {
     // function is a prop to <SearchBar />
     handleReset = () => {
         this.getAllPokemons(this.state.page);
-        console.log(this.state.cards.length)
     }
 
     // add a card to my collection
@@ -133,11 +131,8 @@ export class AllCards extends Component {
                     />
                 </div>
                 
-                
-
                 {this.state.loading && 
                 <Loading />}
-                
                 
                 <div>
                     <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
@@ -145,7 +140,7 @@ export class AllCards extends Component {
                             <OneCardItemList card={card}>
                                 <div>
                                     <Link to={"/cards/" + card.id} className="template-button-all-cards">Card details</Link>
-                                    <button onClick={() => {this.addCard(card.id)}} className="template-button-all-cards">Add Card</button>
+                                    {/* <button onClick={() => {this.addCard(card.id)}} className="template-button-all-cards">Add Card</button> */}
                                 </div>
                             </OneCardItemList>
 
