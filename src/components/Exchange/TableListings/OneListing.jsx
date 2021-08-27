@@ -113,7 +113,7 @@ export class OneListing extends Component {
                     {this.props.listing.cardState && this.props.listing.cardState}
                     </td>
                 <td>
-                    <button onClick={this.handleClick}>Select cards</button>
+                    <button onClick={this.handleClick} className="template-button-all-cards">Select cards</button>
                     <div>
                     {this.state.callBox && this.state.loadingItems &&
                     <div><p>Catching all your pokemons... plz hooold</p></div>
@@ -143,7 +143,7 @@ export class OneListing extends Component {
                 </td>
                 <td>
                     {/* {!this.state.exchangeExists &&  */}
-                        <button onClick={this.handleSubmit}>Confirm offer</button>
+                        <button onClick={this.handleSubmit} className="template-button-all-cards">Confirm offer</button>
                     {/* } */}
                     {/* {this.state.exchangeExists &&
                         <p>Here is your offer</p>} */}

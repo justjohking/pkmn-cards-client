@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import OneListing from './OneListing'
-
+import "./TableListings.css"
 export class TableListings extends Component {
 
     render() {
         return (
             <div>
-                <h3>All listings open for exchange</h3>
+                <h3 style={{"margin-left": "50px"}}>All listings open for exchange</h3>
                 <table>
                 <thead>
                     <tr>

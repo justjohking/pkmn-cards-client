@@ -8,7 +8,7 @@ export class OffersTable extends Component {
         console.log(this.props)
         return (
             <div>
-                <h3>All the auctions</h3>
+                <h3 style={{"margin-left": "50px"}}>All the auctions</h3>
                 <table>
                     <thead>
                         <tr>

@@ -64,7 +64,7 @@ export class CardsList extends Component {
                     return (
                         <div key={card._id}>
                         <OneCardItemList card={card.pokemonTCGId} link={"/profile/cards/" + card._id}>
-                            <button onClick={this.callForm}>Sell</button>
+                            <button onClick={this.callForm} className="template-button-all-cards">Sell</button>
                         
                         <BtnExchangeStatus card={card} update={this.updateStatus}/>
                         </OneCardItemList>
