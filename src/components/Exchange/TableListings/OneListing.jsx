@@ -59,7 +59,8 @@ export class OneListing extends Component {
 
     // get all cards that the user owns
     getAllUserCards = async () => {
-        {this.setState({ loading : true })}
+        this.setState({ loading : true })
+
         const cards =  await apiHandler.getAllUserCards();
         const cardPromises = cards.map(card => {
             return apiHandler.getOneCardFromApi(card.pokemonTCGId);
@@ -104,10 +105,12 @@ export class OneListing extends Component {
         this.setState({
             loading: false
         })
-        this.getTheExchange(this.props.listing._id);
+        await this.getTheExchange(this.props.listing._id);
+      
     }
 
     render() {
+        console.log(this.state)
         return (
             <tr key={this.props.listing._id}>
                 <td>{this.props.listing.owner.email}</td>
@@ -124,7 +127,7 @@ export class OneListing extends Component {
                     <div><p>Catching all your pokemons</p></div>
                     }
                     {this.state.callBox && 
-                    this.state.loadingItems &&
+                    
                     <SelectCardsBox 
                         getUserCards={this.getUserCards}
                         cards={this.state.cards}

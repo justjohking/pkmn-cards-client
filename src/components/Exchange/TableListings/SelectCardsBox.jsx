@@ -15,6 +15,7 @@ export class SelectCardsBox extends Component {
     // get all the Pokemons
     
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Dropdown className="dropdown-cards">
