@@ -15,6 +15,7 @@ import UserAuctions from "./components/Auctions/UserAuctions/UserAuctions"
 import OpenForExchanges from "./components/Exchange/CardsOpenForExchange"
 import UserExchanges from "./components/Exchange/UserExchangesList";
 
+
 function App() {
   return (
     <div className="App">

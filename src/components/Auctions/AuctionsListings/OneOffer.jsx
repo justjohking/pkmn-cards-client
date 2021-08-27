@@ -86,7 +86,11 @@ export class OneOffer extends Component {
         return (
             <tr key={this.state.auction._id}>
 
-            <td>{this.props.offer.owner.email}</td>
+            <td>
+                {this.props.offer.owner.username ? 
+                (this.props.offer.owner.username) : 
+                (this.props.offer.owner.email)}
+            </td>
 
             <td>{this.props.offer.cardState}</td>
 
