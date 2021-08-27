@@ -62,7 +62,7 @@ class FormSignup extends Component {
           id="password"
           name="password"
         />
-        <button>Submit</button>
+        <button className="template-button-all-cards">Submit</button>
       </form>
     );
   }

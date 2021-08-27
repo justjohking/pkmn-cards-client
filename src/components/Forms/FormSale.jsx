@@ -86,7 +86,7 @@ export class SellCardForm extends Component {
                                         <option value="Bad">Bad</option>
                                     </select>
                                 </FormField>
-                                <p>Initial Price : {this.props.card.pokemonTCGId.cardmarket.prices.averageSellPrice}</p>
+                                <p><b>Initial Price :</b> {this.props.card.pokemonTCGId.cardmarket.prices.averageSellPrice}</p>
                                 <FormField label="Choose a price" htmlFor="initialPrice">
                                     <input 
                                     type='number'
@@ -105,7 +105,7 @@ export class SellCardForm extends Component {
                                     />
                                 </FormField> */}
 
-                             <button onClick={this.createBid}>Sell</button>
+                             <button onClick={this.createBid} className="template-button-all-cards">Sell</button>
                             </div>
                     </div>
                 </div>
