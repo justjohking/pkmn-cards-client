@@ -19,6 +19,7 @@ const NavMain = (props) => {
       });
   }
 
+  console.log(props)
   return (
     <nav>
 
@@ -63,7 +64,7 @@ const NavMain = (props) => {
 
               <li>
                 <div className="dropdown">
-                  <p className="dropdown-text">Username</p>
+                  <p className="dropdown-text">{props.context.user.username}</p>
                   <div className="dropdown-content">
                     <NavLink to="/profile" className="dropdown-item">Profile</NavLink>
                     <p onClick={handleLogout} className="dropdown-item">Logout</p>
