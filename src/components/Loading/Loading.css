@@ -1,8 +1,28 @@
+.loading-div .big {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
 .loading-img {
   width: 100px;
   margin: auto;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .loading-img {
+    animation: loading-pokeball-spin infinite 2s linear;
+  }
+}
+
+@keyframes loading-pokeball-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 /* 
 
 @font-face {

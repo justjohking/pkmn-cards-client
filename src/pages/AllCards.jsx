@@ -4,7 +4,7 @@ import OneCardItemList from '../components/OneCardItemList'
 import apiHandler from '../api/apiHandler';
 import SearchBar from '../components/SearchBar/SearchBar';
 import { Link } from 'react-router-dom';
-import Loading from '../components/Loading';
+import Loading from '../components/Loading/Loading';
 
 export class AllCards extends Component {
 

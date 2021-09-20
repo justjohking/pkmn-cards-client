@@ -1,45 +1,35 @@
-.NavMain {
-  background-color: #e02f41;
-  color: rgb(57, 57, 57);
+nav {
+  background-color: var(--main-bg-color2);
+  color: black;
   display: flex;
-  align-items: center;
-  padding: 20px;
-  height: 70px;
+  justify-content: space-between;
 }
 
-.NavMain .nav-list {
-  margin-left: auto;
+nav .left ul {
   display: flex;
-  
+  flex-direction: row;
 }
 
-.NavMain .nav-list li:not(:last-child) {
+nav .nav-list {
+  display: flex;
+}
+
+nav .nav-list li:not(:last-child) {
   margin-right: 20px;
-  
 }
 
 .dropdown-div {
   float: left;
   overflow: hidden;
-} 
-
+}
 
 /* Links inside the navbar */
-.navbar .NavLink {
-  float: left;
-  font-weight: bold;
-  font-size: 16px;
-  color: black;
+.dropdown-item {
   text-align: center;
-  background-color: inherit;
-  border: none;
-  
-  
 }
 
 /* The dropdown container */
 .dropdown {
-  float: left;
   overflow: hidden;
 }
 
@@ -50,28 +40,21 @@
   outline: none;
   color: black;
   padding: 14px 16px;
-  background-color: #e02f41;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
-}
-
-/* Add a red background color to navbar links on hover */
-.navbar .NavLink:hover, .dropdown:hover .dropbtn {
-  background-color: #e02f41;
 }
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 /* Links inside the dropdown */
-.dropdown-content .NavLink {
+.dropdown-content .dropdown-item {
   float: none;
   color: black;
   padding: 12px 16px;
@@ -81,20 +64,13 @@
 }
 
 /* Add a grey background color to dropdown links on hover */
-.dropdown-content .NavLink:hover {
-  background-color: #ddd;
-}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-.pokeball-logo { 
+nav img {
   width: 50px;
   height: 50px;
-}
-
-.home-div {
-  display: flex;
 }

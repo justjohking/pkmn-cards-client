@@ -6,6 +6,17 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: white;
+}
+
+:root {
+  --main-bg-color1: white;
+  --main-bg-color2: #f5f5f5;
+  --main-yellow: (255, 203, 5);
+  --main-blue: (61, 125, 202);
+}
+
 html {
   font-family: "Manrope", sans-serif;
 }

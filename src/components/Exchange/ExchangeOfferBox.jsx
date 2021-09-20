@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
-import Loading from '../Loading';
+import Loading from '../Loading/Loading';
 
 export class ExchangeOfferBox extends Component {
     state = {

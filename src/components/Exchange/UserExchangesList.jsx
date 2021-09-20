@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Loading from '../Loading';
+import Loading from '../Loading/Loading';
 import apiHandler from '../../api/apiHandler';
 import Message from '../Message';
 import UserCardExchangeItem from './UserCardExchangeItem';

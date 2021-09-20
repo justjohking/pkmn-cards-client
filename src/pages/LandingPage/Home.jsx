@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom"
-import {withUser} from "../components/Auth/withUser"
+import { Link } from "react-router-dom";
+import { withUser } from "../../components/Auth/withUser";
 import "./Home.css"
 class Home extends React.Component {
   render() {

@@ -1,7 +1,6 @@
 import React from 'react';
 import OneCardItemList from '../OneCardItemList';
 import ExchangeOfferBox from './ExchangeOfferBox';
-import apiHandler from '../../api/apiHandler';
 
 class UserCardExchangeItem extends React.Component {
 

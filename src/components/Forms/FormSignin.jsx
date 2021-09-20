@@ -36,17 +36,22 @@ class FormSignin extends Component {
     }
 
     return (
-      <div className="signin-div">
-          <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-          <h2>Signin</h2>
+      <form onChange={this.handleChange} onSubmit={this.handleSubmit} className="account-form">
+            
+        <h2>Sign in</h2>
+
+        <div className="question">
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" />
+        </div>
+
+        <div className="question">
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password" />
-          <button className="template-button-all-cards">Submit</button>
+        </div>
+
+        <button className="template-button-all-cards">Submit</button>
       </form>
-      </div>
-      
     );
   }
 }

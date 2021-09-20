@@ -1,0 +1,11 @@
+.account-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-form .question {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

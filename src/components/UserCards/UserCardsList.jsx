@@ -3,8 +3,7 @@ import apiHandler from '../../api/apiHandler';
 import FormSale from '../Forms/FormSale';
 import OneCardItemList from '../OneCardItemList';
 import BtnExchangeStatus from './BtnExchangeStatus';
-import Loading from '../Loading';
-import {Link} from "react-router-dom"
+import Loading from '../Loading/Loading';
 import "./UserCards.css"
 
 export class CardsList extends Component {

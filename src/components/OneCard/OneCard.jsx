@@ -6,7 +6,7 @@ import OffersTable from '../Auctions/AuctionsListings/OffersTable';
 import "./OneCard.css";
 import OneCardContainer from './OneCardContainer';
 import TableListings from '../Exchange/TableListings/TableListings';
-import Loading from '../Loading';
+import Loading from '../Loading/Loading';
 import { withUser } from '../Auth/withUser';
 
 

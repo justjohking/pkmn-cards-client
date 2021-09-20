@@ -1,7 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import NavMain from "./components/NavMain";
-import Home from "./pages/Home";
+
+import NavMain from "./components/NavBar/NavMain";
+import Home from "./pages/LandingPage/Home";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -19,10 +20,11 @@ import UserExchanges from "./components/Exchange/UserExchangesList";
 function App() {
   return (
     <div className="App">
+      
       <header>
       <NavMain />
       </header>
-      <body>
+
       <Switch>
         {/* <Route path="/test" component={TestApi} /> */}
         <Route exact path="/" component={Home} />
@@ -38,7 +40,6 @@ function App() {
         <ProtectedRoute path="/profile/auctions" component={UserAuctions} />
         <ProtectedRoute path="/profile/exchanges" component={UserExchanges} />
       </Switch>
-      </body>
       
     </div>
   );
