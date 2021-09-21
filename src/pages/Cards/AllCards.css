@@ -1,3 +1,8 @@
+/* .all-cards-container {
+  background-color: var(--main-bg-color1);
+  width: fit-content;
+} */
+
 .all-cards-container > h2 {
   margin-bottom: 0.5em;
   text-align: center;
@@ -9,9 +14,11 @@
   text-transform: uppercase;
   border: none;
   border-radius: 3px;
-  padding: 0.3em 0.5em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+  padding: 0.5em 0.8em;
+}
+
+.button.primary:hover {
+  background-color: var(--main-yellow-hover);
 }
 
 .list-cards {
@@ -26,14 +33,5 @@
   align-items: center;
   height: fit-content;
   width: fit-content;
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.all-cards-container .card-container > * {
-  margin: 0.3em auto;
-}
-
-.card-container {
-  margin: 1em 2em;
+  margin: 1em 1.5em;
 }

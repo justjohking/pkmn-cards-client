@@ -65,6 +65,19 @@ export class AllCards extends Component {
         .catch(error => console.log(error))
     }
 
+    getPokemonsOnAuction = async () => {
+        try {
+            const auctions = await apiHandler.findOpenAuctions();
+            const promises = auctions.map(auction => {
+                return(
+                    await apiHandler.getOneCardFromApi()
+                )
+            })
+            this.setState
+        } 
+        catch (error) { console.log(error) }   
+    }
+
 
     handleObserver(entities, observer){
         const y = entities[0].boundingClientRect.y;
@@ -99,13 +112,6 @@ export class AllCards extends Component {
     // function is a prop to <SearchBar />
     handleReset = () => {
         this.getAllPokemons(this.state.page);
-    }
-
-    // add a card to my collection
-    addCard = async (apiId) => {
-        try {
-            await apiHandler.addCard({pokemonTCGId: apiId});
-        } catch (error) {console.error(error)}
     }
 
     componentDidMount(){

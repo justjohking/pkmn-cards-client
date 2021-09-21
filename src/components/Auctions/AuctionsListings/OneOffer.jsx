@@ -38,7 +38,7 @@ export class OneOffer extends Component {
 
         // update the auction : the "currentBid" is now the "highest bid"
         const updatedBid = {currentBid: this.state.currentBid}
-        await apiHandler.updatedBids(id, updatedBid)
+        await apiHandler.updateAuction(id, updatedBid)
         .then((response) => { this.setState({ auction: response }) })
         .catch(error => console.log(error))
 

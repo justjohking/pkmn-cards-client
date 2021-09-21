@@ -14,7 +14,7 @@ export class UserExchanges extends Component {
 
     getAllExchangeOffers = async () => {
         try {
-            const myExchanges = await apiHandler.getExchangeOffers();
+            const myExchanges = await apiHandler.getExchangeOffersReceived();
             const promises = myExchanges.map(exchange => {
                 return ( 
                     apiHandler.getOneCardFromApi(exchange.sellerItem.pokemonTCGId)

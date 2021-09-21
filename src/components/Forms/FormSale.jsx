@@ -14,20 +14,8 @@ export class SellCardForm extends Component {
 
     async componentDidMount() {
         try {
-            await apiHandler
-            .isLoggedIn()
-            .then((data) => {
-                this.setState({ user: data, isLoggedIn: true});
-            })
-            .catch((error) => {
-                this.setState({ user: null, isLoggedIn: false});
-            });
-
-            const cardInfo = await apiHandler.getOneCard(this.props.card._id);
+            const cardInfo = await apiHandler.getOneUserCard(this.props.card._id);
             this.setState({ card: cardInfo});
-            
-            // const userCards = await apiHandler.getAllUserCardsFromApiCard(this.state.pokemon.id);
-            // this.setState({ userCards: userCards })
         }
         catch (error) {console.error(error)}
     }
@@ -42,7 +30,7 @@ export class SellCardForm extends Component {
         this.props.closeForm();
     }
     
-    createBid = async (event) => {
+    createAuction = async (event) => {
         event.preventDefault();
 
         // create a bid (auction)
@@ -53,7 +41,7 @@ export class SellCardForm extends Component {
             endDate: this.state.endDate,
             status: "ongoing"
         }
-        const bidCreated = await apiHandler.createBid(bid)
+        const bidCreated = await apiHandler.createAuction(bid)
         console.log(bidCreated)
         
         // update the onSale status of the card
@@ -105,7 +93,7 @@ export class SellCardForm extends Component {
                                     />
                                 </FormField> */}
 
-                             <button onClick={this.createBid} className="button primary">Sell</button>
+                             <button onClick={this.createAuction} className="button primary">Sell</button>
                             </div>
                     </div>
                 </div>

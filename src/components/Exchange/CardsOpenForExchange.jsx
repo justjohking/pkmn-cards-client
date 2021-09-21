@@ -13,7 +13,7 @@ export class OpenForExchange extends Component {
     }
 
     async componentDidMount() {
-        const cards = await apiHandler.getAllCardsOpenForExchange()
+        const cards = await apiHandler.getAllOpenEchanges()
 
         const cardPromises = cards.map(card => {
             return apiHandler.getOneCardFromApi(card.pokemonTCGId);

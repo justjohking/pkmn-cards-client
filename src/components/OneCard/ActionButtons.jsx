@@ -9,6 +9,7 @@ class OneCardActions extends Component {
 
     render() {
         const { userCards } = this.props.children;
+        console.log(userCards)
 
         return (
             <div>

@@ -37,14 +37,14 @@ export class OneCard extends Component {
 
     // get all the ongoing auctions for this model
     getOngoingAuctions = async (tcgId) => {
-        await apiHandler.getCardsOnSale(tcgId)
+        await apiHandler.getAuctionsForTCGCard(tcgId)
         .then((cards) => { this.setState({ cardsOnSale : cards }) })
         .catch((error) => { console.log(error) })
     }
 
     // get all the cards of this model open for exchange
     getCardsOpenForExchange = async (tcgId) => {
-        await apiHandler.getAllCardsOneOfApiIdOpenForExchange(tcgId)
+        await apiHandler.getAllOpenEchangesForTCGCard(tcgId)
         .then((response) => { this.setState({ cardsOpenForExchange: response })})
         .catch((error) => { console.log(error) })
     }

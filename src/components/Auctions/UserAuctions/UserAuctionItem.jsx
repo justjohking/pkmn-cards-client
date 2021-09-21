@@ -17,13 +17,13 @@ export class UserAuctionItem extends Component {
         await apiHandler.updateCard(card._id, updatedCard)
 
         // delete "bid" (auction)
-        await apiHandler.deleteBid(this.props.auction._id)
+        await apiHandler.deleteAuction(this.props.auction._id)
         console.log("bid finished")
     }
 
     // cancel the auction ==> delete "bid" (auction)
     handleDelete = async () => {
-        await apiHandler.deleteBid(this.props.auction._id)
+        await apiHandler.deleteAuction(this.props.auction._id)
         console.log("bid deleted")
     }
     

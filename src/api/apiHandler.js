@@ -43,21 +43,9 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
-  
-  getOneCard(id) {
-    return service 
-      .get("/api/me/cards/" + id)
-      .then((res) => res.data)
-      .catch(errorHandler)
-  },
 
-  // getItems() {
-  //   return axios
-  //     .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
-  //     .then((res) => res.data.data)
-  //     .catch(errorHandler);
-  // },
 
+  /* === POKEMON API === */
   getItems() {
     return service
     .get("/api/pokemonApi/all")
@@ -65,25 +53,16 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  //old getItems => getAllCards => will get all the cards from the API
-  // getAllCards() {
-  //   return axios
-  //     .get("https://api.pokemontcg.io/v2/cards?api_key=528e1aa6-a294-4981-ada2-1a04038be6ac")
-  //     .then((res) => res.data.data)
-  //     .catch(errorHandler);
-  // },
-
-
-  getOneCardFromApi(id) {
-    return service
-    .get(`/api/pokemonApi/${id}`)
+  getApiByPage(page) {
+    return service 
+    .get(`/api/pokemonApi/all/${page}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
-  getApiByPage(page) {
-    return service 
-    .get(`/api/pokemonApi/all/${page}`)
+  getOneCardFromApi(id) {
+    return service
+    .get(`/api/pokemonApi/${id}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -95,134 +74,141 @@ const apiHandler = {
     .catch(errorHandler)
   },
 
-  //old getAllCards => getAllUserCards removed /api 
+
+
+  /* === USER CARDS === */
   getAllUserCards() {
     return service 
-    .get("/api/me/cards")
+    .get("/api/user/cards")
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  getOneUserCard(id) {
+    return service 
+      .get("/api/user/cards/" + id)
+      .then((res) => res.data)
+      .catch(errorHandler)
+  },
+
+  getAllUserCardsFromApiCard(tcgID) {
+    return service
+    .get("/api/user/cards/tcg/" + tcgID)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
   addCard(card) {
     return service
-    .post("/api/me/cards/add", card)
+    .post("/api/user/cards/add", card)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
   updateCard(id, updatedCard) {
     return service
-    .patch(`/api/me/cards/${id}/edit`, updatedCard)
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
-  //User Interaction
-  //old findUserCollection => getUserCollection removed /api
-  getUserCollection(type) {
-    return service 
-    .get(`/api/me/collection/${type}`)
+    .patch(`/api/user/cards/${id}/update`, updatedCard)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
-  getOneUserCard(id){
+  
+  /* === AUCTIONS === */
+
+  findOpenAuctions(){
     return service
-    .get("/api/me/cards/" + id)
+    .get(`/api/auctions`)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
-  // Bids 
-  //create a new bid
-  createBid(bid){
+  findAuction(id){
     return service
-    .post('/api/bids/create', bid)
+    .get(`/api/auctions/${id}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
-  deleteBid(bid){
+  // When placing a bid
+  updateAuction(id, newBid){
     return service
-      .delete(`/api/bids/${bid}`)
+    .patch(`/api/auctions/${id}`, newBid)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  createAuction(auction){
+    return service
+    .post('/api/user/auctions/create', auction)
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
+
+  deleteAuction(auctionId){
+    return service
+      .delete(`/api/user/auctions/${auctionId}/delete`)
       .then(res => res.data)
       .catch(errorHandler)
   },
 
-  //?? delete this i think
-  findCardsOnSale(){
+  deleteAuctionByItem(id){
     return service
-    .get(`/api/bids`)
-    .then(res => res.data)
-    .catch(errorHandler)
+    .delete(`/api/user/auctions/${id}/deleteByItem`)
   },
 
   findUserAuctions(){
     return service
-      .get("/api/profile/auctions")
-      .then(res => res.data)
-      .catch(errorHandler)
-  },
-  
-  findAuction(id){
-    return service
-    .get(`/api/bids/${id}`)
-    .then(res => res.data)
-    .catch(errorHandler)
-},
-
-  updatedBids(id, newBid){
-      return service
-      .patch(`/api/bids/${id}`, newBid)
+      .get("/api/user/auctions")
       .then(res => res.data)
       .catch(errorHandler)
   },
 
-  getAllUserCardsFromApiCard(apiId) {
+  //Get all the auctions on one TCGCard
+  getAuctionsForTCGCard(tcgId){
     return service
-    .get("/api/me/cards/all/" + apiId)
+    .get("/api/auctions/" + tcgId)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
-  //Get all the cards that are on sale
-  getCardsOnSale(tcgId){
-    return service
-    .get("/api/cards/bids/" + tcgId)
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
 
-  getAllCardsOpenForExchange() {
+
+  /* === EXCHANGES === */
+
+  getAllOpenEchanges() {
     return service 
     .get("/api/exchanges")
     .then(res => res.data)
     .catch(errorHandler)
   },
 
-  getAllCardsOneOfApiIdOpenForExchange(tcgId) {
+  getAllOpenEchangesForTCGCard(tcgId) {
     return service 
     .get("/api/exchanges/" + tcgId)
     .then(res => res.data)
     .catch(errorHandler)
   },
+
+  // get exchange offers RECEIVED
+  getExchangeOffersReceived() {
+    return service 
+    .get("/api/user/exchanges/offers")
+    .then(res => res.data)
+    .catch(errorHandler)
+  },
   
+  // Create EXCHANGE OFFERS
   createExchange(exchange) {
     return service 
-    .post("/api//profile/exchanges/create", exchange)
+    .post("/api/user/exchanges/create", exchange)
     .then(res => res.data)
     .catch(errorHandler)
   },
 
-  getExchangeOffers() {
-    return service 
-    .get("/api/profile/exchanges")
-    .then(res => res.data)
-    .catch(errorHandler)
-  },
-
+  // delete Exchange
   deleteExchange(id) {
     return service
-    .delete(`/api/profile/exchanges/${id}`)
+    .delete(`/api/user/exchanges/${id}`)
     .then(res => res.data)
     .catch(errorHandler)
   },
@@ -231,11 +217,11 @@ const apiHandler = {
   // over one particular item
   getExchangeBySellerItem (idItem) {
     return service
-    .get(`/api/profile/exchanges/${idItem}`)
+    .get(`/api/user/exchanges/${idItem}`)
     .then(res => res.data)
     .catch(errorHandler)
   }
-  
+
 }
 
 export default apiHandler;

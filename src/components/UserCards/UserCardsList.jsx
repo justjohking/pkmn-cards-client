@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
-import FormSale from '../Forms/FormSale';
 import ExchangeStatus from './ExchangeStatus';
+import OnSaleStatus from './OnSaleStatus';
 import Loading from '../Loading/Loading';
 import "./UserCards.css"
 
@@ -44,14 +44,6 @@ export class CardsList extends Component {
         this.getAllCards()
     }
 
-    callForm = () => {
-        this.setState({ callForm : true })
-    }
-
-    closeForm = () => {
-        this.setState({ callForm : false })
-    }
-
     render() {
         if(this.state.cards === null) return <Loading />
 
@@ -66,13 +58,8 @@ export class CardsList extends Component {
                                 <img src={card.pokemonTCGId.images.small} alt="pokemon trading game card" />
                             </div>
                             <div className="info-container">
-
-                                <div>
-
-                                </div>
-                                <button onClick={this.callForm} className="button primary">Sell</button>
-                                <ExchangeStatus card={card} update={this.updateStatus}/>
-                                {this.state.callForm && <FormSale card={card} closeForm={this.closeForm}/>}
+                                <OnSaleStatus card={card} />
+                                <ExchangeStatus card={card} />
                             </div>
                         </div>
                         )
