@@ -6,7 +6,7 @@ import Home from "./pages/LandingPage/Home";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Profile from "./pages/Profile";
+import UserSpace from "./pages/UserSpace/UserSpace";
 import AllCards from "./pages/Cards/AllCards";
 import OneCard from "./components/OneCard/OneCard"
 import Auctions from "./pages/Auctions";
@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/cards/:id" component ={OneCard} />
         <Route exact path="/auctions" component= {Auctions} />
         <Route exact path="/exchanges" component={OpenForExchanges} />
-        <ProtectedRoute exact path="/profile" component= {Profile} />
+        <ProtectedRoute exact path="/profile" component= {UserSpace} />
         <ProtectedRoute path="/profile/cards" component={CardsList} />
         <ProtectedRoute exact path="/profile/cards/:id" component={FormSale} />
         <ProtectedRoute path="/profile/auctions" component={UserAuctions} />

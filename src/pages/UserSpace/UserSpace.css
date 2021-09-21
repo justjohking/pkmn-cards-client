@@ -1,0 +1,11 @@
+.UserSpace {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.UserSpace h2 {
+  text-align: left;
+  color: black;
+  font-size: 1.5em;
+  /* margin-bottom: 2em; */
+}

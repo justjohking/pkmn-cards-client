@@ -120,7 +120,7 @@ export class OneListing extends Component {
                     </td>
                 <td>
                     {!this.state.callBox &&
-                    <button onClick={this.handleClick} className="template-button-all-cards">Place an offer</button>}
+                    <button onClick={this.handleClick} className="button primary">Place an offer</button>}
                     
                     <div>
                     {this.state.callBox && this.state.loadingItems &&
@@ -152,7 +152,7 @@ export class OneListing extends Component {
                 </td>
                 <td>
                     {/* {!this.state.exchangeExists &&  */}
-                        <button onClick={this.handleSubmit} className="template-button-all-cards">Confirm my offer</button>
+                        <button onClick={this.handleSubmit} className="button primary">Confirm my offer</button>
                     {/* } */}
                     {/* {this.state.exchangeExists &&
                         <p>Here is your offer</p>} */}

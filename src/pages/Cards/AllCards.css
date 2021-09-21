@@ -4,17 +4,7 @@
   text-transform: uppercase;
 }
 
-.cardDiv {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.container {
-  width: 100%;
-}
-
-.main-button {
+.button.primary {
   background-color: var(--main-yellow);
   text-transform: uppercase;
   border: none;
@@ -22,4 +12,25 @@
   padding: 0.3em 0.5em;
   margin-left: 0.5em;
   margin-right: 0.5em;
+}
+
+.list-cards-container .list-cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container.big {
+  margin: 1em 2em;
+  height: fit-content;
+}
+
+.card-container > * {
+  margin: 0.3em auto;
 }

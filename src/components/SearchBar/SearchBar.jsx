@@ -57,8 +57,8 @@ export class SearchBar extends Component {
                 </div>
 
                 <div>
-                    <button onClick={this.handleClick} className="main-button">Search</button>
-                    <button onClick={this.handleReset} className="main-button">Reset search</button>
+                    <button onClick={this.handleClick} className="button primary">Search</button>
+                    <button onClick={this.handleReset} className="button primary">Reset search</button>
                 </div>
                     
             </form>

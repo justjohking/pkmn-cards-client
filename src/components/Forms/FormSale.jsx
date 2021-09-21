@@ -105,7 +105,7 @@ export class SellCardForm extends Component {
                                     />
                                 </FormField> */}
 
-                             <button onClick={this.createBid} className="template-button-all-cards">Sell</button>
+                             <button onClick={this.createBid} className="button primary">Sell</button>
                             </div>
                     </div>
                 </div>

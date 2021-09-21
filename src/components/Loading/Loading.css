@@ -1,7 +1,7 @@
-.loading-div .big {
-  margin: auto;
+.loading-div.big {
   display: flex;
   justify-content: center;
+  margin-top: 30vh;
 }
 
 .loading-img {

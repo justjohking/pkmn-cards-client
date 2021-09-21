@@ -1,6 +1,5 @@
 import React from 'react';
 import CardInfo from './CardInfo';
-import './OneCardContainer.css'
 const OneCardContainer = (props) => {
     return (
         <div className="container">

@@ -76,7 +76,7 @@ class FormSignup extends Component {
           />
         </div>
 
-        <button className="template-button-all-cards">Submit</button>
+        <button className="button primary">Submit</button>
 
         {this.state.messageUsername.length > 0 && 
           (<p>{this.state.message}</p>)}

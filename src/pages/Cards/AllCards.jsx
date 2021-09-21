@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './AllCards.css'
-import OneCardItemList from '../../components/OneCardItemList'
 import apiHandler from '../../api/apiHandler';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { Link } from 'react-router-dom';
@@ -138,16 +137,16 @@ export class AllCards extends Component {
                 {this.state.loading && 
                 <Loading />}
                 
-                <div>
-                    <div style={{ minHeight: "800px", display: "flex", "flexWrap": "wrap" }}>
+                <div className="list-cards-container">
+                    <div className="list-cards">
                         {this.state.cards.map(card => (
-                            <OneCardItemList card={card}>
-                                <div>
-                                    <Link to={"/cards/" + card.id} className="template-button-all-cards">Card details</Link>
-                                    {/* <button onClick={() => {this.addCard(card.id)}} className="template-button-all-cards">Add Card</button> */}
-                                </div>
-                            </OneCardItemList>
-
+                            <div className="card-container big" key={card.id}>
+                                <Link to={"/cards/" + card.id}>
+                                    <img src={card.images.small} alt="pokemon trading game card" />
+                                </Link>
+                                {/* <p className='title'>{card.name}</p> */}
+                                {/* <Link to={"/cards/" + card.id} className="button primary">Card details</Link> */}
+                            </div>
                         ))}
                     </div>
                     

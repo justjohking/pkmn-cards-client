@@ -32,13 +32,28 @@ class FormSignin extends Component {
 
   render() {
     if (this.props.context.user) {
-      return <Redirect to="/profile" />;
+      return <Redirect to="/profile/cards" />;
     }
 
     return (
       <form onChange={this.handleChange} onSubmit={this.handleSubmit} className="account-form">
             
         <h2>Sign in</h2>
+
+        <div className="first-name">
+          <label htmlFor="first-name">First Name</label>
+          <input type="text" id="first-name" name="first-name" />
+        </div>
+
+        <div className="last-name">
+          <label htmlFor="last-name">First Name</label>
+          <input type="text" id="last-name" name="last-name" />
+        </div>
+
+        <div className="country">
+          <label htmlFor="country">First Name</label>
+          <input type="text" id="country" name="country" />
+        </div>
 
         <div className="question">
           <label htmlFor="email">Email</label>
@@ -50,7 +65,7 @@ class FormSignin extends Component {
           <input type="password" id="password" name="password" />
         </div>
 
-        <button className="template-button-all-cards">Submit</button>
+        <button className="button primary">Submit</button>
       </form>
     );
   }

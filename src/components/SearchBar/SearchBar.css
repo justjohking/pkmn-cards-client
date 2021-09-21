@@ -21,7 +21,7 @@
   background-color: red;
 }
 
-.search-form .main-button:nth-child(2) {
+.search-form .button.primary:nth-child(2) {
   font-size: 0.8em;
   background-color: var(--grey-lighter);
 }

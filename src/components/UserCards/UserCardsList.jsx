@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
 import FormSale from '../Forms/FormSale';
-import OneCardItemList from '../OneCardItemList';
-import BtnExchangeStatus from './BtnExchangeStatus';
+import ExchangeStatus from './ExchangeStatus';
 import Loading from '../Loading/Loading';
-import "./UserCards.css"
+import UserSpace from '../../pages/UserSpace/UserSpace';
 
 export class CardsList extends Component {
     state = {
@@ -57,23 +56,22 @@ export class CardsList extends Component {
         if(this.state.cards === null) return <Loading />
 
         return (
-            <div className="CardsList">
-                <h2>ALL USER'S CARDS</h2>
-                {this.state.cards.map(card => {
-                    return (
-                        <div key={card._id}>
-                        <OneCardItemList card={card.pokemonTCGId} link={"/profile/cards/" + card._id}>
-                            <button onClick={this.callForm} className="template-button-all-cards">Sell</button>
-                        
-                        <BtnExchangeStatus card={card} update={this.updateStatus}/>
-                        </OneCardItemList>
+            <UserSpace title="CARDS IN YOUR COLLECTION">
+                <p>Total number of cards : {this.state.cards.length}</p>
 
-                    {this.state.callForm && <FormSale card={card} closeForm={this.closeForm}/>}
-                    
-                    </div>)
-                })}
-                
-            </div>
+                <div className="list-cards-container">
+                    {this.state.cards.map(card => { return (
+                        <div key={card._id}>
+                            <img src={card.pokemonTCGId.images.small} alt="pokemon trading game card" />
+                            <button onClick={this.callForm} className="button primary">Sell</button>
+                            <ExchangeStatus card={card} update={this.updateStatus}/>
+
+                            {this.state.callForm && <FormSale card={card} closeForm={this.closeForm}/>}
+                        </div>)
+                    })}  
+                </div>
+            
+            </UserSpace>
         )
     }
 }

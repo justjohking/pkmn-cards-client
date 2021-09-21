@@ -53,7 +53,7 @@ export class OpenForExchange extends Component {
                     {this.state.cards.map(card => {
                         return (
                             <OneCardItemList card={card.pokemonTCGId} key={card._id}>
-                                <Link to={"/cards/" + card.pokemonTCGId.id} className="template-button-all-cards">Card details</Link>
+                                <Link to={"/cards/" + card.pokemonTCGId.id} className="button primary">Card details</Link>
                             </OneCardItemList>
                         )
                     })}

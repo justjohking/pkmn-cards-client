@@ -16,13 +16,13 @@ class OneCardActions extends Component {
                     
                     {this.props.context.isLoggedIn && 
                     userCards.length === 0 && 
-                    <button onClick={this.props.addCard} className="template-button-all-cards">Add to my collection</button> } {/* user indicates that they own this card */}
+                    <button onClick={this.props.addCard} className="button primary">Add to my collection</button> } {/* user indicates that they own this card */}
 
                     {this.props.context.isLoggedIn && 
                     userCards.length > 0 && 
                     <div>
                         <p>You have {userCards.length} {userCards.length === 1 ? "version" : "versions"} of this card.</p>
-                        <button onClick={this.props.addCard} className="template-button-all-cards">Add another to my collection</button>
+                        <button onClick={this.props.addCard} className="button primary">Add another to my collection</button>
                     </div>}
 
                     {this.props.context.isLoggedIn && 

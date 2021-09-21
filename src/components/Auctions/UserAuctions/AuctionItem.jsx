@@ -9,7 +9,7 @@ const AuctionItem = (props) => {
             <OneCardItemList card={props.card.pokemonTCGId} link={"/profile/cards/" + props.card._id}/>
                 <div>
             <h2><b>Average price: {props.card.pokemonTCGId.cardmarket.prices.averageSellPrice}</b></h2>
-            <Link to={"/cards/" + props.card.pokemonTCGId.id} className="template-button-all-cards">Auction Details</Link>
+            <Link to={"/cards/" + props.card.pokemonTCGId.id} className="button primary">Auction Details</Link>
             </div>
         </div>
     )

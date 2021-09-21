@@ -33,8 +33,8 @@ export class UserAuctionItem extends Component {
             <div key={this.props.auction._id}> 
                 <OneCardItemList card={this.props.auction.pokemonTCGId}/>
                 <div>Current Offer : {this.props.auction.currentBid}</div>
-                <button onClick={this.handleAccept} className="template-button-all-cards">Accept the offer</button>
-                <button onClick={this.handleDelete} className="template-button-all-cards">Remove card from sale</button>
+                <button onClick={this.handleAccept} className="button primary">Accept the offer</button>
+                <button onClick={this.handleDelete} className="button primary">Remove card from sale</button>
             </div>
         )
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import apiHandler from '../../api/apiHandler'
 
-export class BtnExchangeStatus extends Component {
+export class ExchangeStatus extends Component {
     state = {
         openForExchange : this.props.card.openForExchange
     }
@@ -25,13 +25,13 @@ export class BtnExchangeStatus extends Component {
                 {!this.props.card.openForExchange && 
                 <div>
                     <p>Not open for exchanges</p>
-                    <button onClick={this.handleClick} className='template-button-all-cards'>Accept exchanges</button>
+                    <button onClick={this.handleClick} className='button primary'>Accept exchanges</button>
                 </div>}
 
                 {this.props.card.openForExchange && 
                 <div>
                     <p>Open for exchanges</p>
-                    <button onClick={this.handleClick}  className='template-button-all-cards'>Refuse exchange</button>
+                    <button onClick={this.handleClick}  className='button primary'>Refuse exchange</button>
                 </div>}
                 
                 {/* <input type="checkbox" name="openForExchange" defaultChecked={this.state.openForExchange} onClick={this.handleChange}/> */}
@@ -40,4 +40,4 @@ export class BtnExchangeStatus extends Component {
     }
 }
 
-export default BtnExchangeStatus
+export default ExchangeStatus

@@ -57,10 +57,10 @@ const NavMain = (props) => {
               </li>
 
               <li className="dropdown">
-                <p className="dropdown-text">{props.context.user.username}</p>
+                <p className="dropdown-text username">{props.context.user.username}</p>
                 <ul className="dropdown-content">
                   <li><NavLink to="/profile" className="dropdown-item">Profile</NavLink></li>
-                  <li onClick={handleLogout} className="dropdown-item logout">Logout</li>
+                  <li><p onClick={handleLogout} className="dropdown-item logout">Logout</p></li>
                 </ul>
               </li>
 

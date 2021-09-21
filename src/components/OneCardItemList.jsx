@@ -1,13 +1,14 @@
 import React from 'react';
+import "./OneCardItemList.css"
 
 const OneCardItemList = (props) => {
     return (
-        <div className="cardDiv" key={props.key}>
-        <img src={props.card.images.small} alt="" height="400px" width="350px"/>
-        <h2>{props.card.name}</h2>
-        <div>
-        {props.children}
-        </div>
+        <div className="card-container" key={props.key}>
+            <img src={props.card.images.small} alt="pokemon trading game card" />
+            <p className='title'>{props.card.name}</p>
+            <div className="content">
+                {props.children}
+            </div>
         </div>
     )
 }
