@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import '../pages/AllCards.css'
-import OneCardItemList from '../components/OneCardItemList'
-import apiHandler from '../api/apiHandler';
-import SearchBar from '../components/SearchBar/SearchBar';
+import './AllCards.css'
+import OneCardItemList from '../../components/OneCardItemList'
+import apiHandler from '../../api/apiHandler';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import { Link } from 'react-router-dom';
-import Loading from '../components/Loading/Loading';
+import Loading from '../../components/Loading/Loading';
 
 export class AllCards extends Component {
 
@@ -14,7 +14,9 @@ export class AllCards extends Component {
         loadingItems : false,
         page: 1,
         prevY: 0,
-        name: ""
+        name: "",
+        auction: false,
+        exchange: false
     }
 
     // pokemon API method to get all the pokemons
@@ -120,9 +122,11 @@ export class AllCards extends Component {
         const loadingTextCSS = { display: this.state.loadingItems ? "block" : "none" };
 
         return (
-            <div className="container">
+            <div className="all-cards-container">
+
+                <h2>All existing cards</h2>
+                
                 <div className="search-div">
-                    <h1>Search for a Pokemon ! </h1>
                     <SearchBar 
                     name={this.state.name}
                     handleChange={this.handleChange}

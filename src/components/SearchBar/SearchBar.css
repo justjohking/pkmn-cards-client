@@ -1,0 +1,27 @@
+.search-form {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+  background-color: var(--grey-dark);
+  padding: 1.2em 1em;
+  align-items: center;
+  justify-content: center;
+  color: var(--grey-lighter);
+}
+
+.search-form .criteria {
+  margin-right: 2em;
+}
+
+.search-form .criteria label {
+  margin-right: 0.5em;
+}
+
+.search-form #search-exchange {
+  background-color: red;
+}
+
+.search-form .main-button:nth-child(2) {
+  font-size: 0.8em;
+  background-color: var(--grey-lighter);
+}

@@ -7,7 +7,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
-import AllCards from "./pages/AllCards";
+import AllCards from "./pages/Cards/AllCards";
 import OneCard from "./components/OneCard/OneCard"
 import Auctions from "./pages/Auctions";
 import CardsList from "./components/UserCards/UserCardsList";

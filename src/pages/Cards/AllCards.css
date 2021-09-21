@@ -1,0 +1,25 @@
+.all-cards-container > h2 {
+  margin-bottom: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cardDiv {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+}
+
+.main-button {
+  background-color: var(--main-yellow);
+  text-transform: uppercase;
+  border: none;
+  border-radius: 3px;
+  padding: 0.3em 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}

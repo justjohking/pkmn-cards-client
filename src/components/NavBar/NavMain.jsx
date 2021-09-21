@@ -19,7 +19,6 @@ const NavMain = (props) => {
       });
   }
 
-  console.log(props)
   return (
     <nav>
 
@@ -32,6 +31,13 @@ const NavMain = (props) => {
           <li>
             <NavLink to="/cards" className="NavLink">All Cards</NavLink>
           </li>
+          <li className="dropdown">
+            <p className="dropdown-text">Shop</p>
+            <ul className="dropdown-content">
+              <li><NavLink to="/auctions" className="dropdown-item">All Auctions</NavLink></li>
+              <li><NavLink to="/exchanges" className="dropdown-item">All Exchanges</NavLink></li>
+            </ul>
+          </li>
         </ul>
       
 
@@ -42,34 +48,20 @@ const NavMain = (props) => {
                 <NavLink to="/profile/cards" className="NavLink">My Cards</NavLink>
               </li>
 
-              <li>
-                <div className="dropdown">
-                  <p className="dropdown-text">Shop</p>
-                  <div className="dropdown-content">
-                    <NavLink to="/auctions" className="dropdown-item">All Auctions</NavLink>
-                    <NavLink to="/exchanges" className="dropdown-item">All Exchanges</NavLink>
-                  </div>
-                </div>
-              </li>
-
-              <li>
-                <div className="dropdown">
+              <li className="dropdown">
                 <p className="dropdown-text">My Activity</p>
-                <div className="dropdown-content">
-                  <NavLink to="/profile/auctions" className="dropdown-item">My Auctions</NavLink>
-                  <NavLink to="/profile/exchanges" className="dropdown-item">My Exchanges</NavLink>
-                </div>
-                </div>
+                <ul className="dropdown-content">
+                  <li><NavLink to="/profile/auctions" className="dropdown-item">My Auctions</NavLink></li>
+                  <li><NavLink to="/profile/exchanges" className="dropdown-item">My Exchanges</NavLink></li>
+                </ul>
               </li>
 
-              <li>
-                <div className="dropdown">
-                  <p className="dropdown-text">{props.context.user.username}</p>
-                  <div className="dropdown-content">
-                    <NavLink to="/profile" className="dropdown-item">Profile</NavLink>
-                    <p onClick={handleLogout} className="dropdown-item">Logout</p>
-                  </div>
-                </div>
+              <li className="dropdown">
+                <p className="dropdown-text">{props.context.user.username}</p>
+                <ul className="dropdown-content">
+                  <li><NavLink to="/profile" className="dropdown-item">Profile</NavLink></li>
+                  <li onClick={handleLogout} className="dropdown-item logout">Logout</li>
+                </ul>
               </li>
 
             </React.Fragment>

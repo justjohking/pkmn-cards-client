@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FormField from '../Forms/FormField';
+import './SearchBar.css'
 
 export class SearchBar extends Component {
     constructor(props) {
@@ -24,20 +24,44 @@ export class SearchBar extends Component {
 
     render() {
         return (
-            <div className="SearchBar">
-                <FormField>
+            <form className="search-form">
+
+                <div className="criteria">
+                    <label htmlForm="search-name">Name of a Pokemon</label>
                     <input
+                    id="search-name"
                     type="text"
                     value={this.props.name}
                     onChange={this.handleChange}
                     />
-                </FormField>
+                </div>
+
+                <div className="criteria">
+                    <label htmlFor="search-auction">Auctions</label>
+                    <input 
+                    type="checkbox"
+                    value={this.props.auction}
+                    onChange={this.handleChange}
+                    id='search-auction'
+                    />
+                </div>
+
+                <div className="criteria">
+                    <label htmlFor="search-exchange">Exchanges</label>
+                    <input 
+                    id="search-exchange"
+                    type="checkbox"
+                    value={this.props.exchange}
+                    onChange={this.handleChange}
+                    />
+                </div>
+
                 <div>
-                    <button onClick={this.handleClick} className="template-button-all-cards">Search</button>
-                    <button onClick={this.handleReset} className="template-button-all-cards">Reset search</button>
+                    <button onClick={this.handleClick} className="main-button">Search</button>
+                    <button onClick={this.handleReset} className="main-button">Reset search</button>
                 </div>
                     
-            </div>
+            </form>
         )
     }
 }

@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "axios": "^0.21.1",
-    "bootstrap": "^5.1.0",
+    "bootstrap": "^5.1.1",
     "dotenv": "^8.2.0",
     "pokemontcgsdk": "^2.0.0",
     "react": "^16.13.1",
