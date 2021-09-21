@@ -140,7 +140,7 @@ export class AllCards extends Component {
                 <div className="list-cards-container">
                     <div className="list-cards">
                         {this.state.cards.map(card => (
-                            <div className="card-container big" key={card.id}>
+                            <div className="card-container" key={card.id}>
                                 <Link to={"/cards/" + card.id}>
                                     <img src={card.images.small} alt="pokemon trading game card" />
                                 </Link>

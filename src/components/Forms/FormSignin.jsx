@@ -40,21 +40,6 @@ class FormSignin extends Component {
             
         <h2>Sign in</h2>
 
-        <div className="first-name">
-          <label htmlFor="first-name">First Name</label>
-          <input type="text" id="first-name" name="first-name" />
-        </div>
-
-        <div className="last-name">
-          <label htmlFor="last-name">First Name</label>
-          <input type="text" id="last-name" name="last-name" />
-        </div>
-
-        <div className="country">
-          <label htmlFor="country">First Name</label>
-          <input type="text" id="country" name="country" />
-        </div>
-
         <div className="question">
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" />

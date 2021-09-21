@@ -3,7 +3,7 @@ import apiHandler from '../../api/apiHandler';
 import FormSale from '../Forms/FormSale';
 import ExchangeStatus from './ExchangeStatus';
 import Loading from '../Loading/Loading';
-import UserSpace from '../../pages/UserSpace/UserSpace';
+import "./UserCards.css"
 
 export class CardsList extends Component {
     state = {
@@ -56,22 +56,29 @@ export class CardsList extends Component {
         if(this.state.cards === null) return <Loading />
 
         return (
-            <UserSpace title="CARDS IN YOUR COLLECTION">
-                <p>Total number of cards : {this.state.cards.length}</p>
+            <div className="UserCardsList">
+                <h2>CARDS IN YOUR COLLECTION ({this.state.cards.length})</h2>
 
-                <div className="list-cards-container">
+                <div className="list-cards">
                     {this.state.cards.map(card => { return (
-                        <div key={card._id}>
-                            <img src={card.pokemonTCGId.images.small} alt="pokemon trading game card" />
-                            <button onClick={this.callForm} className="button primary">Sell</button>
-                            <ExchangeStatus card={card} update={this.updateStatus}/>
+                        <div className="card-container profile" key={card._id}>
+                            <div>
+                                <img src={card.pokemonTCGId.images.small} alt="pokemon trading game card" />
+                            </div>
+                            <div className="info-container">
 
-                            {this.state.callForm && <FormSale card={card} closeForm={this.closeForm}/>}
-                        </div>)
+                                <div>
+
+                                </div>
+                                <button onClick={this.callForm} className="button primary">Sell</button>
+                                <ExchangeStatus card={card} update={this.updateStatus}/>
+                                {this.state.callForm && <FormSale card={card} closeForm={this.closeForm}/>}
+                            </div>
+                        </div>
+                        )
                     })}  
                 </div>
-            
-            </UserSpace>
+            </div>
         )
     }
 }

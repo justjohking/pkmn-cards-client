@@ -1,0 +1,18 @@
+.card-container.profile {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--grey-lighter);
+  padding: 2em;
+  /* box-shadow: 5px 5px 20px var(--grey-dark); */
+  box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.card-container > div {
+  margin: 0 1em;
+}
+
+.card-container .info-container {
+  /* background-color: white; */
+  height: 100%;
+  padding: 0.5em;
+}

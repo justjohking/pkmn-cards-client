@@ -9,6 +9,9 @@ class FormSignup extends Component {
     email: "",
     password: "",
     username: "",
+    firstName: "",
+    lastName: "",
+    coutry: "",
     messageUsername: ""
   };
 
@@ -42,6 +45,39 @@ class FormSignup extends Component {
       <form onSubmit={this.handleSubmit} className="account-form">
 
       <h2>Signup</h2>
+
+      <div className="first-name">
+          <label htmlFor="first-name">First Name</label>
+          <input 
+          type="text" 
+          id="first-name" 
+          name="first-name" 
+          onChange={this.handleChange}
+          value={this.state.firstName}
+          />
+        </div>
+
+        <div className="last-name">
+          <label htmlFor="last-name">Last Name</label>
+          <input 
+          type="text" 
+          id="last-name" 
+          name="last-name" 
+          onChange={this.handleChange}
+          value={this.state.lastName}
+          />
+        </div>
+
+        <div className="country">
+          <label htmlFor="country">Country</label>
+          <input 
+          type="text" 
+          id="country" 
+          name="country" 
+          onChange={this.handleChange}
+          value={this.state.country}
+          />
+        </div>
 
         <div className="question">
           <label htmlFor="username">Username</label>
