@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
 import FormSale from '../Forms/FormSale'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export class OnSaleStatus extends Component {
     state = {
@@ -54,6 +55,8 @@ export class OnSaleStatus extends Component {
                 </div>) : 
                 (<button onClick={this.callForm} className="button primary">START AUCTION</button>)}
 
+
+
                 {this.state.callForm && 
                 <FormSale card={this.props.card} closeForm={this.closeForm}/>}
             </div>
@@ -62,3 +65,4 @@ export class OnSaleStatus extends Component {
 }
 
 export default OnSaleStatus
+

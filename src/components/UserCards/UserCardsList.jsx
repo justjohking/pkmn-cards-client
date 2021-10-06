@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
 import ExchangeStatus from './ExchangeStatus';
-import OnSaleStatus from './OnSaleStatus';
+// import OnSaleStatus from './OnSaleStatus';
+import SaleStatus from './SaleStatus';
 import Loading from '../Loading/Loading';
 import "./UserCards.css"
 
@@ -58,7 +59,7 @@ export class CardsList extends Component {
                                 <img src={card.pokemonTCGId.images.small} alt="pokemon trading game card" />
                             </div>
                             <div className="info-container">
-                                <OnSaleStatus card={card} />
+                                <SaleStatus card={card} />
                                 <ExchangeStatus card={card} />
                             </div>
                         </div>

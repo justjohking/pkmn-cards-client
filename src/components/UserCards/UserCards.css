@@ -1,6 +1,7 @@
 .card-container.profile {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   background-color: var(--grey-lighter);
   padding: 2em;
   /* box-shadow: 5px 5px 20px var(--grey-dark); */
