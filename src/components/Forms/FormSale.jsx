@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import apiHandler from '../../api/apiHandler';
 import FormField from "./FormField"
+import { Button } from 'reactstrap'
 
 export class SellCardForm extends Component {
     state = {
@@ -93,7 +94,9 @@ export class SellCardForm extends Component {
                                     />
                                 </FormField> */}
 
-                             <button onClick={this.createAuction} className="button primary">Sell</button>
+                             <Button onClick={this.createAuction} className="button primary">Sell</Button>
+                             <Button onClick={this.closeForm} className="button secondary">Cancel</Button>
+                             
                             </div>
                     </div>
                 </div>

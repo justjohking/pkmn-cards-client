@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import apiHandler from '../../api/apiHandler';
 import FormSale from '../Forms/FormSale';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalBody } from 'reactstrap';
 
 function SaleStatus(props) {
 
     const [status, setStatus] = useState(false)
-    const [form, callForm] = useState(false)
+    // const [form, callForm] = useState(false)
 
     const getCardStatus = async (id) => {
         await apiHandler.getOneUserCard(id)
@@ -18,11 +18,11 @@ function SaleStatus(props) {
     }
 
     const openForm = () => {
-        callForm(true)
+        toggle()
     }
 
     const closeForm = () => {
-        callForm(false);
+        toggle();
         getCardStatus(props.card._id)
     }
 
@@ -37,7 +37,9 @@ function SaleStatus(props) {
         catch (error) {console.log(error)}
     }
 
-    
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
 
     useEffect(() => {
         getCardStatus(props.card._id)
@@ -45,17 +47,26 @@ function SaleStatus(props) {
 
     return (
         <div>
-        {status ? 
-        (<div>
+        {status && 
+        <div>
             <p>Card currently up for auction</p>
-            <button onClick={cancelAuction} className="button primary">CANCEL AUCTION</button>
-        </div>) : 
-        (<button onClick={openForm} className="button primary">START AUCTION</button>)}
+            <Button onClick={cancelAuction} className="button primary">CANCEL AUCTION</Button>
+        </div>}
+
+        {!status && 
+        <div>
+            <Button onClick={openForm} className="button primary">START AUCTION</Button>
+            <Modal isOpen={modal} toggle={toggle}>
+                <ModalBody>
+                    <FormSale card={props.card} closeForm={closeForm}/>
+                </ModalBody>
+            </Modal>
+        </div>}
+        
 
 
 
-        {form && 
-        <FormSale card={props.card} closeForm={closeForm}/>}
+        
     </div>
     )
 }
