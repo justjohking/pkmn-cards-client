@@ -5,16 +5,17 @@ export class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
     }
 
-    handleChange = (e) => {
-        this.props.handleChange(e.target.value)
+    handleChange = (event) => {
+        this.props.handleChange(event)
+        console.log('it works', event)
     }
 
-    handleClick = () => {
-        this.props.handleClick()
+    handleSubmit = () => {
+        this.props.handleSubmit()
     }
 
     handleReset = () => {
@@ -24,7 +25,7 @@ export class SearchBar extends Component {
 
     render() {
         return (
-            <form className="search-form">
+            <form className="search-form" onSubmit={this.handleSubmit}>
 
                 <div className="criteria">
                     <label htmlForm="search-name">Name of a Pokemon</label>
@@ -33,14 +34,16 @@ export class SearchBar extends Component {
                     type="text"
                     value={this.props.name}
                     onChange={this.handleChange}
+                    name="name"
                     />
                 </div>
 
                 <div className="criteria">
                     <label htmlFor="search-auction">Auctions</label>
                     <input 
+                    name='onSale'
                     type="checkbox"
-                    value={this.props.auction}
+                    value={this.props.onSale}
                     onChange={this.handleChange}
                     id='search-auction'
                     />
@@ -49,15 +52,16 @@ export class SearchBar extends Component {
                 <div className="criteria">
                     <label htmlFor="search-exchange">Exchanges</label>
                     <input 
+                    name="openForExchange"
                     id="search-exchange"
                     type="checkbox"
-                    value={this.props.exchange}
+                    value={this.props.openForExchange}
                     onChange={this.handleChange}
                     />
                 </div>
 
                 <div>
-                    <button onClick={this.handleClick} className="button primary">Search</button>
+                    <button type="submit" className="button primary">Search</button>
                     <button onClick={this.handleReset} className="button primary">Reset search</button>
                 </div>
                     

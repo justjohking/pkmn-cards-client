@@ -115,7 +115,7 @@ const apiHandler = {
   
   /* === AUCTIONS === */
 
-  findOpenAuctions(){
+  findCardsOnSale(){
     return service
     .get(`/api/auctions`)
     .then(res => res.data)
@@ -166,7 +166,7 @@ const apiHandler = {
   //Get all the auctions on one TCGCard
   getAuctionsForTCGCard(tcgId){
     return service
-    .get("/api/auctions/" + tcgId)
+    .get("/api/auctions/tcg/" + tcgId)
     .then(res => res.data)
     .catch(errorHandler)
   },

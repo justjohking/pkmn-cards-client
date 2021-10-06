@@ -14,8 +14,8 @@ export class AllCards extends Component {
         page: 1,
         prevY: 0,
         name: "",
-        auction: false,
-        exchange: false
+        onSale: false,
+        openForExchange: false
     }
 
     // pokemon API method to get all the pokemons
@@ -63,17 +63,25 @@ export class AllCards extends Component {
             this.setState({ loading: false})
         })
         .catch(error => console.log(error))
-    }
+    };
 
     getPokemonsOnAuction = async () => {
         try {
-            const auctions = await apiHandler.findOpenAuctions();
-            const promises = auctions.map(auction => {
-                return(
-                    await apiHandler.getOneCardFromApi()
+            const cardsOnSale = await apiHandler.findCardsOnSale();
+            const promises = cardsOnSale.map(card => {
+                return (
+                    apiHandler.getOneCardFromApi(card.pokemonTCGId)
+                )
+            });
+            const responses = await Promise.all(promises);
+            const populatedCards = cardsOnSale.map((card, i) => {
+                return (
+                    {...card, pokemonTCGId: responses[i]}
                 )
             })
-            this.setState
+            this.setState({
+                cards: populatedCards
+            })
         } 
         catch (error) { console.log(error) }   
     }
@@ -98,13 +106,17 @@ export class AllCards extends Component {
 
     // handle the change of input
     // function is a prop to <SearchBar />
-    handleChange = (input) => {
-        this.setState({ name: input });
+    handleChange = (event) => {
+        event.preventDefault();
+        // console.log("it works", event)
+        const key = event.target.name;
+        const value = event.target.value;
+        this.setState({ [key]: value });
     }
 
     // click on "search" button to filter the input name
     // function is a prop to <SearchBar />
-    handleClick = () => {
+    handleSubmit = () => {
         this.getPokemonsByName(this.state.name, this.state.page);
     }
 
@@ -134,8 +146,10 @@ export class AllCards extends Component {
                 <div className="search-div">
                     <SearchBar 
                     name={this.state.name}
+                    onSale={this.state.onSale}
+                    openForExchange={this.state.openForExchange}
                     handleChange={this.handleChange}
-                    handleClick={this.handleClick}
+                    handleSubmit={this.handleSubmit}
                     handleReset={this.handleReset}
                     />
                 </div>
